@@ -97,6 +97,15 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Descrição.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail.
         /// </summary>
         public static string Email {
@@ -147,15 +156,6 @@ namespace BikEvent.Domain.Utility.Language {
         public static string InterestedSendEmailTo {
             get {
                 return ResourceManager.GetString("InterestedSendEmailTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Descrição do Trabalho.
-        /// </summary>
-        public static string JobDescription {
-            get {
-                return ResourceManager.GetString("JobDescription", resourceCulture);
             }
         }
         

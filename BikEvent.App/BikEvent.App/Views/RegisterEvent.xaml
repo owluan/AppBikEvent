@@ -54,13 +54,13 @@
                     </StackLayout>
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
-                    <Entry x:Name="TxtTags" Placeholder="Tags" ReturnType="Next" />
+                    <Entry x:Name="TxtTags" Placeholder="Tags                                      Ex.: MTB, Trilha, Natureza" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtCompanyDescription" Placeholder="Descrição da Empresa" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
-                    <Entry x:Name="TxtJobDescription" Placeholder="Descrição do Trabalho" ReturnType="Next" />
+                    <Entry x:Name="TxtDescription" Placeholder="Descrição" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtBenefits" Placeholder="Benefícios" ReturnType="Next" />

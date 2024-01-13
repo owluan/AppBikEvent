@@ -35,10 +35,10 @@ namespace BikEvent.App.Views
                 TextCompanyDescription.IsVisible = false;
             }
 
-            if (string.IsNullOrEmpty(_event.JobDescription))
+            if (string.IsNullOrEmpty(_event.Description))
             {
-                HeaderJobDescription.IsVisible = false;
-                TextJobDescription.IsVisible = false;
+                HeaderDescription.IsVisible = false;
+                TextDescription.IsVisible = false;
             }
 
             if (string.IsNullOrEmpty(_event.Benefits))

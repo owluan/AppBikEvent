@@ -42,9 +42,9 @@ namespace BikEvent.Domain.Models
         [Display(Name = "CompanyDescription", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public string CompanyDescription { get; set; }
 
-        [Display(Name = "JobDescription", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Display(Name = "Description", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
-        public string JobDescription { get; set; }
+        public string Description { get; set; }
 
         [Display(Name = "Benefits", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public string Benefits { get; set; }

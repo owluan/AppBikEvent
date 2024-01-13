@@ -129,6 +129,9 @@
   <data name="CompanyDescription" xml:space="preserve">
     <value>Descrição da Empresa</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
@@ -146,9 +149,6 @@
   </data>
   <data name="InterestedSendEmailTo" xml:space="preserve">
     <value>Interessados enviar e-mail para</value>
-  </data>
-  <data name="JobDescription" xml:space="preserve">
-    <value>Descrição do Trabalho</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

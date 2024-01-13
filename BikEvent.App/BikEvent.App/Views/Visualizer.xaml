@@ -70,8 +70,8 @@
                     <BoxView Color="#F3F5F7" HeightRequest="1" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Descrição da Empresa" x:Name="HeaderCompanyDescription" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding CompanyDescription}" x:Name="TextCompanyDescription" />
-                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição do Trabalho" x:Name="HeaderJobDescription" />
-                    <Label Style="{StaticResource TextPrimary}" Text="{Binding JobDescription}" x:Name="TextJobDescription" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição" x:Name="HeaderDescription" />
+                    <Label Style="{StaticResource TextPrimary}" Text="{Binding Description}" x:Name="TextDescription" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Benefícios" x:Name="HeaderBenefits" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}" x:Name="TextBenefits" />
                 </StackLayout>

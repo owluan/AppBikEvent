@@ -48,7 +48,7 @@ namespace BikEvent.App.Views
                 (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
                 Tag = TxtTags.Text,
                 CompanyDescription = TxtCompanyDescription.Text,
-                JobDescription = TxtJobDescription.Text,
+                Description = TxtDescription.Text,
                 Benefits = TxtBenefits.Text,
                 InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,
                 PublicationDate = DateTime.Now,
