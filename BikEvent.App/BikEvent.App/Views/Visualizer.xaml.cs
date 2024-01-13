@@ -27,7 +27,7 @@ namespace BikEvent.App.Views
         {
             base.OnAppearing();
 
-            Job job = ((Job)BindingContext);
+            Event job = ((Event)BindingContext);
 
             if (string.IsNullOrEmpty(job.CompanyDescription))
             {

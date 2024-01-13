@@ -9,18 +9,18 @@ namespace BikEvent.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobsController : Controller
+    public class EventsController : Controller
     {
         private int recordsPerPage = 5;
         private BikEventContext _context;
 
-        public JobsController(BikEventContext context)
+        public EventsController(BikEventContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public IEnumerable<Job> GetJobs(string word, string cityState, int pageNumber = 1)
+        public IEnumerable<Event> GetEvents(string word, string cityState, int pageNumber = 1)
         {
             if (word == null)
                 word = string.Empty;
@@ -28,7 +28,7 @@ namespace BikEvent.API.Controllers
             if (cityState == null)
                 cityState = string.Empty;
 
-            var totalItems = _context.Jobs
+            var totalItems = _context.Events
                 .Where(x =>
                     x.PublicationDate >= DateTime.Now.AddYears(-15) &&
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
@@ -41,7 +41,7 @@ namespace BikEvent.API.Controllers
 
             Response.Headers.Add("X-Total-Items", totalItems.ToString());
 
-            return _context.Jobs
+            return _context.Events
                 .Where(x => 
                     x.PublicationDate >= DateTime.Now.AddYears(-15) &&
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
@@ -53,30 +53,30 @@ namespace BikEvent.API.Controllers
                 )
                 .Skip(recordsPerPage * (pageNumber - 1))
                 .Take(recordsPerPage)
-                .ToList<Job>();
+                .ToList<Event>();
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetJob(int id)
+        public IActionResult GetEvent(int id)
         {
-            Job jobDB = _context.Jobs.Find(id);
+            Event eventDB = _context.Events.Find(id);
 
-            if (jobDB == null)
+            if (eventDB == null)
             {
                 return NotFound();
             }
 
-            return new JsonResult(jobDB);
+            return new JsonResult(eventDB);
         }
 
         [HttpPost]
-        public IActionResult AddJob(Job job)
+        public IActionResult AddEvent(Event _event)
         {
-            job.PublicationDate = DateTime.Now;
-            _context.AddAsync(job);
+            _event.PublicationDate = DateTime.Now;
+            _context.AddAsync(_event);
             _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetJob), new { id = job.Id }, job);
+            return CreatedAtAction(nameof(GetEvent), new { id = _event.Id }, _event);
         }
     }
 }

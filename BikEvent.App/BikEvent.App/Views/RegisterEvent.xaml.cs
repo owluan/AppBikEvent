@@ -17,13 +17,13 @@ using Xamarin.Forms.Xaml;
 namespace BikEvent.App.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterJob : ContentPage
+	public partial class RegisterEvent : ContentPage
 	{
-        private JobService _jobService;
-		public RegisterJob ()
+        private EventService _eventService;
+		public RegisterEvent ()
 		{
 			InitializeComponent ();
-            _jobService = new JobService ();
+            _eventService = new EventService ();
 		}
 
         private void GoBack(object sender, EventArgs e)
@@ -37,9 +37,9 @@ namespace BikEvent.App.Views
 
             User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
 
-            Job job = new Job()
+            Event _event = new Event()
             {
-                Company = TxtCompany.Text,
+                Company = user.Name,
                 JobTitle = TxtJobTitle.Text,
                 CityState = TxtCityState.Text,
                 InitialSalary = TextToDoubleConverter.ToDouble(TxtInitialSalary.Text),
@@ -58,12 +58,12 @@ namespace BikEvent.App.Views
 
             await Navigation.PushPopupAsync(new Loading());
 
-            ResponseService<Job> responseService = await _jobService.AddJob(job);
+            ResponseService<Event> responseService = await _eventService.AddEvent(_event);
 
             if (responseService.IsSuccess)
             {
                 await Navigation.PopAllPopupAsync();
-                await DisplayAlert("Cadastro de Vaga","Vaga cadastrada com sucesso!","OK");                
+                await DisplayAlert("Cadastro de Evento","Evento cadastrado com sucesso!","OK");                
                 await Navigation.PopAsync();
             }
             else

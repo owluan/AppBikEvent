@@ -11,20 +11,20 @@ using Xamarin.Essentials;
 
 namespace BikEvent.App.Services
 {
-    public class JobService : Service
+    public class EventService : Service
     {
-        public async Task<ResponseService<List<Job>>> GetJobs(string word, string cityState, int pageNumber = 1)
+        public async Task<ResponseService<List<Event>>> GetEvents(string word, string cityState, int pageNumber = 1)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/jobs?word={word}&cityState={cityState}&pageNumber={pageNumber}");
+            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/events?word={word}&cityState={cityState}&pageNumber={pageNumber}");
 
-            ResponseService<List<Job>> responseService = new ResponseService<List<Job>>();
+            ResponseService<List<Event>> responseService = new ResponseService<List<Event>>();
 
             responseService.IsSuccess = response.IsSuccessStatusCode;
             responseService.StatusCode = (int)response.StatusCode;
 
             if (response.IsSuccessStatusCode)
             {
-                responseService.Data = await response.Content.ReadAsAsync<List<Job>>();
+                responseService.Data = await response.Content.ReadAsAsync<List<Event>>();
 
                 var pagination = new Pagination()
                 {
@@ -36,51 +36,51 @@ namespace BikEvent.App.Services
             else
             {
                 string problemResponse = await response.Content.ReadAsStringAsync();
-                var erros = JsonConvert.DeserializeObject<ResponseService<List<Job>>>(problemResponse);
+                var erros = JsonConvert.DeserializeObject<ResponseService<List<Event>>>(problemResponse);
                 responseService.Errors = erros.Errors;
             }
             return responseService;
         }
 
-        public async Task<ResponseService<Job>> GetJob(int id)
+        public async Task<ResponseService<Event>> GetEvent(int id)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/jobs/{id}");
+            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/events/{id}");
 
-            ResponseService<Job> responseService = new ResponseService<Job>();
+            ResponseService<Event> responseService = new ResponseService<Event>();
 
             responseService.IsSuccess = response.IsSuccessStatusCode;
             responseService.StatusCode = (int)response.StatusCode;
 
             if (response.IsSuccessStatusCode)
             {
-                responseService.Data = await response.Content.ReadAsAsync<Job>();
+                responseService.Data = await response.Content.ReadAsAsync<Event>();
             }
             else
             {
                 string problemResponse = await response.Content.ReadAsStringAsync();
-                var erros = JsonConvert.DeserializeObject<ResponseService<Job>>(problemResponse);
+                var erros = JsonConvert.DeserializeObject<ResponseService<Event>>(problemResponse);
                 responseService.Errors = erros.Errors;
             }
             return responseService;
         }
 
-        public async Task<ResponseService<Job>> AddJob(Job job)
+        public async Task<ResponseService<Event>> AddEvent(Event _event)
         {
-            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/jobs", job);
+            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/events", _event);
 
-            ResponseService<Job> responseService = new ResponseService<Job>();
+            ResponseService<Event> responseService = new ResponseService<Event>();
 
             responseService.IsSuccess = response.IsSuccessStatusCode;
             responseService.StatusCode = (int)response.StatusCode;
 
             if (response.IsSuccessStatusCode)
             {
-                responseService.Data = await response.Content.ReadAsAsync<Job>();
+                responseService.Data = await response.Content.ReadAsAsync<Event>();
             }
             else
             {
                 string problemResponse = await response.Content.ReadAsStringAsync();
-                var erros = JsonConvert.DeserializeObject<ResponseService<Job>>(problemResponse);
+                var erros = JsonConvert.DeserializeObject<ResponseService<Event>>(problemResponse);
                 responseService.Errors = erros.Errors;
             }
             return responseService;

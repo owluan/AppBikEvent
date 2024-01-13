@@ -18,15 +18,15 @@ namespace BikEvent.App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Initial : ContentPage
     {
-        private JobService _jobService;
-        private ObservableCollection<Job> _jobsList;
+        private EventService _eventService;
+        private ObservableCollection<Event> _eventsList;
         private SearchParams _searchParams;
-        private int _jobsListFirstRequest;
+        private int _eventsListFirstRequest;
 
         public Initial()
         {
             InitializeComponent();
-            _jobService = new JobService();
+            _eventService = new EventService();
         }
 
         private void GoVisualizer(object sender, EventArgs e)
@@ -37,9 +37,9 @@ namespace BikEvent.App.Views
             Navigation.PushAsync(page);
         }
 
-        private void GoRegisterJob(object sender, EventArgs e)
+        private void GoRegisterEvent(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RegisterJob());
+            Navigation.PushAsync(new RegisterEvent());
         }
 
         private void FocusSearch(object sender, EventArgs e)
@@ -68,14 +68,14 @@ namespace BikEvent.App.Views
 
             _searchParams = new SearchParams() { Word = TxtWord.Text, CityState = TxtCityState.Text, PageNumber = 1 };
 
-            ResponseService<List<Job>> responseService = await _jobService.GetJobs(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
+            ResponseService<List<Event>> responseService = await _eventService.GetEvents(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
             if (responseService.IsSuccess)
             {
-                _jobsList = new ObservableCollection<Job>(responseService.Data);
-                _jobsListFirstRequest = _jobsList.Count();
-                JobsList.ItemsSource = _jobsList;
-                JobsList.RemainingItemsThreshold = 1;
+                _eventsList = new ObservableCollection<Event>(responseService.Data);
+                _eventsListFirstRequest = _eventsList.Count();
+                EventsList.ItemsSource = _eventsList;
+                EventsList.RemainingItemsThreshold = 1;
                 TxtResultsCount.Text = $"{responseService.Pagination.TotalItems} resultado(s).";
             }
             else
@@ -83,7 +83,7 @@ namespace BikEvent.App.Views
                 await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
             }
 
-            if (_jobsList.Count == 0)
+            if (_eventsList.Count == 0)
             {
                 NoResult.IsVisible = true;
             }
@@ -98,31 +98,31 @@ namespace BikEvent.App.Views
 
         private async void InfinityScroll(object sender, EventArgs e)
         {
-            JobsList.RemainingItemsThreshold = -1;
+            EventsList.RemainingItemsThreshold = -1;
             _searchParams.PageNumber++;
 
-            ResponseService<List<Job>> responseService = await _jobService.GetJobs(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
+            ResponseService<List<Event>> responseService = await _eventService.GetEvents(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
             if (responseService.IsSuccess)
             {
-                var jobs = responseService.Data;
-                foreach (var item in jobs)
+                var events = responseService.Data;
+                foreach (var item in events)
                 {
-                    _jobsList.Add(item);
+                    _eventsList.Add(item);
                 }
-                if (_jobsListFirstRequest == jobs.Count)
+                if (_eventsListFirstRequest == events.Count)
                 {
-                    JobsList.RemainingItemsThreshold = 1;
+                    EventsList.RemainingItemsThreshold = 1;
                 }
                 else
                 {
-                    JobsList.RemainingItemsThreshold = -1;
+                    EventsList.RemainingItemsThreshold = -1;
                 }
             }
             else
             {
                 await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
-                JobsList.RemainingItemsThreshold = 0;
+                EventsList.RemainingItemsThreshold = 0;
             }            
         }
     }

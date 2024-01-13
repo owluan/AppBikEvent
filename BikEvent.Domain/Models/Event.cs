@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BikEvent.Domain.Models
 {
-    public class Job
+    public class Event
     {
         [Key]
         public int Id { get; set; }

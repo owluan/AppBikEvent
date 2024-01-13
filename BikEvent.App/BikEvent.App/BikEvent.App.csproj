@@ -36,6 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\RegisterEvent.xaml.cs">
+      <DependentUpon>RegisterEvent.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Resources\Controls\TagView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -51,7 +57,7 @@
     <EmbeddedResource Update="Views\Register.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RegisterJob.xaml">
+    <EmbeddedResource Update="Views\RegisterEvent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Visualizer.xaml">

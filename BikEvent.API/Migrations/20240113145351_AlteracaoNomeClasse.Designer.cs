@@ -3,20 +3,22 @@ using System;
 using BikEvent.API.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BikEvent.API.Migrations
 {
     [DbContext(typeof(BikEventContext))]
-    partial class BikEventContextModelSnapshot : ModelSnapshot
+    [Migration("20240113145351_AlteracaoNomeClasse")]
+    partial class AlteracaoNomeClasse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.10");
 
-            modelBuilder.Entity("BikEvent.Domain.Models.Job", b =>
+            modelBuilder.Entity("BikEvent.Domain.Models.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +74,7 @@ namespace BikEvent.API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("BikEvent.Domain.Models.User", b =>
@@ -98,7 +100,7 @@ namespace BikEvent.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BikEvent.Domain.Models.Job", b =>
+            modelBuilder.Entity("BikEvent.Domain.Models.Event", b =>
                 {
                     b.HasOne("BikEvent.Domain.Models.User", "User")
                         .WithMany()
