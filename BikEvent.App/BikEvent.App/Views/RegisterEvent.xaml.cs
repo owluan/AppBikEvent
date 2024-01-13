@@ -46,7 +46,7 @@ namespace BikEvent.App.Views
                 FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
                 EventType = (RBTrilha.IsChecked) ? "Trilha" : (RBPedal.IsChecked) ? "Pedal" :
                 (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
-                TecnologyTools = TxtTecnologyTools.Text,
+                Tag = TxtTags.Text,
                 CompanyDescription = TxtCompanyDescription.Text,
                 JobDescription = TxtJobDescription.Text,
                 Benefits = TxtBenefits.Text,

@@ -13,13 +13,13 @@ namespace BikEvent.App.Resources.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TagView : ContentView
     {
-        public static readonly BindableProperty TechnologiesProperty = BindableProperty.Create(nameof(Technologies), typeof(string), typeof(TagView));
+        public static readonly BindableProperty TagsProperty = BindableProperty.Create(nameof(Tags), typeof(string), typeof(TagView));
         public static readonly BindableProperty WordsNumberProperty = BindableProperty.Create(nameof(WordsNumber), typeof(int), typeof(TagView));
 
-        public string Technologies
+        public string Tags
         {
-            get => (string)GetValue(TechnologiesProperty);
-            set => SetValue(TechnologiesProperty, value);
+            get => (string)GetValue(TagsProperty);
+            set => SetValue(TagsProperty, value);
         }
 
         public int WordsNumber
@@ -35,12 +35,12 @@ namespace BikEvent.App.Resources.Controls
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (propertyName == nameof(Technologies))
+            if (propertyName == nameof(Tags))
             {
                 Container.Children.Clear();
-                if (Technologies != null)
+                if (Tags != null)
                 {
-                    string[] words = Technologies.Split(',');
+                    string[] words = Tags.Split(',');
 
                     if (WordsNumber == 0)
                     {

@@ -54,7 +54,7 @@
                     </StackLayout>
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
-                    <Entry x:Name="TxtTecnologyTools" Placeholder="Tecnologia/Ferramentas" ReturnType="Next" />
+                    <Entry x:Name="TxtTags" Placeholder="Tags" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtCompanyDescription" Placeholder="Descrição da Empresa" ReturnType="Next" />

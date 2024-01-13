@@ -27,21 +27,21 @@ namespace BikEvent.App.Views
         {
             base.OnAppearing();
 
-            Event job = ((Event)BindingContext);
+            Event _event = ((Event)BindingContext);
 
-            if (string.IsNullOrEmpty(job.CompanyDescription))
+            if (string.IsNullOrEmpty(_event.CompanyDescription))
             {
                 HeaderCompanyDescription.IsVisible = false;
                 TextCompanyDescription.IsVisible = false;
             }
 
-            if (string.IsNullOrEmpty(job.JobDescription))
+            if (string.IsNullOrEmpty(_event.JobDescription))
             {
                 HeaderJobDescription.IsVisible = false;
                 TextJobDescription.IsVisible = false;
             }
 
-            if (string.IsNullOrEmpty(job.Benefits))
+            if (string.IsNullOrEmpty(_event.Benefits))
             {
                 HeaderBenefits.IsVisible = false;
                 TextBenefits.IsVisible = false;

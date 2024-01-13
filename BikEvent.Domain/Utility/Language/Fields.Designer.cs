@@ -187,11 +187,11 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Tecnologias e Ferramentas.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tags.
         /// </summary>
-        public static string TecnologyTools {
+        public static string Tag {
             get {
-                return ResourceManager.GetString("TecnologyTools", resourceCulture);
+                return ResourceManager.GetString("Tag", resourceCulture);
             }
         }
     }

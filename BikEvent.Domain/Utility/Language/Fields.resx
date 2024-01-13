@@ -159,7 +159,7 @@
   <data name="PublicationDate" xml:space="preserve">
     <value>Data publicação</value>
   </data>
-  <data name="TecnologyTools" xml:space="preserve">
-    <value>Tecnologias e Ferramentas</value>
+  <data name="Tag" xml:space="preserve">
+    <value>Tags</value>
   </data>
 </root>

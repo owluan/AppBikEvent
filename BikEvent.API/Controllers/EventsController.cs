@@ -34,7 +34,7 @@ namespace BikEvent.API.Controllers
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
                     (
                        x.EventTitle.ToLower().Contains(word.ToLower()) ||
-                       x.TecnologyTools.ToLower().Contains(word.ToLower()) ||
+                       x.Tag.ToLower().Contains(word.ToLower()) ||
                        x.Company.ToLower().Contains(word.ToLower())
                     )
                 ).Count();
@@ -47,7 +47,7 @@ namespace BikEvent.API.Controllers
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
                     (
                        x.EventTitle.ToLower().Contains(word.ToLower()) ||
-                       x.TecnologyTools.ToLower().Contains(word.ToLower()) ||
+                       x.Tag.ToLower().Contains(word.ToLower()) ||
                        x.Company.ToLower().Contains(word.ToLower())
                     )
                 )

@@ -63,7 +63,7 @@
                         </Label>
                     </Grid>
 
-                    <control:TagView Technologies="{Binding TecnologyTools}" />
+                    <control:TagView Tags="{Binding Tag}" />
 
                     <Label Style="{StaticResource TextPrimary}" Text="Interessados enviar email para:" />
                     <Label Style="{StaticResource TextSecondary}" Text="{Binding InterestedSendEmailTo}" />
