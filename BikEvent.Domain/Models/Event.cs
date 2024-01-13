@@ -15,9 +15,9 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public string Company { get; set; }
 
-        [Display(Name = "JobTitle", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Display(Name = "EventTitle", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
-        public string JobTitle { get; set; }
+        public string EventTitle { get; set; }
 
         [Display(Name = "CityState", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
@@ -31,9 +31,9 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public double FinalSalary { get; set; }
 
-        [Display(Name = "ContractType", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Display(Name = "EventType", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
-        public string ContractType { get; set; }
+        public string EventType { get; set; }
 
         [Display(Name = "TecnologyTools", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]

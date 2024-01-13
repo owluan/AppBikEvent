@@ -129,11 +129,14 @@
   <data name="CompanyDescription" xml:space="preserve">
     <value>Descrição da Empresa</value>
   </data>
-  <data name="ContractType" xml:space="preserve">
-    <value>Regime</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
+  </data>
+  <data name="EventTitle" xml:space="preserve">
+    <value>Evento</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Tipo de Evento</value>
   </data>
   <data name="FinalSalary" xml:space="preserve">
     <value>Salário final</value>
@@ -146,9 +149,6 @@
   </data>
   <data name="JobDescription" xml:space="preserve">
     <value>Descrição do Trabalho</value>
-  </data>
-  <data name="JobTitle" xml:space="preserve">
-    <value>Cargo</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

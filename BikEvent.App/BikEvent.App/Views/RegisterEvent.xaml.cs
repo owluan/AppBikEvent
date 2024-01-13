@@ -16,19 +16,19 @@ using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterEvent : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RegisterEvent : ContentPage
+    {
         private EventService _eventService;
-		public RegisterEvent ()
-		{
-			InitializeComponent ();
-            _eventService = new EventService ();
-		}
+        public RegisterEvent()
+        {
+            InitializeComponent();
+            _eventService = new EventService();
+        }
 
         private void GoBack(object sender, EventArgs e)
         {
-			Navigation.PopAsync();
+            Navigation.PopAsync();
         }
 
         private async void Save(object sender, EventArgs e)
@@ -40,14 +40,15 @@ namespace BikEvent.App.Views
             Event _event = new Event()
             {
                 Company = user.Name,
-                JobTitle = TxtJobTitle.Text,
+                EventTitle = TxtEventTitle.Text,
                 CityState = TxtCityState.Text,
                 InitialSalary = TextToDoubleConverter.ToDouble(TxtInitialSalary.Text),
                 FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
-                ContractType = (RBLCT.IsChecked) ? "CLT" : "PJ",
+                EventType = (RBTrilha.IsChecked) ? "Trilha" : (RBPedal.IsChecked) ? "Pedal" :
+                (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
                 TecnologyTools = TxtTecnologyTools.Text,
                 CompanyDescription = TxtCompanyDescription.Text,
-                JobDescription  = TxtJobDescription.Text,
+                JobDescription = TxtJobDescription.Text,
                 Benefits = TxtBenefits.Text,
                 InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,
                 PublicationDate = DateTime.Now,
@@ -63,7 +64,7 @@ namespace BikEvent.App.Views
             if (responseService.IsSuccess)
             {
                 await Navigation.PopAllPopupAsync();
-                await DisplayAlert("Cadastro de Evento","Evento cadastrado com sucesso!","OK");                
+                await DisplayAlert("Cadastro de Evento", "Evento cadastrado com sucesso!", "OK");
                 await Navigation.PopAsync();
             }
             else
@@ -86,7 +87,7 @@ namespace BikEvent.App.Views
                     await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
                 }
                 await Navigation.PopAllPopupAsync();
-            }            
+            }
         }
     }
 }

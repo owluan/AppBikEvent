@@ -33,7 +33,7 @@ namespace BikEvent.API.Controllers
                     x.PublicationDate >= DateTime.Now.AddYears(-15) &&
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
                     (
-                       x.JobTitle.ToLower().Contains(word.ToLower()) ||
+                       x.EventTitle.ToLower().Contains(word.ToLower()) ||
                        x.TecnologyTools.ToLower().Contains(word.ToLower()) ||
                        x.Company.ToLower().Contains(word.ToLower())
                     )
@@ -46,7 +46,7 @@ namespace BikEvent.API.Controllers
                     x.PublicationDate >= DateTime.Now.AddYears(-15) &&
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
                     (
-                       x.JobTitle.ToLower().Contains(word.ToLower()) ||
+                       x.EventTitle.ToLower().Contains(word.ToLower()) ||
                        x.TecnologyTools.ToLower().Contains(word.ToLower()) ||
                        x.Company.ToLower().Contains(word.ToLower())
                     )

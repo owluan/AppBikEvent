@@ -70,7 +70,7 @@
                                             <RowDefinition Height="25" />
                                         </Grid.RowDefinitions>
                                         <Label Text="{Binding Company}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
-                                        <Label Text="{Binding JobTitle}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextPrimary}" Grid.Row="1" />
+                                        <Label Text="{Binding EventTitle}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextPrimary}" Grid.Row="1" />
                                         <Label Text="{Binding CityState}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextSecondary}" Grid.Row="2" />
                                         <control:TagView Technologies="{Binding TecnologyTools}" WordsNumber="2" Grid.Row="3" />
                                         <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="End" Grid.Row="1" Grid.Column="1"  VerticalOptions="End">

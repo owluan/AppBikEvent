@@ -121,12 +121,29 @@
                 <Setter Property="TextColor" Value="{StaticResource LightGray}" />
             </Style>
 
+            <Style TargetType="Label" x:Key="EventTypeLabel" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="OrangeRed" />
+            </Style>
+
             <Style TargetType="Label" x:Key="IdLabel">
                 <Setter Property="FontFamily" Value="Montserrat" />
                 <Setter Property="FontSize" Value="8" />
                 <Setter Property="TextColor" Value="{StaticResource Gray}" />
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="VerticalOptions" Value="End" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="RadioButton">
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayBlue}" />
+                <Setter Property="FontFamily" Value="Montserrat" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="LabelEntry">
+                <Setter Property="Padding" Value="5, 11" />
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayBlue}" />
+                <Setter Property="FontFamily" Value="Montserrat" />
+                <Setter Property="FontSize" Value="12" />
             </Style>
 
             <!-- Icones -->
@@ -152,19 +169,6 @@
                         <On Platform="UWP" Value="Images/pin.png" />
                     </OnPlatform>
                 </Setter>
-            </Style>
-
-            <Style TargetType="Label" x:Key="RadioButton">
-                <Setter Property="TextColor" Value="{StaticResource DarkGrayBlue}" />
-                <Setter Property="FontFamily" Value="Montserrat" />
-                <Setter Property="FontSize" Value="12" />
-            </Style>
-
-            <Style TargetType="Label" x:Key="LabelEntry">
-                <Setter Property="Padding" Value="5, 11" />
-                <Setter Property="TextColor" Value="{StaticResource DarkGrayBlue}" />
-                <Setter Property="FontFamily" Value="Montserrat" />
-                <Setter Property="FontSize" Value="12" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

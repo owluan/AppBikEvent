@@ -97,20 +97,29 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Regime.
-        /// </summary>
-        public static string ContractType {
-            get {
-                return ResourceManager.GetString("ContractType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Evento.
+        /// </summary>
+        public static string EventTitle {
+            get {
+                return ResourceManager.GetString("EventTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tipo de Evento.
+        /// </summary>
+        public static string EventType {
+            get {
+                return ResourceManager.GetString("EventType", resourceCulture);
             }
         }
         
@@ -147,15 +156,6 @@ namespace BikEvent.Domain.Utility.Language {
         public static string JobDescription {
             get {
                 return ResourceManager.GetString("JobDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Cargo.
-        /// </summary>
-        public static string JobTitle {
-            get {
-                return ResourceManager.GetString("JobTitle", resourceCulture);
             }
         }
         

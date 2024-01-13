@@ -23,7 +23,7 @@
                 <Label x:Name="TxtMessages" LineHeight="1.2" TextColor="OrangeRed" />
 
                 <Frame StyleClass="EntryFrame" >
-                    <Entry x:Name="TxtJobTitle" Placeholder="Cargo" ReturnType="Next" />
+                    <Entry x:Name="TxtEventTitle" Placeholder="Cargo" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" ReturnType="Next" />
@@ -35,14 +35,22 @@
                     <Entry x:Name="TxtFinalSalary" Placeholder="Salário final" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Regime" HorizontalOptions="FillAndExpand" Style="{StaticResource LabelEntry}" />
-                        <StackLayout Orientation="Horizontal">
-                            <RadioButton x:Name="RBLCT" IsChecked="True" />
-                            <Label Style="{StaticResource RadioButton}" Text="CLT" VerticalOptions="Center" />
-                            <RadioButton x:Name="RBPJ" />
-                            <Label Style="{StaticResource RadioButton}" Text="PJ" VerticalOptions="Center" />
-                        </StackLayout>
+                    <StackLayout>
+                        <Label Text="Tipo de Evento" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
+                        <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,-15,0,0">
+                            <RadioButton x:Name="RBTrilha" IsChecked="True" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Trilha" />
+                            <RadioButton x:Name="RBPedal" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Pedal" />
+                            <RadioButton x:Name="RBPasseio" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Passeio" />
+                            <RadioButton x:Name="RBCompeticao" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Competição" />
+                            <RadioButton x:Name="RBEncontro" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Encontro" />
+                            <RadioButton x:Name="RBOutro" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Outro" />
+                        </FlexLayout>
                     </StackLayout>
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
