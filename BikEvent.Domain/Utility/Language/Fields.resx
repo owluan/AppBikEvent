@@ -132,6 +132,9 @@
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
+  <data name="EventDate" xml:space="preserve">
+    <value>Data do evento</value>
+  </data>
   <data name="EventTitle" xml:space="preserve">
     <value>Evento</value>
   </data>
@@ -140,9 +143,6 @@
   </data>
   <data name="FinalSalary" xml:space="preserve">
     <value>Salário final</value>
-  </data>
-  <data name="InitialSalary" xml:space="preserve">
-    <value>Salário inicial</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

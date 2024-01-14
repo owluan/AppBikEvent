@@ -42,7 +42,7 @@ namespace BikEvent.App.Views
                 Company = user.Name,
                 EventTitle = TxtEventTitle.Text,
                 CityState = TxtCityState.Text,
-                InitialSalary = TextToDoubleConverter.ToDouble(TxtInitialSalary.Text),
+                EventDate = DatePicker.Date.ToString("dd/MM/yy"),
                 FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
                 EventType = (RBTrilha.IsChecked) ? "Trilha" : (RBPedal.IsChecked) ? "Pedal" :
                 (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",

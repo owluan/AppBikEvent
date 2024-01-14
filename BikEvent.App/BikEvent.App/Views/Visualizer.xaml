@@ -35,7 +35,7 @@
                         <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{Binding InitialSalary}" Style="{StaticResource MoneyLabel}" />
+                                    <Span Text="{Binding EventDate}" Style="{StaticResource MoneyLabel}" />
                                     <Span Text="-" Style="{StaticResource MoneyLabel}" />
                                     <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}" />
                                     <Span Text=" BRL" Style="{StaticResource CurrencyLabel}" />

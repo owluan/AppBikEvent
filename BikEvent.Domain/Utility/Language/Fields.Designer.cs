@@ -106,6 +106,15 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Data do evento.
+        /// </summary>
+        public static string EventDate {
+            get {
+                return ResourceManager.GetString("EventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Evento.
         /// </summary>
         public static string EventTitle {
@@ -129,15 +138,6 @@ namespace BikEvent.Domain.Utility.Language {
         public static string FinalSalary {
             get {
                 return ResourceManager.GetString("FinalSalary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Salário inicial.
-        /// </summary>
-        public static string InitialSalary {
-            get {
-                return ResourceManager.GetString("InitialSalary", resourceCulture);
             }
         }
         
