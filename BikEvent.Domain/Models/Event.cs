@@ -39,8 +39,8 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public string Tag { get; set; }
 
-        [Display(Name = "CompanyDescription", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
-        public string CompanyDescription { get; set; }
+        [Display(Name = "SocialMedia", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        public string SocialMedia { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]

@@ -23,7 +23,7 @@
                 <Label x:Name="TxtMessages" LineHeight="1.2" TextColor="OrangeRed" />
 
                 <Frame StyleClass="EntryFrame" >
-                    <Entry x:Name="TxtEventTitle" Placeholder="Cargo" ReturnType="Next" />
+                    <Entry x:Name="TxtEventTitle" Placeholder="Evento" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" ReturnType="Next" />
@@ -57,16 +57,16 @@
                     <Entry x:Name="TxtTags" Placeholder="Tags                                      Ex.: MTB, Trilha, Natureza" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
-                    <Entry x:Name="TxtCompanyDescription" Placeholder="Descrição da Empresa" ReturnType="Next" />
-                </Frame>
-                <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtDescription" Placeholder="Descrição" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" >
                     <Entry x:Name="TxtBenefits" Placeholder="Benefícios" ReturnType="Next" />
                 </Frame>
-                <Frame StyleClass="EntryFrame" Margin="0, 0, 0, 20" >
-                    <Entry x:Name="TxtInterestedSendEmailTo" Placeholder="Interessados enviar email para" ReturnType="Done" />
+                <Frame StyleClass="EntryFrame">
+                    <Entry x:Name="TxtInterestedSendEmailTo" Placeholder="Interessados enviar email para" ReturnType="Next" />
+                </Frame>
+                <Frame StyleClass="EntryFrame" Margin="0, 0, 0, 0"  >
+                    <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" />
                 </Frame>
             </StackLayout>
         </ScrollView>

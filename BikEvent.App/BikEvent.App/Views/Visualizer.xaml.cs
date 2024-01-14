@@ -29,10 +29,10 @@ namespace BikEvent.App.Views
 
             Event _event = ((Event)BindingContext);
 
-            if (string.IsNullOrEmpty(_event.CompanyDescription))
+            if (string.IsNullOrEmpty(_event.SocialMedia))
             {
-                HeaderCompanyDescription.IsVisible = false;
-                TextCompanyDescription.IsVisible = false;
+                HeaderSocialMedia.IsVisible = false;
+                TextSocialMedia.IsVisible = false;
             }
 
             if (string.IsNullOrEmpty(_event.Description))

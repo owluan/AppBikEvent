@@ -126,9 +126,6 @@
   <data name="Company" xml:space="preserve">
     <value>Empresa</value>
   </data>
-  <data name="CompanyDescription" xml:space="preserve">
-    <value>Descrição da Empresa</value>
-  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
@@ -158,6 +155,9 @@
   </data>
   <data name="PublicationDate" xml:space="preserve">
     <value>Data publicação</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>Rede Social</value>
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tags</value>

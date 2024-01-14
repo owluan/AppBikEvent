@@ -47,7 +47,7 @@ namespace BikEvent.App.Views
                 EventType = (RBTrilha.IsChecked) ? "Trilha" : (RBPedal.IsChecked) ? "Pedal" :
                 (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
                 Tag = TxtTags.Text,
-                CompanyDescription = TxtCompanyDescription.Text,
+                SocialMedia = TxtSocialMedia.Text,
                 Description = TxtDescription.Text,
                 Benefits = TxtBenefits.Text,
                 InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,

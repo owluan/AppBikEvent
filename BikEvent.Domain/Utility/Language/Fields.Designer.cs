@@ -88,15 +88,6 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Descrição da Empresa.
-        /// </summary>
-        public static string CompanyDescription {
-            get {
-                return ResourceManager.GetString("CompanyDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Descrição.
         /// </summary>
         public static string Description {
@@ -183,6 +174,15 @@ namespace BikEvent.Domain.Utility.Language {
         public static string PublicationDate {
             get {
                 return ResourceManager.GetString("PublicationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Rede Social.
+        /// </summary>
+        public static string SocialMedia {
+            get {
+                return ResourceManager.GetString("SocialMedia", resourceCulture);
             }
         }
         
