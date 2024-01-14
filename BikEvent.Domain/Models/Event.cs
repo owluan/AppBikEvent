@@ -49,10 +49,10 @@ namespace BikEvent.Domain.Models
         [Display(Name = "Benefits", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public string Benefits { get; set; }
 
-        [Display(Name = "InterestedSendEmailTo", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Display(Name = "PhoneNumber", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
-        [EmailAddress(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E002")]
-        public string InterestedSendEmailTo { get; set; }
+        [Phone(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E002")]
+        public string PhoneNumber { get; set; }
 
         [Display(Name = "PublicationDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public DateTime PublicationDate { get; set; }

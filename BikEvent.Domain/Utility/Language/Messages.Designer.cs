@@ -70,7 +70,7 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &apos;{0}&apos; não tem um endereço de email válido!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &apos;{0}&apos; não tem um número de telefone válido!.
         /// </summary>
         public static string MSG_E002 {
             get {

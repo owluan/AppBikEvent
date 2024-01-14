@@ -62,11 +62,7 @@
                             </Label.FormattedText>
                         </Label>
                     </Grid>
-
-                    <control:TagView Tags="{Binding Tag}" />
-
-                    <Label Style="{StaticResource TextPrimary}" Text="Interessados enviar email para:" />
-                    <Label Style="{StaticResource TextSecondary}" Text="{Binding InterestedSendEmailTo}" />
+                    <control:TagView Tags="{Binding Tag}" />                    
                     <BoxView Color="#F3F5F7" HeightRequest="1" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Descrição" x:Name="HeaderDescription" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Description}" x:Name="TextDescription" />
@@ -74,6 +70,8 @@
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}" x:Name="TextBenefits" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Rede Social" x:Name="HeaderSocialMedia" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding SocialMedia}" x:Name="TextSocialMedia" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp" />
+                    <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

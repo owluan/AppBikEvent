@@ -50,7 +50,7 @@ namespace BikEvent.App.Views
                 SocialMedia = TxtSocialMedia.Text,
                 Description = TxtDescription.Text,
                 Benefits = TxtBenefits.Text,
-                InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,
+                PhoneNumber = TxtPhoneNumber.Text,
                 PublicationDate = DateTime.Now,
                 UserId = user.Id
             };

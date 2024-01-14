@@ -115,7 +115,7 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Tipo de Evento.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tipo de evento.
         /// </summary>
         public static string EventType {
             get {
@@ -142,15 +142,6 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Interessados enviar e-mail para.
-        /// </summary>
-        public static string InterestedSendEmailTo {
-            get {
-                return ResourceManager.GetString("InterestedSendEmailTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nome.
         /// </summary>
         public static string Name {
@@ -169,6 +160,15 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Número de telefone.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Data publicação.
         /// </summary>
         public static string PublicationDate {
@@ -178,7 +178,7 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Rede Social.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Rede social.
         /// </summary>
         public static string SocialMedia {
             get {

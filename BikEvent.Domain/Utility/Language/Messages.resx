@@ -122,8 +122,8 @@
     <comment>Campos obrigatórios</comment>
   </data>
   <data name="MSG_E002" xml:space="preserve">
-    <value>O campo '{0}' não tem um endereço de email válido!</value>
-    <comment>Validação email</comment>
+    <value>O campo '{0}' não tem um número de telefone válido!</value>
+    <comment>Validação telefone</comment>
   </data>
   <data name="MSG_E003" xml:space="preserve">
     <value>o campo '{0}' deve ter pelo menos '{1}' caracteres!</value>

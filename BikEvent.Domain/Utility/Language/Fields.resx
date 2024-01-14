@@ -136,7 +136,7 @@
     <value>Evento</value>
   </data>
   <data name="EventType" xml:space="preserve">
-    <value>Tipo de Evento</value>
+    <value>Tipo de evento</value>
   </data>
   <data name="FinalSalary" xml:space="preserve">
     <value>Salário final</value>
@@ -144,20 +144,20 @@
   <data name="InitialSalary" xml:space="preserve">
     <value>Salário inicial</value>
   </data>
-  <data name="InterestedSendEmailTo" xml:space="preserve">
-    <value>Interessados enviar e-mail para</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Senha</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Número de telefone</value>
+  </data>
   <data name="PublicationDate" xml:space="preserve">
     <value>Data publicação</value>
   </data>
   <data name="SocialMedia" xml:space="preserve">
-    <value>Rede Social</value>
+    <value>Rede social</value>
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tags</value>
