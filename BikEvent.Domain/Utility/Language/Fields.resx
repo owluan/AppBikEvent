@@ -144,9 +144,6 @@
   <data name="EventType" xml:space="preserve">
     <value>Tipo de evento</value>
   </data>
-  <data name="FinalSalary" xml:space="preserve">
-    <value>Salário final</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>
   </data>

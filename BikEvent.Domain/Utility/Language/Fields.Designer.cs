@@ -142,15 +142,6 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Salário final.
-        /// </summary>
-        public static string FinalSalary {
-            get {
-                return ResourceManager.GetString("FinalSalary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nome.
         /// </summary>
         public static string Name {

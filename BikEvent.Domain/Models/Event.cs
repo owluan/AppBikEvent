@@ -27,10 +27,6 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public string EventDate { get; set; }
 
-        [Display(Name = "FinalSalary", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
-        [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
-        public double FinalSalary { get; set; }
-
         [Display(Name = "EventType", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public string EventType { get; set; }

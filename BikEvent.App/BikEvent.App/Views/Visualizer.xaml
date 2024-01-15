@@ -36,9 +36,6 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{Binding EventDate}" Style="{StaticResource MoneyLabel}" />
-                                    <Span Text="-" Style="{StaticResource MoneyLabel}" />
-                                    <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}" />
-                                    <Span Text=" BRL" Style="{StaticResource CurrencyLabel}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

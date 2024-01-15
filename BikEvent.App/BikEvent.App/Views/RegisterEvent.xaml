@@ -32,9 +32,6 @@
                     <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" />
                 </Frame>
                 <Frame StyleClass="EntryFrame">
-                    <Entry x:Name="TxtFinalSalary" Placeholder="Salário final" ReturnType="Next" />
-                </Frame>
-                <Frame StyleClass="EntryFrame">
                     <StackLayout>
                         <Label Text="Tipo de Evento" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
                         <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,-15,0,5">
