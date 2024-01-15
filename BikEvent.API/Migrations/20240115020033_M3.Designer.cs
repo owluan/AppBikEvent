@@ -3,14 +3,16 @@ using System;
 using BikEvent.API.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BikEvent.API.Migrations
 {
     [DbContext(typeof(BikEventContext))]
-    partial class BikEventContextModelSnapshot : ModelSnapshot
+    [Migration("20240115020033_M3")]
+    partial class M3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

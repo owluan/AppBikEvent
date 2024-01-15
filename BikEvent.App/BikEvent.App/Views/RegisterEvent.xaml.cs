@@ -49,6 +49,8 @@ namespace BikEvent.App.Views
                 Tag = TxtTags.Text,
                 SocialMedia = TxtSocialMedia.Text,
                 Description = TxtDescription.Text,
+                Difficulty = (RBIniciante.IsChecked) ? "Iniciante" : (RBIntermediario.IsChecked) ? "Intermediário" :
+                (RBAvançado.IsChecked) ? "Avançado" : "Default",
                 Benefits = TxtBenefits.Text,
                 PhoneNumber = TxtPhoneNumber.Text,
                 PublicationDate = DateTime.Now,

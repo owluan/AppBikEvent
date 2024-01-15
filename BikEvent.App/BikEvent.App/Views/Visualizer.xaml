@@ -19,7 +19,7 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Text="{Binding EventType}" Style="{StaticResource EventTypeLabel}" Grid.Row="4" />                        
+                        <Label Text="{Binding EventType}" Style="{StaticResource EventTypeLabel}" Grid.Row="4" />                 
 
                         <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource TextPrimary}">
                             <Label.FormattedText>
@@ -66,6 +66,8 @@
                     <BoxView Color="#F3F5F7" HeightRequest="1" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Descrição" x:Name="HeaderDescription" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Description}" x:Name="TextDescription" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Dificuldade" />
+                    <Label Style="{StaticResource TextSecondary}" Text="{Binding Difficulty}" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Benefícios" x:Name="HeaderBenefits" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}" x:Name="TextBenefits" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Rede Social" x:Name="HeaderSocialMedia" />

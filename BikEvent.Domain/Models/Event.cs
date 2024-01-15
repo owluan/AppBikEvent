@@ -46,6 +46,10 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public string Description { get; set; }
 
+        [Display(Name = "Difficulty", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
+        public string Difficulty { get; set; }
+
         [Display(Name = "Benefits", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public string Benefits { get; set; }
 

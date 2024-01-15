@@ -129,6 +129,9 @@
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>Dificuldade</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
