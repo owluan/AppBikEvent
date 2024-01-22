@@ -33,6 +33,21 @@
                 </Frame>
                 <Frame StyleClass="EntryFrame">
                     <StackLayout>
+                        <Label Text="Repetição" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
+                        <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,-15,0,5">
+                            <RadioButton x:Name="RBNone" IsChecked="True" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Sem repetição" />
+                            <RadioButton x:Name="RBWeekly" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Semanal" />
+                            <RadioButton x:Name="RBBiWeekly" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Quinzenal" />
+                            <RadioButton x:Name="RBMonthly" WidthRequest="30" />
+                            <Label Style="{StaticResource RadioButton}" Text="Mensal" />
+                        </FlexLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame StyleClass="EntryFrame">
+                    <StackLayout>
                         <Label Text="Tipo de Evento" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
                         <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,-15,0,5">
                             <RadioButton x:Name="RBTrilha" IsChecked="True" WidthRequest="30" />

@@ -3,6 +3,7 @@ using BikEvent.App.Resources.Converters;
 using BikEvent.App.Resources.Load;
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;
+using BikEvent.Domain.Utility.Enums;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -42,7 +43,13 @@ namespace BikEvent.App.Views
                 Company = user.Name,
                 EventTitle = TxtEventTitle.Text,
                 CityState = TxtCityState.Text,
-                EventDate = DatePicker.Date.ToString("dd/MM/yy"),
+                EventDate = DatePicker.Date,
+                NextEventDate = DatePicker.Date,
+                RepeatInterval = (RBNone.IsChecked) ? RepeatInterval.None :
+                 (RBWeekly.IsChecked) ? RepeatInterval.Weekly :
+                 (RBBiWeekly.IsChecked) ? RepeatInterval.BiWeekly :
+                 (RBMonthly.IsChecked) ? RepeatInterval.Monthly :
+                 RepeatInterval.None,
                 //FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
                 EventType = (RBTrilha.IsChecked) ? "Trilha" : (RBPedal.IsChecked) ? "Pedal" :
                 (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",

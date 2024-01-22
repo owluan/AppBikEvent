@@ -151,6 +151,15 @@ namespace BikEvent.Domain.Utility.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Próxima data do evento.
+        /// </summary>
+        public static string NextEventDate {
+            get {
+                return ResourceManager.GetString("NextEventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Senha.
         /// </summary>
         public static string Password {
@@ -174,6 +183,15 @@ namespace BikEvent.Domain.Utility.Language {
         public static string PublicationDate {
             get {
                 return ResourceManager.GetString("PublicationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Intervalo de repetição.
+        /// </summary>
+        public static string RepeatInterval {
+            get {
+                return ResourceManager.GetString("RepeatInterval", resourceCulture);
             }
         }
         

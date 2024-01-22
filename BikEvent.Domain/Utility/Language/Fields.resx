@@ -147,6 +147,9 @@
   <data name="Name" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="NextEventDate" xml:space="preserve">
+    <value>Próxima data do evento</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Senha</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="PublicationDate" xml:space="preserve">
     <value>Data publicação</value>
+  </data>
+  <data name="RepeatInterval" xml:space="preserve">
+    <value>Intervalo de repetição</value>
   </data>
   <data name="SocialMedia" xml:space="preserve">
     <value>Rede social</value>

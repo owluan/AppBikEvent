@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BikEvent.Domain.Utility.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,7 +26,14 @@ namespace BikEvent.Domain.Models
 
         [Display(Name = "EventDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
-        public string EventDate { get; set; }
+        public DateTime EventDate { get; set; }
+
+        [Display(Name = "NextEventDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        public DateTime NextEventDate { get; set; }
+
+        [Display(Name = "RepeatInterval", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
+        public RepeatInterval RepeatInterval { get; set; }
 
         [Display(Name = "EventType", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
@@ -53,7 +61,7 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         [Phone(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E002")]
         public string PhoneNumber { get; set; }
-
+                
         [Display(Name = "PublicationDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public DateTime PublicationDate { get; set; }
 

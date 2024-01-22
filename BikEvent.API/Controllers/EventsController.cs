@@ -1,6 +1,8 @@
 ﻿using BikEvent.API.Database;
 using BikEvent.Domain.Models;
+using BikEvent.Domain.Utility.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,9 @@ namespace BikEvent.API.Controllers
             if (cityState == null)
                 cityState = string.Empty;
 
-            var totalItems = _context.Events
+            var today = DateTime.Today;
+
+            var events = _context.Events
                 .Where(x =>
                     x.PublicationDate >= DateTime.Now.AddYears(-15) &&
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
@@ -37,23 +41,26 @@ namespace BikEvent.API.Controllers
                        x.Tag.ToLower().Contains(word.ToLower()) ||
                        x.Company.ToLower().Contains(word.ToLower())
                     )
-                ).Count();
+                )
+                .ToList();
+
+            foreach (var @event in events)
+            {
+                if (@event.RepeatInterval != RepeatInterval.None && @event.NextEventDate <= today)
+                {
+                    @event.NextEventDate = CalculateNextEventDate(@event.RepeatInterval, @event.NextEventDate);
+                    // Salvar as alterações no banco de dados
+                    _context.SaveChanges();
+                }
+            }
+
+            var totalItems = events.Count;
 
             Response.Headers.Add("X-Total-Items", totalItems.ToString());
 
-            return _context.Events
-                .Where(x => 
-                    x.PublicationDate >= DateTime.Now.AddYears(-15) &&
-                    x.CityState.ToLower().Contains(cityState.ToLower()) &&
-                    (
-                       x.EventTitle.ToLower().Contains(word.ToLower()) ||
-                       x.Tag.ToLower().Contains(word.ToLower()) ||
-                       x.Company.ToLower().Contains(word.ToLower())
-                    )
-                )
+            return events
                 .Skip(recordsPerPage * (pageNumber - 1))
-                .Take(recordsPerPage)
-                .ToList<Event>();
+                .Take(recordsPerPage);
         }
 
         [HttpGet("{id}")]
@@ -77,6 +84,32 @@ namespace BikEvent.API.Controllers
             _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetEvent), new { id = _event.Id }, _event);
+        }
+
+
+        private DateTime CalculateNextEventDate(RepeatInterval repeatInterval, DateTime currentEventDate)
+        {
+            DateTime newDateTime = currentEventDate;
+
+            switch (repeatInterval)
+            {
+                case RepeatInterval.Weekly:
+                    newDateTime = currentEventDate.AddDays(7);
+                    break;
+
+                case RepeatInterval.BiWeekly:
+                    newDateTime = currentEventDate.AddDays(14);
+                    break;
+
+                case RepeatInterval.Monthly:
+                    newDateTime = currentEventDate.AddMonths(1);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return newDateTime;
         }
     }
 }

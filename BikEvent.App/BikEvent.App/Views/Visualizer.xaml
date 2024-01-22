@@ -35,7 +35,7 @@
                         <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{Binding EventDate}" Style="{StaticResource MoneyLabel}" />
+                                    <Span Text="{Binding NextEventDate, StringFormat='{0:dd/MM/yyyy}'}" Style="{StaticResource MoneyLabel}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

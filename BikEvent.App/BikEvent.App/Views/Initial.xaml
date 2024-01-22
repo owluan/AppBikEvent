@@ -74,7 +74,7 @@
                                         <Label Text="{Binding CityState}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextSecondary}" Grid.Row="2" />
                                         <control:TagView Tags="{Binding Tag}" WordsNumber="2" Grid.Row="3" />
                                         <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="End" Grid.Row="1" Grid.Column="1"  VerticalOptions="End">
-                                            <Label Text="{Binding EventDate}" Style="{StaticResource MoneyLabel}" />
+                                            <Label Text="{Binding NextEventDate, StringFormat='{0:dd/MM/yyyy}'}" Style="{StaticResource MoneyLabel}" />
                                         </StackLayout>                                       
                                         <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
                                             <Label Text="id. " Style="{StaticResource IdLabel}" />
