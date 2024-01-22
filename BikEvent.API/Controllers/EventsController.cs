@@ -46,10 +46,9 @@ namespace BikEvent.API.Controllers
 
             foreach (var @event in events)
             {
-                if (@event.RepeatInterval != RepeatInterval.None && @event.NextEventDate <= today)
+                if (@event.RepeatInterval != RepeatInterval.None && @event.NextEventDate < today)
                 {
                     @event.NextEventDate = CalculateNextEventDate(@event.RepeatInterval, @event.NextEventDate);
-                    // Salvar as alterações no banco de dados
                     _context.SaveChanges();
                 }
             }
@@ -85,7 +84,6 @@ namespace BikEvent.API.Controllers
 
             return CreatedAtAction(nameof(GetEvent), new { id = _event.Id }, _event);
         }
-
 
         private DateTime CalculateNextEventDate(RepeatInterval repeatInterval, DateTime currentEventDate)
         {
