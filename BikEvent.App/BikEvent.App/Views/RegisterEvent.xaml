@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BikEvent.App.Views.RegisterEvent">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView x:Name="MyScrollView">
             <StackLayout Spacing="10">
-                <Grid>
+                <Grid Margin="0,0,0,-10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition />
@@ -15,7 +15,7 @@
                         <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
                     <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" />
-                    <Label Text="BikEvent" Style="{StaticResource Title}" Grid.Column="1" />
+                    <Label Text="BikEvent" Style="{StaticResource Title}" Grid.Column="1" Padding="-10,-3,0,0" />
                     <ImageButton Style="{StaticResource OkButton}" Grid.Column="2" Clicked="Save" />
                 </Grid>
                 <BoxView Color="#D7CCFF" HeightRequest="1" />
@@ -91,7 +91,7 @@
                     <Entry x:Name="TxtPhoneNumber" Placeholder="Contato/Whatsapp" Keyboard="Telephone" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" Margin="0,0,0,10">
-                    <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" />
+                    <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" Unfocused="TxtSocialMedia_OnUnfocused"/>
                 </Frame>
             </StackLayout>
         </ScrollView>

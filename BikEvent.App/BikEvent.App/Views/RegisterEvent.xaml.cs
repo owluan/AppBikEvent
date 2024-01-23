@@ -98,5 +98,19 @@ namespace BikEvent.App.Views
                 await Navigation.PopAllPopupAsync();
             }
         }
+
+        private void TxtSocialMedia_OnUnfocused(object sender, FocusEventArgs e)
+        {
+            ScrollToTop();
+        }
+
+        private void ScrollToTop()
+        {
+            if (MyScrollView != null)
+            {
+                MyScrollView.ScrollToAsync(0, 0, true);
+            }
+        }
+
     }
 }
