@@ -52,13 +52,6 @@ namespace BikEvent.App.Views
             TxtCityState.Focus();
         }
 
-        private void Logout(object sender, EventArgs e)
-        {
-            App.Current.Properties.Remove("User");
-            App.Current.SavePropertiesAsync();
-            App.Current.MainPage = new Login();
-        }
-
         private async void Search(object sender, EventArgs e)
         {
             TxtResultsCount.Text = String.Empty;
@@ -124,6 +117,14 @@ namespace BikEvent.App.Views
                 await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
                 EventsList.RemainingItemsThreshold = 0;
             }            
+        }
+
+        private void OpenMenu(object sender, EventArgs e)
+        {
+            if (Application.Current.MainPage is MasterDetailPage mainPage)
+            {
+                mainPage.IsPresented = true; // Abre o menu lateral
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BikEvent.App.Views;
+using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,15 +11,7 @@ namespace BikEvent.App
         public App()
         {
             InitializeComponent();
-
-            if (App.Current.Properties.ContainsKey("User"))
-            {
-                MainPage = new NavigationPage(new Views.Initial());
-            }
-            else
-            {
-                MainPage = new NavigationPage(new Views.Login());
-            }            
+            CheckUserAndNavigateAsync();
         }
 
         protected override void OnStart()
@@ -31,5 +25,28 @@ namespace BikEvent.App
         protected override void OnResume()
         {
         }
+
+        private void CheckUserAndNavigateAsync()
+        {
+            if (App.Current.Properties.ContainsKey("User"))
+            {
+                var menuPage = new MenuPage();
+                menuPage.Title = "Navigation";
+
+                var mainPage = new MasterDetailPage
+                {
+                    Master = menuPage,
+                    Detail = new NavigationPage(new Initial()) // Set MainPage as the detail page
+                };
+
+                // Set MainPage as the new root page
+                App.Current.MainPage = mainPage;
+            }
+            else
+            {
+                App.Current.MainPage = new NavigationPage(new Views.Login());
+            }
+        }
+
     }
 }

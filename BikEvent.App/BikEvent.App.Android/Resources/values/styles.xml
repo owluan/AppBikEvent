@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-
   <style name="MainTheme" parent="MainTheme.Base">
     <item name="android:forceDarkAllowed">false</item>
     <!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->

@@ -4,7 +4,6 @@
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
              x:Class="BikEvent.App.Views.Initial">
-    <ContentPage.Content>
         <StackLayout>
             <Grid VerticalOptions="Start" HeightRequest="50">
                 <Grid.ColumnDefinitions>
@@ -12,8 +11,7 @@
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
-                <Label Text="BikEvent" Style="{StaticResource Title}" Padding="0,4,0,0" />
-                <Button Grid.Column="1" ImageSource="logout.png" StyleClass="AddButton" HeightRequest="35" Clicked="Logout" />
+            <Button ImageSource="logout.png" Clicked="OpenMenu" StyleClass="AddButton" HorizontalOptions="Start" HeightRequest="35" WidthRequest="50" />
                 <Button Grid.Column="2" Text="Criar Evento" FontSize="10" StyleClass="AddButton" Clicked="GoRegisterEvent" />
             </Grid>
             <BoxView Color="#D7CCFF" HeightRequest="1" />
@@ -90,5 +88,4 @@
                 <ActivityIndicator x:Name="Loading" IsRunning="False" Color="{StaticResource Purple}" HorizontalOptions="Center" VerticalOptions="Center" />
             </Grid>
         </StackLayout>
-    </ContentPage.Content>
 </ContentPage>

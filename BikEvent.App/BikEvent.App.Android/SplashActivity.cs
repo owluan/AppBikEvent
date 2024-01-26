@@ -12,7 +12,7 @@ using System.Text;
 
 namespace BikEvent.App.Droid
 {
-    [Activity(Label = "App - BikEvent", Icon = "@mipmap/ic_launcher" ,Theme = "@style/MainTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Label = "BikEvent", Icon = "@mipmap/ic_launcher" ,Theme = "@style/MainTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

@@ -96,6 +96,19 @@
                 </Setter>
             </Style>
 
+            <Style TargetType="ImageButton" x:Key="MenuButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Source">
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android" Value="logout.png" />
+                        <On Platform="UWP" Value="Images/logout.png" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
             <Style TargetType="Label" x:Key="BaseLabel">
                 <Setter Property="FontFamily" Value="Montserrat" />
                 <Setter Property="FontSize" Value="12" />
@@ -168,6 +181,20 @@
                         <On Platform="Android" Value="pin.png" />
                         <On Platform="UWP" Value="Images/pin.png" />
                     </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style TargetType="ImageButton" x:Key="GoogleSignInButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="300" />
+                <Setter Property="WidthRequest" Value="240" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,180,0,0" />
+                <Setter Property="Source">
+                    <Setter.Value>
+                        <UriImageSource Uri="https://firebasestorage.googleapis.com/v0/b/appgpxreader.appspot.com/o/btn_google_signin_light_normal.png?alt=media&amp;token=22b92153-ef51-4024-8982-66d0ec4eb968" />
+                    </Setter.Value>
                 </Setter>
             </Style>
         </ResourceDictionary>
