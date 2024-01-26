@@ -46,18 +46,19 @@ namespace BikEvent.App.Views
                 EventDate = DatePicker.Date,
                 NextEventDate = DatePicker.Date,
                 RepeatInterval = (RBNone.IsChecked) ? RepeatInterval.None :
-                 (RBWeekly.IsChecked) ? RepeatInterval.Weekly :
-                 (RBBiWeekly.IsChecked) ? RepeatInterval.BiWeekly :
-                 (RBMonthly.IsChecked) ? RepeatInterval.Monthly :
+                    (RBWeekly.IsChecked) ? RepeatInterval.Weekly :
+                    (RBBiWeekly.IsChecked) ? RepeatInterval.BiWeekly :
+                    (RBMonthly.IsChecked) ? RepeatInterval.Monthly :
                  RepeatInterval.None,
                 //FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
-                EventType = (RBTrilha.IsChecked) ? "Trilha" : (RBPedal.IsChecked) ? "Pedal" :
-                (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" : (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
+                EventType = (RBPedal.IsChecked) ? "Pedal" : (RBTrilha.IsChecked) ? "Trilha" :
+                    (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" :
+                    (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
                 Tag = TxtTags.Text,
                 SocialMedia = TxtSocialMedia.Text,
                 Description = TxtDescription.Text,
                 Difficulty = (RBIniciante.IsChecked) ? "Iniciante" : (RBIntermediario.IsChecked) ? "Intermediário" :
-                (RBAvançado.IsChecked) ? "Avançado" : "Default",
+                    (RBAvançado.IsChecked) ? "Avançado" : "Default",
                 Benefits = TxtBenefits.Text,
                 PhoneNumber = TxtPhoneNumber.Text,
                 PublicationDate = DateTime.Now,
