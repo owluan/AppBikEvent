@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <None Update="Database\BikEvent.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using BikEvent.Domain.Models;
+﻿using BikEvent.App.ViewModels;
+using BikEvent.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +14,23 @@ namespace BikEvent.App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Visualizer : ContentPage
 	{
-		public Visualizer ()
-		{
-			InitializeComponent ();
-		}
+        private VisualizerViewModel _viewModel;
+
+        public Visualizer(Event eventToShow)
+        {
+            InitializeComponent();
+            _viewModel = new VisualizerViewModel(eventToShow);
+            BindingContext = _viewModel;
+        }
 
         private void GoBack(object sender, EventArgs e)
         {
 			Navigation.PopAsync();
         }
 
-        protected override void OnAppearing()
+        /*protected override void OnAppearing()
         {
-            base.OnAppearing();
+            base.OnAppearing();            
 
             Event _event = ((Event)BindingContext);
 
@@ -46,6 +51,11 @@ namespace BikEvent.App.Views
                 HeaderBenefits.IsVisible = false;
                 TextBenefits.IsVisible = false;
             }
+        }*/
+
+        private async void EditEvent(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditEvent((Event)BindingContext));
         }
     }
 }

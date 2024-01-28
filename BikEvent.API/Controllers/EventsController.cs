@@ -75,6 +75,47 @@ namespace BikEvent.API.Controllers
             return new JsonResult(eventDB);
         }
 
+        [HttpGet("myevents")]
+        public IEnumerable<Event> GetEventsByUser(int userId, string word, string cityState, int pageNumber = 1)
+        {
+            if (word == null)
+                word = string.Empty;
+
+            if (cityState == null)
+                cityState = string.Empty;
+
+            var today = DateTime.Today;
+
+            var events = _context.Events
+                .Where(x => x.UserId == userId &&
+                    x.PublicationDate >= DateTime.Now.AddYears(-15) &&
+                    x.CityState.ToLower().Contains(cityState.ToLower()) &&
+                    (
+                       x.EventTitle.ToLower().Contains(word.ToLower()) ||
+                       x.Tag.ToLower().Contains(word.ToLower()) ||
+                       x.Company.ToLower().Contains(word.ToLower())
+                    )
+                )
+                .ToList();
+
+            foreach (var @event in events)
+            {
+                if (@event.RepeatInterval != RepeatInterval.None && @event.NextEventDate < today)
+                {
+                    @event.NextEventDate = CalculateNextEventDate(@event.RepeatInterval, @event.NextEventDate);
+                    _context.SaveChanges();
+                }
+            }
+
+            var totalItems = events.Count;
+
+            Response.Headers.Add("X-Total-Items", totalItems.ToString());
+
+            return events
+                .Skip(recordsPerPage * (pageNumber - 1))
+                .Take(recordsPerPage);
+        }
+
         [HttpPost]
         public IActionResult AddEvent(Event _event)
         {
@@ -83,6 +124,15 @@ namespace BikEvent.API.Controllers
             _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetEvent), new { id = _event.Id }, _event);
+        }
+
+        [HttpPut]
+        public IActionResult EditEvent(Event _event)
+        {
+            _context.Update(_event);
+            _context.SaveChangesAsync();
+
+            return Ok(_event);
         }
 
         private DateTime CalculateNextEventDate(RepeatInterval repeatInterval, DateTime currentEventDate)
