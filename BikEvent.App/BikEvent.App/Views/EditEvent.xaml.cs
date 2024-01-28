@@ -30,7 +30,6 @@ namespace BikEvent.App.Views
             _eventService = new EventService();
             _eventToEdit = eventToEdit;
 
-            // Preencher os campos com os dados do evento existente
             FillFieldsWithEventData();
         }
 
@@ -80,7 +79,15 @@ namespace BikEvent.App.Views
             {
                 await Navigation.PopAllPopupAsync();
                 await DisplayAlert("Edição de Evento", "Evento editado com sucesso!", "OK");
-                await Navigation.PopAsync();
+
+                var navigationStack = Navigation.NavigationStack.ToList();
+
+                if (navigationStack.Count >= 2)
+                {
+                    Navigation.RemovePage(navigationStack[1]);
+                    Navigation.RemovePage(navigationStack[2]);
+                }
+
                 await Navigation.PushAsync(new Visualizer(_eventToEdit));
             }
             else

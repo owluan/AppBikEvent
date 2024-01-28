@@ -66,7 +66,7 @@ namespace BikEvent.App.Views
         {
             App.Current.Properties.Remove("User");
             App.Current.SavePropertiesAsync();
-            App.Current.MainPage = new Login();
+            App.Current.MainPage = new NavigationPage(new Login());
         }
 
     }

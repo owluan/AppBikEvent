@@ -45,7 +45,18 @@ namespace BikEvent.App.Views
             {
                 App.Current.Properties.Add("User", JsonConvert.SerializeObject(responseService.Data));
                 await App.Current.SavePropertiesAsync();
-                App.Current.MainPage = new NavigationPage(new Initial());
+
+                var menuPage = new MenuPage();
+                menuPage.Title = "Navigation";
+
+                var mainPage = new MasterDetailPage
+                {
+                    Master = menuPage,
+                    Detail = new NavigationPage(new Initial()) // Set MainPage as the detail page
+                };
+
+                // Set MainPage as the new root page
+                App.Current.MainPage = mainPage;
             }
             else
             {

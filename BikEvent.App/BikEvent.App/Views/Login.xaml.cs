@@ -26,9 +26,9 @@ namespace BikEvent.App.Views
             _userService = new UserService();
         }
 
-        private void GoRegister(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Register());
+        private async void GoRegister(object sender, EventArgs e)
+        {            
+            await Navigation.PushAsync(new Register());
         }
 
         private async void GoInitial(object sender, EventArgs e)

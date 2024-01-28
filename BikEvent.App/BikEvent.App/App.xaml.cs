@@ -44,7 +44,7 @@ namespace BikEvent.App
             }
             else
             {
-                App.Current.MainPage = new NavigationPage(new Views.Login());
+                App.Current.MainPage = new NavigationPage(new Login());
             }
         }
 

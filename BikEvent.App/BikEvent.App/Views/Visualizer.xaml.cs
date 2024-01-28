@@ -1,5 +1,4 @@
-﻿using BikEvent.App.ViewModels;
-using BikEvent.Domain.Models;
+﻿using BikEvent.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +10,42 @@ using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Visualizer : ContentPage
-	{
-        private VisualizerViewModel _viewModel;
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Visualizer : ContentPage
+    {
+        private Event _event { get; set; }
 
         public Visualizer(Event eventToShow)
         {
             InitializeComponent();
-            _viewModel = new VisualizerViewModel(eventToShow);
-            BindingContext = _viewModel;
+            _event = eventToShow;
+            BindingContext = _event;
+            HideFields();
         }
 
-        private void GoBack(object sender, EventArgs e)
+        private async void GoBack(object sender, EventArgs e)
         {
-			Navigation.PopAsync();
+            await GoBackAsync();
         }
 
-        /*protected override void OnAppearing()
+        private async Task GoBackAsync()
         {
-            base.OnAppearing();            
+            var navigationStack = Navigation.NavigationStack.ToList();
+            if (navigationStack.Count >= 2)
+            {
+                Navigation.RemovePage(navigationStack[1]);
+            }
 
-            Event _event = ((Event)BindingContext);
+            await Navigation.PushAsync(new MyEvents());
+        }       
 
+        private async void EditEvent(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditEvent(_event));
+        }
+
+        private void HideFields()
+        {
             if (string.IsNullOrEmpty(_event.SocialMedia))
             {
                 HeaderSocialMedia.IsVisible = false;
@@ -51,11 +63,6 @@ namespace BikEvent.App.Views
                 HeaderBenefits.IsVisible = false;
                 TextBenefits.IsVisible = false;
             }
-        }*/
-
-        private async void EditEvent(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new EditEvent((Event)BindingContext));
         }
     }
 }
