@@ -28,10 +28,10 @@ namespace BikEvent.App.Views
             menuPageListView = this.FindByName<ListView>("menuPageListView");
 
             MenuItems = new ObservableCollection<Domain.Models.MenuItem>
-        {
-            new Domain.Models.MenuItem { Title = "Home", TargetType = typeof(Initial) },
-            new Domain.Models.MenuItem { Title = "Settings", TargetType = typeof(Login) }
-        };
+            {
+                new Domain.Models.MenuItem { Title = "Home", TargetType = typeof(Initial) },
+                new Domain.Models.MenuItem { Title = "Settings", TargetType = typeof(Login) }
+            };
 
             BindingContext = this;
         }
@@ -51,10 +51,10 @@ namespace BikEvent.App.Views
                 // Close the menu
                 if (Application.Current.MainPage is MasterDetailPage mainPage)
                 {
-                    await mainPage.Detail.FadeTo(0, 200); // Fades out the Detail Page
+                    await mainPage.Detail.FadeTo(0, 900); // Fades out the Detail Page
                     mainPage.Detail = new NavigationPage(page);
                     mainPage.IsPresented = false;
-                    await mainPage.Detail.FadeTo(1, 200); // Fades in the new Detail Page
+                    await mainPage.Detail.FadeTo(1, 900); // Fades in the new Detail Page
                 }
             }
 

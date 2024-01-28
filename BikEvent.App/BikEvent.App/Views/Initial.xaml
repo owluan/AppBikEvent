@@ -11,7 +11,7 @@
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
-            <Button ImageSource="logout.png" Clicked="OpenMenu" StyleClass="AddButton" HorizontalOptions="Start" HeightRequest="35" WidthRequest="50" />
+            <Button ImageSource="menu.png" Clicked="OpenMenu" StyleClass="AddButton" HorizontalOptions="Start" WidthRequest="40" BackgroundColor="Transparent"/>
                 <Button Grid.Column="2" Text="Criar Evento" FontSize="10" StyleClass="AddButton" Clicked="GoRegisterEvent" />
             </Grid>
             <BoxView Color="#D7CCFF" HeightRequest="1" />

@@ -8,7 +8,7 @@ namespace BikEvent.App.Services
     public class Service
     {
         protected HttpClient _client;
-        protected string BaseApiUrl = "https://jobsearchapi20231218130706.azurewebsites.net";
+        protected string BaseApiUrl = "https://bikeventapi20240127185233.azurewebsites.net";
 
         public Service()
         {
