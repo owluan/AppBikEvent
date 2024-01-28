@@ -88,7 +88,7 @@ namespace BikEvent.App.Views
                     Navigation.RemovePage(navigationStack[2]);
                 }
 
-                await Navigation.PushAsync(new Visualizer(_eventToEdit));
+                await Navigation.PushAsync(new EditVisualizer(_eventToEdit));
             }
             else
             {

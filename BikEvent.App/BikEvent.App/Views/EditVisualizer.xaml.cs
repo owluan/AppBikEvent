@@ -12,11 +12,11 @@ using Xamarin.Forms.Xaml;
 namespace BikEvent.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Visualizer : ContentPage
+    public partial class EditVisualizer : ContentPage
     {
         private Event _event { get; set; }
 
-        public Visualizer(Event eventToShow)
+        public EditVisualizer(Event eventToShow)
         {
             InitializeComponent();
             _event = eventToShow;
@@ -26,8 +26,19 @@ namespace BikEvent.App.Views
 
         private async void GoBack(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await GoBackAsync();
         }
+
+        private async Task GoBackAsync()
+        {
+            var navigationStack = Navigation.NavigationStack.ToList();
+            if (navigationStack.Count >= 2)
+            {
+                Navigation.RemovePage(navigationStack[1]);
+            }
+
+            await Navigation.PushAsync(new MyEvents());
+        }       
 
         private async void EditEvent(object sender, EventArgs e)
         {

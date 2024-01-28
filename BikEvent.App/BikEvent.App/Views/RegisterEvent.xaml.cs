@@ -65,8 +65,6 @@ namespace BikEvent.App.Views
                 UserId = user.Id
             };
 
-
-
             await Navigation.PushPopupAsync(new Loading());
 
             ResponseService<Event> responseService = await _eventService.AddEvent(_event);
