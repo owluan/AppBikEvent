@@ -40,7 +40,7 @@ namespace BikEvent.App.Views
         private void GoVisualizer(object sender, EventArgs e)
         {
             var eventArgs = (TappedEventArgs) e;
-            var page = new Visualizer((Event)eventArgs.Parameter);
+            var page = new EditVisualizer((Event)eventArgs.Parameter);
             page.BindingContext = eventArgs.Parameter;
             Navigation.PushAsync(page);
         }
@@ -62,41 +62,7 @@ namespace BikEvent.App.Views
 
         private async void Search(object sender, EventArgs e)
         {
-            TxtResultsCount.Text = String.Empty;
-            Loading.IsVisible = true;
-            Loading.IsRunning = true;
-            NoResult.IsVisible = false;
-
-            User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
-
-            _searchParams = new SearchParams() { Word = TxtWord.Text, CityState = TxtCityState.Text, PageNumber = 1 };
-
-            ResponseService<List<Event>> responseService = await _eventService.GetEventsByUser(user.Id,_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
-
-            if (responseService.IsSuccess)
-            {
-                _eventsList = new ObservableCollection<Event>(responseService.Data);
-                _eventsListFirstRequest = _eventsList.Count();
-                EventsList.ItemsSource = _eventsList;
-                EventsList.RemainingItemsThreshold = 1;
-                TxtResultsCount.Text = $"{responseService.Pagination.TotalItems} resultado(s).";
-            }
-            else
-            {
-                await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
-            }
-
-            if (_eventsList.Count == 0)
-            {
-                NoResult.IsVisible = true;
-            }
-            else
-            {
-                NoResult.IsVisible = false;
-            }
-
-            Loading.IsVisible = false;
-            Loading.IsRunning = false;
+            await SearchAsync();
         }
 
         private async Task SearchAsync()
@@ -138,7 +104,6 @@ namespace BikEvent.App.Views
             Loading.IsRunning = false;
         }
 
-
         private async void InfinityScroll(object sender, EventArgs e)
         {
             EventsList.RemainingItemsThreshold = -1;
@@ -175,6 +140,6 @@ namespace BikEvent.App.Views
             {
                 mainPage.IsPresented = true; // Abre o menu lateral
             }
-        }
+        }        
     }
 }
