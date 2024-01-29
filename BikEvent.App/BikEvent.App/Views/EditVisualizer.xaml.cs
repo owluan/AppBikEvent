@@ -1,4 +1,6 @@
-﻿using BikEvent.Domain.Models;
+﻿using BikEvent.App.Models;
+using BikEvent.App.Services;
+using BikEvent.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,12 @@ namespace BikEvent.App.Views
     public partial class EditVisualizer : ContentPage
     {
         private Event _event { get; set; }
+        private EventService _eventService;
 
         public EditVisualizer(Event eventToShow)
         {
             InitializeComponent();
+            _eventService = new EventService();
             _event = eventToShow;
             BindingContext = _event;
             HideFields();
@@ -45,6 +49,29 @@ namespace BikEvent.App.Views
             await Navigation.PushAsync(new EditEvent(_event));
         }
 
+        private async void DeleteEvent(object sender, EventArgs e)
+        {
+            bool userConfirmed = await DisplayAlert("Confirmação", "Tem certeza de que deseja excluir este evento?", "Sim", "Não");
+
+            if (userConfirmed)
+            {
+                ResponseService<Event> responseService = await _eventService.DeleteEvent(_event.Id);
+
+                if (responseService.IsSuccess)
+                {
+                    await DisplayAlert("Exclusão de Evento", "Evento excluído com sucesso!", "OK");
+
+                    // Volte para a página anterior após excluir
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    // Tratar erro, se necessário
+                    await DisplayAlert("Erro", "Ocorreu um erro ao excluir o evento.", "OK");
+                }
+            }
+        }
+
         private void HideFields()
         {
             User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
@@ -52,6 +79,7 @@ namespace BikEvent.App.Views
             if (_event.UserId != user.Id)
             {
                 EditButton.IsVisible = false;
+                DeleteButton.IsVisible = false;
             }
 
             if (string.IsNullOrEmpty(_event.SocialMedia))

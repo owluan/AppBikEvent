@@ -73,7 +73,14 @@ namespace BikEvent.App.Views
             {
                 await Navigation.PopAllPopupAsync();
                 await DisplayAlert("Cadastro de Evento", "Evento cadastrado com sucesso!", "OK");
-                await Navigation.PopAsync();
+
+                var navigationStack = Navigation.NavigationStack.ToList();
+                if (navigationStack.Count >= 2)
+                {
+                    Navigation.RemovePage(navigationStack[1]);
+                }
+
+                await Navigation.PushAsync(new MyEvents());
             }
             else
             {

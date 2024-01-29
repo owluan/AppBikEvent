@@ -17,10 +17,12 @@ namespace BikEvent.App.Views
     public partial class Visualizer : ContentPage
     {
         private Event _event { get; set; }
+        private EventService _eventService;
 
         public Visualizer(Event eventToShow)
         {
             InitializeComponent();
+            _eventService = new EventService();
             _event = eventToShow;
             BindingContext = _event;
             HideFields();
@@ -70,16 +72,20 @@ namespace BikEvent.App.Views
             bool userConfirmed = await DisplayAlert("Confirmação", "Tem certeza de que deseja excluir este evento?", "Sim", "Não");
 
             if (userConfirmed)
-            {
-                EventService eventService = new EventService();
-                ResponseService<Event> responseService = await eventService.DeleteEvent(_event.Id);
+            {               
+                ResponseService<Event> responseService = await _eventService.DeleteEvent(_event.Id);
 
                 if (responseService.IsSuccess)
                 {
                     await DisplayAlert("Exclusão de Evento", "Evento excluído com sucesso!", "OK");
 
-                    // Volte para a página anterior após excluir
-                    await Navigation.PopAsync();
+                    var navigationStack = Navigation.NavigationStack.ToList();
+                    if (navigationStack.Count >= 2)
+                    {
+                        Navigation.RemovePage(navigationStack[1]);
+                    }
+
+                    await Navigation.PushAsync(new MyEvents());
                 }
                 else
                 {
