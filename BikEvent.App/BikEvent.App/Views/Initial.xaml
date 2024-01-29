@@ -5,7 +5,7 @@
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
              x:Class="BikEvent.App.Views.Initial">
     <StackLayout>
-        <Grid VerticalOptions="Start" HeightRequest="50">
+        <Grid HeightRequest="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto" />
@@ -17,7 +17,7 @@
                 </Image.GestureRecognizers>
             </Image>
             <Label Grid.Column="1" Text="Eventos" Style="{StaticResource Title}" Padding="0,0,150,0" />
-            <Image Grid.Column="2" Source="addevent.png" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand">
+            <Image Grid.Column="2" Source="addevent.png" WidthRequest="50" HeightRequest="40" VerticalOptions="Center">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="GoRegisterEvent" />
                 </Image.GestureRecognizers>

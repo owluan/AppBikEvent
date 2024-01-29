@@ -14,8 +14,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
-                    <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" />
-                    <Label Text="BikEvent" Style="{StaticResource Title}" Grid.Column="1" Padding="-10,-3,0,0" />
+                    <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" HeightRequest="50" />
+                    <Label Text="Adicionar Evento" Style="{StaticResource Title}" Grid.Column="1" Padding="-10,0,0,0" />
                     <ImageButton Style="{StaticResource OkButton}" Grid.Column="2" Clicked="Save" />
                 </Grid>
                 <BoxView Color="#D7CCFF" HeightRequest="1" />
