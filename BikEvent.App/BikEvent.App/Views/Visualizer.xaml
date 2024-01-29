@@ -74,7 +74,8 @@
                     <Label Style="{StaticResource TitlePrimary}" Text="Rede Social" x:Name="HeaderSocialMedia" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding SocialMedia}" x:Name="TextSocialMedia" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp" />
-                    <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />                    
+                    <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
+                    <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

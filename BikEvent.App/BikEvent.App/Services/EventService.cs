@@ -136,5 +136,27 @@ namespace BikEvent.App.Services
             }
             return responseService;
         }
+
+        public async Task<ResponseService<Event>> DeleteEvent(int id)
+        {
+            HttpResponseMessage response = await _client.DeleteAsync($"{BaseApiUrl}/api/events/{id}");
+
+            ResponseService<Event> responseService = new ResponseService<Event>();
+
+            responseService.IsSuccess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseService.Data = await response.Content.ReadAsAsync<Event>();
+            }
+            else
+            {
+                string problemResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<Event>>(problemResponse);
+                responseService.Errors = erros.Errors;
+            }
+            return responseService;
+        }
     }
 }

@@ -131,8 +131,17 @@ namespace BikEvent.API.Controllers
         {
             _context.Update(_event);
             _context.SaveChangesAsync();
-
             return Ok(_event);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEvent(int id)
+        {
+            var _event = _context.Events.FirstOrDefault(e => e.Id == id);
+            _context.Remove(_event);
+            _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         private DateTime CalculateNextEventDate(RepeatInterval repeatInterval, DateTime currentEventDate)
