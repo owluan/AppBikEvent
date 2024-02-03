@@ -90,6 +90,10 @@
                 <Frame StyleClass="EntryFrame">
                     <Entry x:Name="TxtPhoneNumber" Placeholder="Contato/Whatsapp" Keyboard="Telephone" ReturnType="Next" />
                 </Frame>
+                <!-- Adicione um botão para selecionar a imagem -->
+                <Button Text="Selecionar Imagem" Clicked="OnSelectImageClicked" />
+                <!-- Adicione um controle Image para exibir a imagem selecionada -->
+                <Image x:Name="selectedImage" />
                 <Frame StyleClass="EntryFrame" Margin="0,0,0,10">
                     <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" Unfocused="TxtSocialMedia_OnUnfocused"/>
                 </Frame>

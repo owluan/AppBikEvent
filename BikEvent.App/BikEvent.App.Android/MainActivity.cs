@@ -4,7 +4,6 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using AndroidX.AppCompat.App;
-using Xamarin.Forms;
 
 namespace BikEvent.App.Droid
 {

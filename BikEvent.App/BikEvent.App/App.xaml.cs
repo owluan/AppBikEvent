@@ -1,15 +1,12 @@
 ﻿using BikEvent.App.Views;
-using System;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App
 {
     public partial class App : Application
     {
         public App()
-        {
+        {   
             InitializeComponent();
             CheckUserAndNavigateAsync();
         }

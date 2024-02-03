@@ -8,10 +8,11 @@ using Newtonsoft.Json;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,10 +22,13 @@ namespace BikEvent.App.Views
     public partial class RegisterEvent : ContentPage
     {
         private EventService _eventService;
+        private AzureStorageService _azureStorageService;
+
         public RegisterEvent()
         {
             InitializeComponent();
             _eventService = new EventService();
+            _azureStorageService = new AzureStorageService();
         }
 
         private void GoBack(object sender, EventArgs e)
@@ -117,6 +121,30 @@ namespace BikEvent.App.Views
                 MyScrollView.ScrollToAsync(0, 0, true);
             }
         }
+
+        private async void OnSelectImageClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync();
+
+                if (result != null)
+                {
+                    var stream = await result.OpenReadAsync();
+                    selectedImage.Source = ImageSource.FromStream(() => stream);
+
+                    // Fazer upload para o Firebase Storage
+                    await _azureStorageService.UploadFile(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Lidar com exceções, se houver
+                Console.WriteLine($"ERRO: {ex.Message}");
+            }
+        }
+
+       
 
     }
 }
