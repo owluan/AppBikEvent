@@ -62,7 +62,8 @@ namespace BikEvent.Domain.Models
         [Phone(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E002")]
         public string PhoneNumber { get; set; }
 
-        public string ImageUrl { get; set; }
+        [NotMapped]
+        public List<string> ImageUrl { get; set; }
 
         [Display(Name = "PublicationDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public DateTime PublicationDate { get; set; }
@@ -71,5 +72,6 @@ namespace BikEvent.Domain.Models
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
     }
 }

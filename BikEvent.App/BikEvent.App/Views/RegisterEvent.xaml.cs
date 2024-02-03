@@ -23,12 +23,14 @@ namespace BikEvent.App.Views
     {
         private EventService _eventService;
         private AzureStorageService _azureStorageService;
+        private List<string> _imageUrl { get; set; }
 
         public RegisterEvent()
         {
             InitializeComponent();
             _eventService = new EventService();
             _azureStorageService = new AzureStorageService();
+            _imageUrl = new List<string>();
         }
 
         private void GoBack(object sender, EventArgs e)
@@ -65,6 +67,7 @@ namespace BikEvent.App.Views
                     (RBAvançado.IsChecked) ? "Avançado" : "Default",
                 Benefits = TxtBenefits.Text,
                 PhoneNumber = TxtPhoneNumber.Text,
+                ImageUrl = _imageUrl,
                 PublicationDate = DateTime.Now,
                 UserId = user.Id
             };
@@ -133,8 +136,11 @@ namespace BikEvent.App.Views
                     var stream = await result.OpenReadAsync();
                     selectedImage.Source = ImageSource.FromStream(() => stream);
 
-                    // Fazer upload para o Firebase Storage
-                    await _azureStorageService.UploadFile(stream);
+                    // Fazer upload para o Azure Storage
+                    string imageUrl = await _azureStorageService.UploadFile(stream);
+
+                    // Atualize o objeto Event com o URL da imagem
+                    _imageUrl.Add(imageUrl);
                 }
             }
             catch (Exception ex)
@@ -144,7 +150,8 @@ namespace BikEvent.App.Views
             }
         }
 
-       
+
+
 
     }
 }

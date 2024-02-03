@@ -41,8 +41,7 @@ namespace BikEvent.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("EventDate")
-                        .IsRequired()
+                    b.Property<DateTime>("EventDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EventTitle")
@@ -53,8 +52,8 @@ namespace BikEvent.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("FinalSalary")
-                        .HasColumnType("REAL");
+                    b.Property<DateTime>("NextEventDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -62,6 +61,9 @@ namespace BikEvent.API.Migrations
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("RepeatInterval")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SocialMedia")
                         .HasColumnType("TEXT");

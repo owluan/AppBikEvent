@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BikEvent.API.Migrations
 {
     [DbContext(typeof(BikEventContext))]
-    [Migration("20231221233748_AlterandoSalary")]
-    partial class AlterandoSalary
+    [Migration("20240203212744_M")]
+    partial class M
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace BikEvent.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.10");
 
-            modelBuilder.Entity("BikEvent.Domain.Models.Job", b =>
+            modelBuilder.Entity("BikEvent.Domain.Models.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,35 +35,42 @@ namespace BikEvent.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CompanyDescription")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ContractType")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("FinalSalary")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("InitialSalary")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("InterestedSendEmailTo")
+                    b.Property<string>("Difficulty")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("JobDescription")
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EventTitle")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("JobTitle")
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("NextEventDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TecnologyTools")
+                    b.Property<int>("RepeatInterval")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SocialMedia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tag")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -74,7 +81,7 @@ namespace BikEvent.API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("BikEvent.Domain.Models.User", b =>
@@ -100,7 +107,7 @@ namespace BikEvent.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BikEvent.Domain.Models.Job", b =>
+            modelBuilder.Entity("BikEvent.Domain.Models.Event", b =>
                 {
                     b.HasOne("BikEvent.Domain.Models.User", "User")
                         .WithMany()
