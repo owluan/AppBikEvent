@@ -19,7 +19,6 @@ namespace BikEvent.App.Views
     {
         private Event _event { get; set; }
         private EventService _eventService;
-
         private ObservableCollection<string> _imageList;
         private int _currentIndex;
 
@@ -29,12 +28,11 @@ namespace BikEvent.App.Views
             _eventService = new EventService();
             _event = eventToShow;
             BindingContext = _event;
-            HideFields();
             DeserializeObject();
-
             _imageList = new ObservableCollection<string>(_event.ImageList ?? new List<string>());
             ImageCarousel.ItemsSource = null;
             ImageCarousel.ItemsSource = _event.ImageList;
+            HideFields();
         }
 
         private async void GoBack(object sender, EventArgs e)
@@ -73,6 +71,11 @@ namespace BikEvent.App.Views
             {
                 HeaderBenefits.IsVisible = false;
                 TextBenefits.IsVisible = false;
+            }
+
+            if (_event.ImageList.Count < 2)
+            {
+                ArrowButton.IsVisible = false;
             }
         }
 

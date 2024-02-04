@@ -84,7 +84,7 @@
                                 </DataTemplate>
                             </CarouselView.ItemTemplate>
                         </CarouselView>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <StackLayout x:Name="ArrowButton" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                             <ImageButton Source="left.png" Clicked="OnPreviousButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
                             <ImageButton Source="right.png" Clicked="OnNextButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
                         </StackLayout>

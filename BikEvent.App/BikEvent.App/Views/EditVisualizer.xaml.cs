@@ -4,6 +4,7 @@ using BikEvent.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace BikEvent.App.Views
     {
         private Event _event { get; set; }
         private EventService _eventService;
+        private ObservableCollection<string> _imageList;
+        private int _currentIndex;
 
         public EditVisualizer(Event eventToShow)
         {
@@ -25,6 +28,10 @@ namespace BikEvent.App.Views
             _eventService = new EventService();
             _event = eventToShow;
             BindingContext = _event;
+            DeserializeObject();
+            _imageList = new ObservableCollection<string>(_event.ImageList ?? new List<string>());
+            ImageCarousel.ItemsSource = null;
+            ImageCarousel.ItemsSource = _event.ImageList;
             HideFields();
         }
 
@@ -99,6 +106,37 @@ namespace BikEvent.App.Views
                 HeaderBenefits.IsVisible = false;
                 TextBenefits.IsVisible = false;
             }
+
+            if (_event.ImageList.Count < 2)
+            {
+                ArrowButton.IsVisible = false;
+            }
+        }
+
+        private void DeserializeObject()
+        {
+            if (_event.ImageUrl != null)
+            {
+                _event.ImageList = JsonConvert.DeserializeObject<List<string>>(_event.ImageUrl);
+            }
+        }
+
+        private void OnPreviousButtonClicked(object sender, EventArgs e)
+        {
+            // Navegue para a imagem anterior
+            _currentIndex = (_currentIndex - 1 + _imageList.Count) % _imageList.Count;
+
+            // Atualize a posição atual do CarouselView
+            ImageCarousel.Position = _currentIndex;
+        }
+
+        private void OnNextButtonClicked(object sender, EventArgs e)
+        {
+            // Navegue para a próxima imagem
+            _currentIndex = (_currentIndex + 1) % _imageList.Count;
+
+            // Atualize a posição atual do CarouselView
+            ImageCarousel.Position = _currentIndex;
         }
     }
 }
