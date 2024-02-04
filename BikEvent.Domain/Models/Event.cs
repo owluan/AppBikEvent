@@ -61,9 +61,8 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         [Phone(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E002")]
         public string PhoneNumber { get; set; }
-
-        [NotMapped]
-        public List<string> ImageUrl { get; set; }
+              
+        public string ImageUrl { get; set; }
 
         [Display(Name = "PublicationDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public DateTime PublicationDate { get; set; }

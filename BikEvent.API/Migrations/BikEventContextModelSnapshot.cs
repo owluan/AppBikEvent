@@ -52,6 +52,9 @@ namespace BikEvent.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("NextEventDate")
                         .HasColumnType("TEXT");
 

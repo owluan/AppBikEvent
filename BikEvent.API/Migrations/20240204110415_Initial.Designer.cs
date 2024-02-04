@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BikEvent.API.Migrations
 {
     [DbContext(typeof(BikEventContext))]
-    [Migration("20240203212744_M")]
-    partial class M
+    [Migration("20240204110415_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,9 @@ namespace BikEvent.API.Migrations
 
                     b.Property<string>("EventType")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("NextEventDate")

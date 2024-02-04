@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BikEvent.API.Migrations
 {
-    public partial class M : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,6 +41,7 @@ namespace BikEvent.API.Migrations
                     Difficulty = table.Column<string>(nullable: false),
                     Benefits = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
                     PublicationDate = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },

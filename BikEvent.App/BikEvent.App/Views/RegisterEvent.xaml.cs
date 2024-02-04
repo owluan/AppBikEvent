@@ -67,7 +67,7 @@ namespace BikEvent.App.Views
                     (RBAvançado.IsChecked) ? "Avançado" : "Default",
                 Benefits = TxtBenefits.Text,
                 PhoneNumber = TxtPhoneNumber.Text,
-                ImageUrl = _imageUrl,
+                ImageUrl = JsonConvert.SerializeObject(_imageUrl),
                 PublicationDate = DateTime.Now,
                 UserId = user.Id
             };
