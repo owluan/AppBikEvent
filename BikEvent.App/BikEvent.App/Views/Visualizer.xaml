@@ -79,7 +79,7 @@
                     <StackLayout>
                         <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}" HeightRequest="200">
                             <CarouselView.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate>                                    
                                     <Image Source="{Binding}" Aspect="AspectFit" />
                                 </DataTemplate>
                             </CarouselView.ItemTemplate>
