@@ -26,6 +26,10 @@ namespace BikEvent.App.Views
             _event = eventToShow;
             BindingContext = _event;
             HideFields();
+            DeserializeObject();
+            // Atualize a lista de imagens quando a página aparecer
+            ImageCarousel.ItemsSource = null; // Limpe a fonte existente
+            ImageCarousel.ItemsSource = _event.ImageList; // Defina a nova fonte
         }
 
         private async void GoBack(object sender, EventArgs e)
@@ -93,6 +97,21 @@ namespace BikEvent.App.Views
                     await DisplayAlert("Erro", "Ocorreu um erro ao excluir o evento.", "OK");
                 }
             }
+        }
+
+        private void DeserializeObject()
+        {
+            if (_event.ImageUrl != null)
+            {
+                _event.ImageList = JsonConvert.DeserializeObject<List<string>>(_event.ImageUrl);
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+           
         }
     }
 }
