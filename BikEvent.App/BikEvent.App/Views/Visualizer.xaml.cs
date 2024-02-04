@@ -4,6 +4,7 @@ using BikEvent.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace BikEvent.App.Views
         private Event _event { get; set; }
         private EventService _eventService;
 
+        private ObservableCollection<string> _imageList;
+        private int _currentIndex;
+
         public Visualizer(Event eventToShow)
         {
             InitializeComponent();
@@ -27,9 +31,10 @@ namespace BikEvent.App.Views
             BindingContext = _event;
             HideFields();
             DeserializeObject();
-            // Atualize a lista de imagens quando a página aparecer
-            ImageCarousel.ItemsSource = null; // Limpe a fonte existente
-            ImageCarousel.ItemsSource = _event.ImageList; // Defina a nova fonte
+
+            _imageList = new ObservableCollection<string>(_event.ImageList ?? new List<string>());
+            ImageCarousel.ItemsSource = null;
+            ImageCarousel.ItemsSource = _event.ImageList;
         }
 
         private async void GoBack(object sender, EventArgs e)
@@ -107,11 +112,22 @@ namespace BikEvent.App.Views
             }
         }
 
-        protected override void OnAppearing()
+        private void OnPreviousButtonClicked(object sender, EventArgs e)
         {
-            base.OnAppearing();
+            // Navegue para a imagem anterior
+            _currentIndex = (_currentIndex - 1 + _imageList.Count) % _imageList.Count;
 
-           
+            // Atualize a posição atual do CarouselView
+            ImageCarousel.Position = _currentIndex;
+        }
+
+        private void OnNextButtonClicked(object sender, EventArgs e)
+        {
+            // Navegue para a próxima imagem
+            _currentIndex = (_currentIndex + 1) % _imageList.Count;
+
+            // Atualize a posição atual do CarouselView
+            ImageCarousel.Position = _currentIndex;
         }
     }
 }

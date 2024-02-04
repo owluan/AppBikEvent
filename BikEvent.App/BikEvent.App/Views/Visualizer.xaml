@@ -76,13 +76,19 @@
                     <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp" />
                     <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
                     <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" />
-                    <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}" HeightRequest="200">
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding}" Aspect="AspectFill" />
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
+                    <StackLayout>
+                        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}" HeightRequest="200">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding}" Aspect="AspectFill" />
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Button Text="Anterior" Clicked="OnPreviousButtonClicked" />
+                            <Button Text="Próxima" Clicked="OnNextButtonClicked" />
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
