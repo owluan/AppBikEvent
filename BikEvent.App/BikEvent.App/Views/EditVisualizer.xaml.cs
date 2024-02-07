@@ -19,7 +19,6 @@ namespace BikEvent.App.Views
     {
         private Event _event { get; set; }
         private EventService _eventService;
-        private ObservableCollection<string> _imageList;
         private int _currentIndex;
 
         public EditVisualizer(Event eventToShow)
@@ -29,7 +28,6 @@ namespace BikEvent.App.Views
             _event = eventToShow;
             BindingContext = _event;
             DeserializeObject();
-            _imageList = new ObservableCollection<string>(_event.ImageList ?? new List<string>());
             ImageCarousel.ItemsSource = null;
             ImageCarousel.ItemsSource = _event.ImageList;
             HideFields();
@@ -124,7 +122,7 @@ namespace BikEvent.App.Views
         private void OnPreviousButtonClicked(object sender, EventArgs e)
         {
             // Navegue para a imagem anterior
-            _currentIndex = (_currentIndex - 1 + _imageList.Count) % _imageList.Count;
+            _currentIndex = (_currentIndex - 1 + _event.ImageList.Count) % _event.ImageList.Count;
 
             // Atualize a posição atual do CarouselView
             ImageCarousel.Position = _currentIndex;
@@ -133,7 +131,7 @@ namespace BikEvent.App.Views
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
             // Navegue para a próxima imagem
-            _currentIndex = (_currentIndex + 1) % _imageList.Count;
+            _currentIndex = (_currentIndex + 1) % _event.ImageList.Count;
 
             // Atualize a posição atual do CarouselView
             ImageCarousel.Position = _currentIndex;

@@ -23,13 +23,17 @@ namespace BikEvent.App.Views
         private EventService _eventService;
         private Event _eventToEdit;
         public event EventHandler EventUpdated;
+        private AzureStorageService _azureStorageService;
+        private int _currentIndex;
 
         public EditEvent(Event eventToEdit)
         {
             InitializeComponent();
             _eventService = new EventService();
+            _azureStorageService = new AzureStorageService();
             _eventToEdit = eventToEdit;
-
+            ImageCarousel.ItemsSource = null;
+            ImageCarousel.ItemsSource = _eventToEdit.ImageList;
             FillFieldsWithEventData();
         }
 
@@ -95,7 +99,7 @@ namespace BikEvent.App.Views
                 // Tratar erros conforme necessário
                 // ...
             }
-        }        
+        }
 
         private void TxtSocialMedia_OnUnfocused(object sender, FocusEventArgs e)
         {
@@ -249,6 +253,86 @@ namespace BikEvent.App.Views
 
             // Lógica padrão, se necessário
             return "Default";
+        }
+
+        private async void OnDeleteImageButtonClicked(object sender, EventArgs e)
+        {
+            if (_eventToEdit.ImageList != null && _eventToEdit.ImageList.Any())
+            {
+                bool userConfirmed = await DisplayAlert("Confirmação", "Tem certeza de que deseja excluir esta imagem?", "Sim", "Não");
+
+                if (userConfirmed)
+                {
+                    // Remove a imagem atual da lista
+                    string imageUrlToDelete = _eventToEdit.ImageList[_currentIndex];
+
+                    // Exclui a imagem do Azure Storage
+                    await _azureStorageService.DeleteFile(imageUrlToDelete);
+
+                    // Remove a imagem da lista
+                    _eventToEdit.ImageList.RemoveAt(_currentIndex);
+
+                    // Atualiza o CarouselView com a nova lista de imagens
+                    ImageCarousel.ItemsSource = null;
+                    ImageCarousel.ItemsSource = _eventToEdit.ImageList;
+
+                    // Caso não haja mais imagens, esconda os botões de navegação
+                    if (_eventToEdit.ImageList.Count < 2)
+                    {
+                        ArrowButton.IsVisible = false;
+                    }
+
+                    if (_eventToEdit.ImageList.Count < 1)
+                    {
+                        DeleteButton.IsVisible = false;
+                    }
+
+                    _eventToEdit.ImageUrl = JsonConvert.SerializeObject(_eventToEdit.ImageList);
+
+                    await Navigation.PushPopupAsync(new Loading());
+
+                    ResponseService<Event> responseService = await _eventService.EditEvent(_eventToEdit);
+
+                    if (responseService.IsSuccess)
+                    {
+                        await Navigation.PopAllPopupAsync();
+                        await DisplayAlert("Exclusão de imagem", "Imagem excluida com sucesso!", "OK");
+
+                        var navigationStack = Navigation.NavigationStack.ToList();
+
+                        if (navigationStack.Count >= 2)
+                        {
+                            Navigation.RemovePage(navigationStack[1]);
+                            Navigation.RemovePage(navigationStack[2]);
+                        }
+
+                        await Navigation.PushAsync(new EditVisualizer(_eventToEdit));
+                    }
+                    else
+                    {
+                        // Tratar erros conforme necessário
+                        // ...
+                    }
+                }
+            }
+        }
+
+        private void OnPreviousButtonClicked(object sender, EventArgs e)
+        {
+            // Navegue para a imagem anterior
+            _currentIndex = (_currentIndex - 1 + _eventToEdit.ImageList.Count) % _eventToEdit.ImageList.Count;
+
+            // Atualize a posição atual do CarouselView
+            ImageCarousel.Position = _currentIndex;
+        }
+
+        private void OnNextButtonClicked(object sender, EventArgs e)
+        {
+            // Navegue para a próxima imagem
+            _currentIndex = (_currentIndex + 1) % _eventToEdit.ImageList.Count;
+
+            // Atualize a posição atual do CarouselView
+            ImageCarousel.Position = _currentIndex;
         }
     }
 }

@@ -93,6 +93,20 @@
                 <Frame StyleClass="EntryFrame" Margin="0,0,0,10">
                     <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" Unfocused="TxtSocialMedia_OnUnfocused"/>
                 </Frame>
+                <StackLayout>
+                    <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}" HeightRequest="200">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                    <Image Source="{Binding}" Aspect="AspectFit" />                                    
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <StackLayout x:Name="ArrowButton" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <ImageButton Source="left.png" Clicked="OnPreviousButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
+                        <ImageButton Source="right.png" Clicked="OnNextButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
+                    </StackLayout>
+                    <Button x:Name="DeleteButton" Text="Excluir" Clicked="OnDeleteImageButtonClicked" />
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
