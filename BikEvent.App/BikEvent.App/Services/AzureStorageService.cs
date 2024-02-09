@@ -17,16 +17,19 @@ namespace BikEvent.App.Services
             {
                 MemoryStream imageStreamCopy = new MemoryStream();
                 await originalImageStream.CopyToAsync(imageStreamCopy);
+
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(StorageConnectionString);
                 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
                 CloudBlobContainer container = blobClient.GetContainerReference(ContainerName);
                 await container.CreateIfNotExistsAsync();
                 string blobName = $"{Guid.NewGuid()}.jpg";
+
                 CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName);
                 imageStreamCopy.Position = 0;
                 await blockBlob.UploadFromStreamAsync(imageStreamCopy);
                 string imageUrl = blockBlob.Uri.ToString();
                 Console.WriteLine($"URL: {imageUrl}");
+
                 return imageUrl;
             }
             catch (Exception ex)

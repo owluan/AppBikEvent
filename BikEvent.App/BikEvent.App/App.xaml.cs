@@ -33,10 +33,9 @@ namespace BikEvent.App
                 var mainPage = new MasterDetailPage
                 {
                     Master = menuPage,
-                    Detail = new NavigationPage(new Initial()) // Set MainPage as the detail page
+                    Detail = new NavigationPage(new Initial()) 
                 };
 
-                // Set MainPage as the new root page
                 App.Current.MainPage = mainPage;
             }
             else

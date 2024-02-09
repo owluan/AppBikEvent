@@ -123,7 +123,7 @@ namespace BikEvent.App.Views
         {
             if (Application.Current.MainPage is MasterDetailPage mainPage)
             {
-                mainPage.IsPresented = true; // Abre o menu lateral
+                mainPage.IsPresented = true;
             }
         }
     }

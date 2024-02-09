@@ -48,17 +48,15 @@ namespace BikEvent.App.Views
                 Type pageType = selectedItem.TargetType;
                 Page page = (Page)Activator.CreateInstance(pageType);
 
-                // Close the menu
                 if (Application.Current.MainPage is MasterDetailPage mainPage)
                 {
-                    await mainPage.Detail.FadeTo(0, 900); // Fades out the Detail Page
+                    await mainPage.Detail.FadeTo(0, 900);
                     mainPage.Detail = new NavigationPage(page);
                     mainPage.IsPresented = false;
-                    await mainPage.Detail.FadeTo(1, 900); // Fades in the new Detail Page
+                    await mainPage.Detail.FadeTo(1, 900); 
                 }
             }
 
-            // Reset the selected item
             ((ListView)sender).SelectedItem = null;
         }
 

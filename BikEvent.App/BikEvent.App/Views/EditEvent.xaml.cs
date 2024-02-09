@@ -34,6 +34,7 @@ namespace BikEvent.App.Views
             _eventToEdit = eventToEdit;
             ImageCarousel.ItemsSource = null;
             ImageCarousel.ItemsSource = _eventToEdit.ImageList;
+            HideFields();
             FillFieldsWithEventData();
         }
 
@@ -69,14 +70,12 @@ namespace BikEvent.App.Views
             _eventToEdit.Description = TxtDescription.Text;
             _eventToEdit.Benefits = TxtBenefits.Text;
             _eventToEdit.PhoneNumber = TxtPhoneNumber.Text;
-            // Atualizar RadioButtons
             _eventToEdit.EventType = GetSelectedEventType();
             _eventToEdit.RepeatInterval = GetSelectedRepeatInterval();
             _eventToEdit.Difficulty = GetSelectedDifficulty();
 
             await Navigation.PushPopupAsync(new Loading());
 
-            // Chamar o serviço para salvar as alterações no evento
             ResponseService<Event> responseService = await _eventService.EditEvent(_eventToEdit);
 
             if (responseService.IsSuccess)
@@ -97,7 +96,6 @@ namespace BikEvent.App.Views
             else
             {
                 // Tratar erros conforme necessário
-                // ...
             }
         }
 
@@ -116,7 +114,6 @@ namespace BikEvent.App.Views
 
         private void SetRadioButtonBasedOnEventType(string eventType)
         {
-            // Limpar seleções existentes
             RBPedal.IsChecked = false;
             RBTrilha.IsChecked = false;
             RBPasseio.IsChecked = false;
@@ -124,7 +121,6 @@ namespace BikEvent.App.Views
             RBEncontro.IsChecked = false;
             RBOutro.IsChecked = false;
 
-            // Selecionar o RadioButton com base no EventType
             switch (eventType)
             {
                 case "Pedal":
@@ -146,14 +142,12 @@ namespace BikEvent.App.Views
                     RBOutro.IsChecked = true;
                     break;
                 default:
-                    // Lógica padrão, se necessário
                     break;
             }
         }
 
         private string GetSelectedEventType()
         {
-            // Retornar o EventType com base no RadioButton selecionado
             if (RBPedal.IsChecked)
                 return "Pedal";
             if (RBTrilha.IsChecked)
@@ -167,19 +161,16 @@ namespace BikEvent.App.Views
             if (RBOutro.IsChecked)
                 return "Outro";
 
-            // Lógica padrão, se necessário
             return "Default";
         }
 
         private void SetRadioButtonBasedOnRepeatInterval(RepeatInterval repeatInterval)
         {
-            // Limpar seleções existentes
             RBNone.IsChecked = false;
             RBWeekly.IsChecked = false;
             RBBiWeekly.IsChecked = false;
             RBMonthly.IsChecked = false;
 
-            // Selecionar o RadioButton com base no EventType
             switch (repeatInterval)
             {
                 case RepeatInterval.None:
@@ -202,7 +193,6 @@ namespace BikEvent.App.Views
 
         private RepeatInterval GetSelectedRepeatInterval()
         {
-            // Retornar o RepeatInterval com base no RadioButton selecionado
             if (RBNone.IsChecked)
                 return RepeatInterval.None;
             if (RBWeekly.IsChecked)
@@ -212,18 +202,15 @@ namespace BikEvent.App.Views
             if (RBMonthly.IsChecked)
                 return RepeatInterval.Monthly;
 
-            // Lógica padrão, se necessário
             return RepeatInterval.None;
         }
 
         private void SetRadioButtonBasedOnDifficulty(string difficulty)
         {
-            // Limpar seleções existentes
             RBIniciante.IsChecked = false;
             RBIntermediario.IsChecked = false;
             RBAvançado.IsChecked = false;
 
-            // Selecionar o RadioButton com base no EventType
             switch (difficulty)
             {
                 case "Iniciante":
@@ -243,7 +230,6 @@ namespace BikEvent.App.Views
 
         private string GetSelectedDifficulty()
         {
-            // Retornar o EventType com base no RadioButton selecionado
             if (RBIniciante.IsChecked)
                 return "Iniciante";
             if (RBIntermediario.IsChecked)
@@ -251,7 +237,6 @@ namespace BikEvent.App.Views
             if (RBAvançado.IsChecked)
                 return "Avançado";
 
-            // Lógica padrão, se necessário
             return "Default";
         }
 
@@ -263,20 +248,15 @@ namespace BikEvent.App.Views
 
                 if (userConfirmed)
                 {
-                    // Remove a imagem atual da lista
                     string imageUrlToDelete = _eventToEdit.ImageList[_currentIndex];
 
-                    // Exclui a imagem do Azure Storage
                     await _azureStorageService.DeleteFile(imageUrlToDelete);
 
-                    // Remove a imagem da lista
                     _eventToEdit.ImageList.RemoveAt(_currentIndex);
 
-                    // Atualiza o CarouselView com a nova lista de imagens
                     ImageCarousel.ItemsSource = null;
                     ImageCarousel.ItemsSource = _eventToEdit.ImageList;
 
-                    // Caso não haja mais imagens, esconda os botões de navegação
                     if (_eventToEdit.ImageList.Count < 2)
                     {
                         ArrowButton.IsVisible = false;
@@ -300,18 +280,16 @@ namespace BikEvent.App.Views
 
                         var navigationStack = Navigation.NavigationStack.ToList();
 
-                        if (navigationStack.Count >= 2)
-                        {
-                            Navigation.RemovePage(navigationStack[1]);
-                            Navigation.RemovePage(navigationStack[2]);
+                        if (navigationStack.Count >= 3)
+                        {                            
+                            Navigation.RemovePage(navigationStack[2]);  
                         }
 
-                        await Navigation.PushAsync(new EditVisualizer(_eventToEdit));
+                        await Navigation.PushAsync(new EditEvent(_eventToEdit));
                     }
                     else
                     {
                         // Tratar erros conforme necessário
-                        // ...
                     }
                 }
             }
@@ -319,20 +297,25 @@ namespace BikEvent.App.Views
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)
         {
-            // Navegue para a imagem anterior
             _currentIndex = (_currentIndex - 1 + _eventToEdit.ImageList.Count) % _eventToEdit.ImageList.Count;
 
-            // Atualize a posição atual do CarouselView
             ImageCarousel.Position = _currentIndex;
         }
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
-            // Navegue para a próxima imagem
             _currentIndex = (_currentIndex + 1) % _eventToEdit.ImageList.Count;
 
-            // Atualize a posição atual do CarouselView
             ImageCarousel.Position = _currentIndex;
+        }
+
+        private void HideFields()
+        {
+
+            if (_eventToEdit.ImageList.Count < 1)
+            {
+                ImageLayout.IsVisible = false;
+            }
         }
     }
 }

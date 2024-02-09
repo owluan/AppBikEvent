@@ -24,13 +24,28 @@ namespace BikEvent.App.Views
         private EventService _eventService;
         private AzureStorageService _azureStorageService;
         private List<string> _imageUrl { get; set; }
+        private List<Stream> _tempImageStreams { get; set; }
+
+        private int _currentIndex;
+        private List<ImageSource> _imageSources { get; set; }
 
         public RegisterEvent()
         {
             InitializeComponent();
+            ImageCarousel.ItemsSource = null;
             _eventService = new EventService();
             _azureStorageService = new AzureStorageService();
             _imageUrl = new List<string>();
+            _tempImageStreams = new List<Stream>();
+            _imageSources = new List<ImageSource>();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ImageCarousel.ItemsSource = null;
+            ImageCarousel.ItemsSource = _imageSources;
+            HideFields();
         }
 
         private void GoBack(object sender, EventArgs e)
@@ -43,6 +58,8 @@ namespace BikEvent.App.Views
             TxtMessages.Text = String.Empty;
 
             User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
+
+            await UploadImage(sender, e);
 
             Event _event = new Event()
             {
@@ -102,12 +119,14 @@ namespace BikEvent.App.Views
                             stringBuilder.AppendLine(message);
                         }
                     }
+
                     TxtMessages.Text = stringBuilder.ToString();
                 }
                 else
                 {
                     await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
                 }
+
                 await Navigation.PopAllPopupAsync();
             }
         }
@@ -125,6 +144,16 @@ namespace BikEvent.App.Views
             }
         }
 
+        private async Task UploadImage(object sender, EventArgs e)
+        {
+            foreach (var stream in _tempImageStreams)
+            {
+                stream.Position = 0;
+                string imageUrl = await _azureStorageService.UploadFile(stream);
+                _imageUrl.Add(imageUrl);
+            }
+        }
+
         private async void OnSelectImageClicked(object sender, EventArgs e)
         {
             try
@@ -134,24 +163,55 @@ namespace BikEvent.App.Views
                 if (result != null)
                 {
                     var stream = await result.OpenReadAsync();
-                    selectedImage.Source = ImageSource.FromStream(() => stream);
 
-                    // Fazer upload para o Azure Storage
-                    string imageUrl = await _azureStorageService.UploadFile(stream);
+                    var streamCopy = CopyStream(stream);
 
-                    // Atualize o objeto Event com o URL da imagem
-                    _imageUrl.Add(imageUrl);
+                    _imageSources.Add(ImageSource.FromStream(() => CopyStream(stream)));
+                    _tempImageStreams.Add(streamCopy);
                 }
             }
             catch (Exception ex)
             {
-                // Lidar com exceções, se houver
                 Console.WriteLine($"ERRO: {ex.Message}");
             }
         }
 
+        private Stream CopyStream(Stream input)
+        {
+            var copy = new MemoryStream();
+            input.Position = 0;
+            input.CopyTo(copy);
+            copy.Position = 0;
+            return copy;
+        }
 
+        private void HideFields()
+        {
+            if (_imageSources.Count < 2)
+            {
+                ArrowButton.IsVisible = false;
+            }
+            else { ArrowButton.IsVisible = true; }
 
+            if (_imageSources.Count < 1)
+            {
+                ImageLayout.IsVisible = false;
+            }
+            else { ImageLayout.IsVisible = true; }
+        }
 
+        private void OnPreviousButtonClicked(object sender, EventArgs e)
+        {
+            _currentIndex = (_currentIndex - 1 + _imageSources.Count) % _imageSources.Count;
+
+            ImageCarousel.Position = _currentIndex;
+        }
+
+        private void OnNextButtonClicked(object sender, EventArgs e)
+        {
+            _currentIndex = (_currentIndex + 1) % _imageSources.Count;
+
+            ImageCarousel.Position = _currentIndex;
+        }
     }
 }

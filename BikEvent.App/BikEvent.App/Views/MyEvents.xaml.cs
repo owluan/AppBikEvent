@@ -33,7 +33,6 @@ namespace BikEvent.App.Views
         {
             base.OnAppearing();
 
-            // Chama o método Search assim que a página é exibida
             await SearchAsync();
         }
 
@@ -138,7 +137,7 @@ namespace BikEvent.App.Views
         {
             if (Application.Current.MainPage is MasterDetailPage mainPage)
             {
-                mainPage.IsPresented = true; // Abre o menu lateral
+                mainPage.IsPresented = true;
             }
         }        
     }

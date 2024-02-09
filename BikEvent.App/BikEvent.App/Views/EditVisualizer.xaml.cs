@@ -66,12 +66,10 @@ namespace BikEvent.App.Views
                 {
                     await DisplayAlert("Exclusão de Evento", "Evento excluído com sucesso!", "OK");
 
-                    // Volte para a página anterior após excluir
                     await Navigation.PopAsync();
                 }
                 else
                 {
-                    // Tratar erro, se necessário
                     await DisplayAlert("Erro", "Ocorreu um erro ao excluir o evento.", "OK");
                 }
             }
@@ -121,19 +119,15 @@ namespace BikEvent.App.Views
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)
         {
-            // Navegue para a imagem anterior
             _currentIndex = (_currentIndex - 1 + _event.ImageList.Count) % _event.ImageList.Count;
 
-            // Atualize a posição atual do CarouselView
             ImageCarousel.Position = _currentIndex;
         }
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
-            // Navegue para a próxima imagem
             _currentIndex = (_currentIndex + 1) % _event.ImageList.Count;
 
-            // Atualize a posição atual do CarouselView
             ImageCarousel.Position = _currentIndex;
         }
     }
