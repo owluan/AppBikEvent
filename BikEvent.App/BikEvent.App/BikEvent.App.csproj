@@ -14,12 +14,16 @@
     <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Light.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Images\loading.gif" />
+    <None Remove="Resources\loading.gif" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Light.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Images\loading.gif" />
+    <EmbeddedResource Include="Resources\loading.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +32,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />

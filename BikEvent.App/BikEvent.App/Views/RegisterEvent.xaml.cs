@@ -59,6 +59,8 @@ namespace BikEvent.App.Views
 
             User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
 
+            await Navigation.PushPopupAsync(new Loading());
+
             await UploadImage(sender, e);
 
             Event _event = new Event()
@@ -88,8 +90,6 @@ namespace BikEvent.App.Views
                 PublicationDate = DateTime.Now,
                 UserId = user.Id
             };
-
-            await Navigation.PushPopupAsync(new Loading());
 
             ResponseService<Event> responseService = await _eventService.AddEvent(_event);
 

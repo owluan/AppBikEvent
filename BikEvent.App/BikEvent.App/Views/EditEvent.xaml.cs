@@ -80,9 +80,6 @@ namespace BikEvent.App.Views
 
             if (responseService.IsSuccess)
             {
-                await Navigation.PopAllPopupAsync();
-                await DisplayAlert("Edição de Evento", "Evento editado com sucesso!", "OK");
-
                 var navigationStack = Navigation.NavigationStack.ToList();
 
                 if (navigationStack.Count >= 2)
@@ -90,8 +87,10 @@ namespace BikEvent.App.Views
                     Navigation.RemovePage(navigationStack[1]);
                     Navigation.RemovePage(navigationStack[2]);
                 }
-
+                
                 await Navigation.PushAsync(new EditVisualizer(_eventToEdit));
+                await Navigation.PopAllPopupAsync();
+                await DisplayAlert("Edição de Evento", "Evento editado com sucesso!", "OK");
             }
             else
             {
@@ -248,6 +247,8 @@ namespace BikEvent.App.Views
 
                 if (userConfirmed)
                 {
+                    await Navigation.PushPopupAsync(new Loading());
+
                     string imageUrlToDelete = _eventToEdit.ImageList[_currentIndex];
 
                     await _azureStorageService.DeleteFile(imageUrlToDelete);
@@ -269,15 +270,10 @@ namespace BikEvent.App.Views
 
                     _eventToEdit.ImageUrl = JsonConvert.SerializeObject(_eventToEdit.ImageList);
 
-                    await Navigation.PushPopupAsync(new Loading());
-
                     ResponseService<Event> responseService = await _eventService.EditEvent(_eventToEdit);
 
                     if (responseService.IsSuccess)
-                    {
-                        await Navigation.PopAllPopupAsync();
-                        await DisplayAlert("Exclusão de imagem", "Imagem excluida com sucesso!", "OK");
-
+                    {          
                         var navigationStack = Navigation.NavigationStack.ToList();
 
                         if (navigationStack.Count >= 3)
@@ -286,6 +282,8 @@ namespace BikEvent.App.Views
                         }
 
                         await Navigation.PushAsync(new EditEvent(_eventToEdit));
+                        await Navigation.PopAllPopupAsync();
+                        await DisplayAlert("Exclusão de imagem", "Imagem excluida com sucesso!", "OK");
                     }
                     else
                     {
