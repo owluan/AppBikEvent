@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
@@ -22,11 +23,12 @@ namespace BikEvent.App.Views
     {
         private EventService _eventService;
         private AzureStorageService _azureStorageService;
+
         private List<string> _imageUrl { get; set; }
         private List<Stream> _tempImageStreams { get; set; }
+        private List<ImageSource> _imageSources { get; set; }
 
         private int _currentIndex;
-        private List<ImageSource> _imageSources { get; set; }
 
         public RegisterEvent()
         {
@@ -212,5 +214,45 @@ namespace BikEvent.App.Views
 
             ImageCarousel.Position = _currentIndex;
         }
+
+        private async void OnSelectLocationClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var mapPage = new MapPage();
+
+                // Use TaskCompletionSource para aguardar a conclusão da seleção no mapa
+                var mapPageCompletionSource = new TaskCompletionSource<Position>();
+
+                // Adicionar manipulador de eventos para o evento MapPageReady
+                mapPage.MapPageReady += (s, args) =>
+                {
+                    // Configurar TaskCompletionSource para sinalizar a conclusão
+                    mapPageCompletionSource.SetResult(mapPage.SelectedLocation);
+                };
+
+                // Navegar para a página do mapa
+                await Navigation.PushAsync(mapPage);
+
+                // Aguardar até que a seleção no mapa seja concluída
+                var selectedLocation = await mapPageCompletionSource.Task;
+
+                // Verificar se a seleção é válida (diferente de null) antes de atualizar a interface do usuário
+                if (selectedLocation != null)
+                {
+                    // Atualizar a interface do usuário conforme necessário
+                    // Por exemplo, exibir as coordenadas no formulário
+                    string lat = selectedLocation.Latitude.ToString();
+                    string lng = selectedLocation.Longitude.ToString();
+
+                    TxtLocalizacao.Text = $"{lat}, {lng}";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERRO: {ex.Message}");
+            }
+        }
+
     }
 }

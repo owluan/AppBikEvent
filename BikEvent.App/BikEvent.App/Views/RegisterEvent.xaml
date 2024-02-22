@@ -94,6 +94,7 @@
                     <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" Unfocused="TxtSocialMedia_OnUnfocused"/>
                 </Frame>
                 <Button Text="Selecionar Localização" Clicked="OnSelectLocationClicked" />
+                <Label x:Name="TxtLocalizacao" />
                 <Button Text="Selecionar Imagem" Clicked="OnSelectImageClicked" />
                 <StackLayout x:Name="ImageLayout">
                     <CarouselView x:Name="ImageCarousel" HeightRequest="200">
