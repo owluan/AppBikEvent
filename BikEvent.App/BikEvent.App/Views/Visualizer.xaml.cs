@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -80,6 +80,11 @@ namespace BikEvent.App.Views
             {
                 ArrowButton.IsVisible = false;
             }
+
+            if (_event.Latitude == 0 && _event.Longitude == 0)
+            {
+                HowToGetButton.IsVisible = false;
+            }
         }
 
         private async void DeleteEvent(object sender, EventArgs e)
@@ -129,6 +134,11 @@ namespace BikEvent.App.Views
             _currentIndex = (_currentIndex + 1) % _event.ImageList.Count;
 
             ImageCarousel.Position = _currentIndex;
+        }
+
+        private async void OnHowToGetClicked(object sender, EventArgs e)
+        {
+            await Map.OpenAsync(_event.Latitude, _event.Longitude, new MapLaunchOptions { Name = "Como chegar", NavigationMode = NavigationMode.Bicycling });
         }
     }
 }

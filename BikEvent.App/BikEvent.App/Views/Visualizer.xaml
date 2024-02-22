@@ -76,6 +76,7 @@
                     <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp" />
                     <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
                     <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" />
+                    <Button x:Name="HowToGetButton" Text="Como chegar" Clicked="OnHowToGetClicked" />
                     <StackLayout>
                         <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}" HeightRequest="200">
                             <CarouselView.ItemTemplate>

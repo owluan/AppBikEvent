@@ -92,6 +92,8 @@ namespace BikEvent.App.Views
                 Benefits = TxtBenefits.Text,
                 PhoneNumber = TxtPhoneNumber.Text,
                 ImageUrl = JsonConvert.SerializeObject(_imageUrl),
+                Latitude = selectedLocation.Latitude, 
+                Longitude = selectedLocation.Longitude,
                 PublicationDate = DateTime.Now,
                 UserId = user.Id
             };

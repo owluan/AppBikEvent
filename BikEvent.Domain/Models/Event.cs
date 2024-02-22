@@ -67,6 +67,9 @@ namespace BikEvent.Domain.Models
         [NotMapped]
         public List<string> ImageList { get; set; }
 
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
         [Display(Name = "PublicationDate", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
         public DateTime PublicationDate { get; set; }
 
