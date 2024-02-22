@@ -23,13 +23,13 @@ namespace BikEvent.App.Views
     {
         private EventService _eventService;
         private AzureStorageService _azureStorageService;
-        private ILocationService _locationService;
 
         private List<string> _imageUrl { get; set; }
         private List<Stream> _tempImageStreams { get; set; }
         private List<ImageSource> _imageSources { get; set; }
 
         private int _currentIndex;
+        private Position selectedLocation;
 
         public RegisterEvent()
         {
@@ -239,7 +239,7 @@ namespace BikEvent.App.Views
                 await Navigation.PushAsync(mapPage);
 
                 // Aguardar até que a seleção no mapa seja concluída
-                var selectedLocation = await mapPageCompletionSource.Task;
+                selectedLocation = await mapPageCompletionSource.Task;
 
                 // Verificar se a seleção é válida (diferente de null) antes de atualizar a interface do usuário
                 if (selectedLocation != null)

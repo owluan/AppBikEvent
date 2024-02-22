@@ -1,4 +1,4 @@
-﻿using BikEvent.App.Services;
+﻿using BikEvent.App.Services.Interfaces;
 using JobSearch.App.Droid.Services;
 using System.Threading.Tasks;
 using Xamarin.Essentials;

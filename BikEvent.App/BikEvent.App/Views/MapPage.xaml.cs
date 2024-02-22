@@ -1,4 +1,4 @@
-﻿using BikEvent.App.Services;
+﻿using BikEvent.App.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -25,7 +25,7 @@ namespace BikEvent.App.Views
 
             map = new Xamarin.Forms.Maps.Map
             {
-                MapType = MapType.Street,
+                MapType = MapType.Hybrid,
                 IsShowingUser = true
             };
 
