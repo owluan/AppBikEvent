@@ -28,7 +28,6 @@ namespace BikEvent.App.Services
                 imageStreamCopy.Position = 0;
                 await blockBlob.UploadFromStreamAsync(imageStreamCopy);
                 string imageUrl = blockBlob.Uri.ToString();
-                Console.WriteLine($"URL: {imageUrl}");
 
                 return imageUrl;
             }

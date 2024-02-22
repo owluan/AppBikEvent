@@ -22,7 +22,6 @@ namespace BikEvent.App.Views
     {
         private EventService _eventService;
         private Event _eventToEdit;
-        public event EventHandler EventUpdated;
         private AzureStorageService _azureStorageService;
         private int _currentIndex;
 

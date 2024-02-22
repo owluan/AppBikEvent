@@ -1,5 +1,4 @@
 ﻿using BikEvent.App.Models;
-using BikEvent.App.Resources.Converters;
 using BikEvent.App.Resources.Load;
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;

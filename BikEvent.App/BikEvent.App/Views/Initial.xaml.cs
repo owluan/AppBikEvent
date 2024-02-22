@@ -2,6 +2,7 @@
 using BikEvent.App.Resources.Load;
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;
+using Newtonsoft.Json;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace BikEvent.App.Views
         {
             InitializeComponent();
             _eventService = new EventService();
+            SearchAsync();
         }
 
         private void GoVisualizer(object sender, EventArgs e)
@@ -62,6 +64,45 @@ namespace BikEvent.App.Views
             _searchParams = new SearchParams() { Word = TxtWord.Text, CityState = TxtCityState.Text, PageNumber = 1 };
 
             ResponseService<List<Event>> responseService = await _eventService.GetEvents(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
+
+            if (responseService.IsSuccess)
+            {
+                _eventsList = new ObservableCollection<Event>(responseService.Data);
+                _eventsListFirstRequest = _eventsList.Count();
+                EventsList.ItemsSource = _eventsList;
+                EventsList.RemainingItemsThreshold = 1;
+                TxtResultsCount.Text = $"{responseService.Pagination.TotalItems} resultado(s).";
+            }
+            else
+            {
+                await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
+            }
+
+            if (_eventsList.Count == 0)
+            {
+                NoResult.IsVisible = true;
+            }
+            else
+            {
+                NoResult.IsVisible = false;
+            }
+
+            Loading.IsVisible = false;
+            Loading.IsRunning = false;
+        }
+
+        private async Task SearchAsync()
+        {
+            TxtResultsCount.Text = String.Empty;
+            Loading.IsVisible = true;
+            Loading.IsRunning = true;
+            NoResult.IsVisible = false;
+
+            User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
+
+            _searchParams = new SearchParams() { Word = TxtWord.Text, CityState = TxtCityState.Text, PageNumber = 1 };
+
+            ResponseService<List<Event>> responseService = await _eventService.GetEventsByUser(user.Id, _searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
             if (responseService.IsSuccess)
             {
