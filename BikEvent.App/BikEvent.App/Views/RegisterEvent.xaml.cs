@@ -23,6 +23,7 @@ namespace BikEvent.App.Views
     {
         private EventService _eventService;
         private AzureStorageService _azureStorageService;
+        private ILocationService _locationService;
 
         private List<string> _imageUrl { get; set; }
         private List<Stream> _tempImageStreams { get; set; }
@@ -33,9 +34,12 @@ namespace BikEvent.App.Views
         public RegisterEvent()
         {
             InitializeComponent();
+
             ImageCarousel.ItemsSource = null;
+
             _eventService = new EventService();
             _azureStorageService = new AzureStorageService();
+
             _imageUrl = new List<string>();
             _tempImageStreams = new List<Stream>();
             _imageSources = new List<ImageSource>();
