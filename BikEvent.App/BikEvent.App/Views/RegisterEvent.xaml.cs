@@ -151,6 +151,15 @@ namespace BikEvent.App.Views
             }
         }
 
+        private void ScrollToBottom()
+        {
+            if (MyScrollView != null)
+            {
+                double scrollHeight = MyScrollView.ContentSize.Height - MyScrollView.Height;
+                MyScrollView.ScrollToAsync(0, scrollHeight, true);
+            }
+        }
+
         private async Task UploadImage(object sender, EventArgs e)
         {
             foreach (var stream in _tempImageStreams)
@@ -175,6 +184,12 @@ namespace BikEvent.App.Views
 
                     _imageSources.Add(ImageSource.FromStream(() => CopyStream(stream)));
                     _tempImageStreams.Add(streamCopy);
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(50);
+                        ScrollToBottom();
+                    });
                 }
             }
             catch (Exception ex)
@@ -205,6 +220,12 @@ namespace BikEvent.App.Views
                 ImageLayout.IsVisible = false;
             }
             else { ImageLayout.IsVisible = true; }
+
+            if (selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                EventMap.IsVisible = false;
+            }
+            else { EventMap.IsVisible = true; }
         }
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)
@@ -227,37 +248,51 @@ namespace BikEvent.App.Views
             {
                 var mapPage = new MapPage();
 
-                // Use TaskCompletionSource para aguardar a conclusão da seleção no mapa
                 var mapPageCompletionSource = new TaskCompletionSource<Position>();
 
-                // Adicionar manipulador de eventos para o evento MapPageReady
                 mapPage.MapPageReady += (s, args) =>
                 {
-                    // Configurar TaskCompletionSource para sinalizar a conclusão
                     mapPageCompletionSource.SetResult(mapPage.SelectedLocation);
                 };
 
-                // Navegar para a página do mapa
                 await Navigation.PushAsync(mapPage);
 
-                // Aguardar até que a seleção no mapa seja concluída
                 selectedLocation = await mapPageCompletionSource.Task;
 
-                // Verificar se a seleção é válida (diferente de null) antes de atualizar a interface do usuário
                 if (selectedLocation != null)
                 {
-                    // Atualizar a interface do usuário conforme necessário
-                    // Por exemplo, exibir as coordenadas no formulário
                     string lat = selectedLocation.Latitude.ToString();
                     string lng = selectedLocation.Longitude.ToString();
 
-                    TxtLocalizacao.Text = $"{lat}, {lng}";
+                    //TxtLocalizacao.Text = $"{lat}, {lng}";
+                    UpdateMapView(selectedLocation);
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(50);
+                        ScrollToBottom();
+                    });
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"ERRO: {ex.Message}");
             }
+        }
+
+        private void UpdateMapView(Position location)
+        {
+            EventMap.MoveToRegion(MapSpan.FromCenterAndRadius(location, Distance.FromMiles(1)));
+
+            var pin = new Pin
+            {
+                Position = location,
+                Label = "Local do Evento",
+                Type = PinType.SavedPin
+            };
+
+            EventMap.Pins.Clear();
+            EventMap.Pins.Add(pin);
         }
 
     }
