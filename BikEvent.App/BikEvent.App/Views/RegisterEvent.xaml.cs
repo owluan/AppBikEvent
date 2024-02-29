@@ -223,9 +223,15 @@ namespace BikEvent.App.Views
 
             if (selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
             {
-                EventMap.IsVisible = false;
+                MapLayout.IsVisible = false;
             }
-            else { EventMap.IsVisible = true; }
+            else { MapLayout.IsVisible = true; }
+
+            if (_imageSources.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                Spacer.IsVisible = false;
+            }
+            else { Spacer.IsVisible = true; }
         }
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)
@@ -282,7 +288,7 @@ namespace BikEvent.App.Views
 
         private void UpdateMapView(Position location)
         {
-            EventMap.MoveToRegion(MapSpan.FromCenterAndRadius(location, Distance.FromMiles(1)));
+            EventMap.MoveToRegion(MapSpan.FromCenterAndRadius(location, Distance.FromKilometers(1)));
 
             var pin = new Pin
             {
@@ -294,6 +300,5 @@ namespace BikEvent.App.Views
             EventMap.Pins.Clear();
             EventMap.Pins.Add(pin);
         }
-
     }
 }

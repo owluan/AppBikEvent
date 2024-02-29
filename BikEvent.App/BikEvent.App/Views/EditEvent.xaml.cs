@@ -4,6 +4,7 @@ using BikEvent.App.Resources.Load;
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;
 using BikEvent.Domain.Utility.Enums;
+using FFImageLoading.Work;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -13,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
@@ -23,7 +25,11 @@ namespace BikEvent.App.Views
         private EventService _eventService;
         private Event _eventToEdit;
         private AzureStorageService _azureStorageService;
+
+        public event EventHandler<MapPageEventArgs> MapPageReady;
+
         private int _currentIndex;
+        private Position selectedLocation { get; set; }
 
         public EditEvent(Event eventToEdit)
         {
@@ -33,6 +39,7 @@ namespace BikEvent.App.Views
             _eventToEdit = eventToEdit;
             ImageCarousel.ItemsSource = null;
             ImageCarousel.ItemsSource = _eventToEdit.ImageList;
+            selectedLocation = new Position(_eventToEdit.Latitude, _eventToEdit.Longitude);
             HideFields();
             FillFieldsWithEventData();
         }
@@ -50,6 +57,7 @@ namespace BikEvent.App.Views
             TxtDescription.Text = _eventToEdit.Description;
             TxtBenefits.Text = _eventToEdit.Benefits;
             TxtPhoneNumber.Text = _eventToEdit.PhoneNumber;
+            UpdateMapView(selectedLocation);
         }
 
         private void GoBack(object sender, EventArgs e)
@@ -107,6 +115,15 @@ namespace BikEvent.App.Views
             if (MyScrollView != null)
             {
                 MyScrollView.ScrollToAsync(0, 0, true);
+            }
+        }
+
+        private void ScrollToBottom()
+        {
+            if (MyScrollView != null)
+            {
+                double scrollHeight = MyScrollView.ContentSize.Height - MyScrollView.Height;
+                MyScrollView.ScrollToAsync(0, scrollHeight, true);
             }
         }
 
@@ -308,11 +325,81 @@ namespace BikEvent.App.Views
 
         private void HideFields()
         {
-
             if (_eventToEdit.ImageList.Count < 1)
             {
                 ImageLayout.IsVisible = false;
             }
+
+            if (_eventToEdit.ImageList.Count < 2)
+            {
+                ArrowButton.IsVisible = false;
+            }
+            else { ArrowButton.IsVisible = true; }
+
+            if (selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                MapLayout.IsVisible = false;
+            }
+            else { MapLayout.IsVisible = true; }
+
+            if (_eventToEdit.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                Spacer.IsVisible = false;
+            }
+            else { Spacer.IsVisible = true; }
+        }
+
+        private async void OnSelectLocationClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var mapPage = new MapPage();
+
+                var mapPageCompletionSource = new TaskCompletionSource<Position>();
+
+                mapPage.MapPageReady += (s, args) =>
+                {
+                    mapPageCompletionSource.SetResult(mapPage.SelectedLocation);
+                };
+
+                await Navigation.PushAsync(mapPage);
+
+                selectedLocation = await mapPageCompletionSource.Task;
+
+                if (selectedLocation != null)
+                {
+                    string lat = selectedLocation.Latitude.ToString();
+                    string lng = selectedLocation.Longitude.ToString();
+
+                    //TxtLocalizacao.Text = $"{lat}, {lng}";
+                    UpdateMapView(selectedLocation);
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(50);
+                        ScrollToBottom();
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERRO: {ex.Message}");
+            }
+        }
+
+        private void UpdateMapView(Position location)
+        {
+            EventMap.MoveToRegion(MapSpan.FromCenterAndRadius(location, Distance.FromKilometers(1)));
+
+            var pin = new Pin
+            {
+                Position = location,
+                Label = "Local do Evento",
+                Type = PinType.SavedPin
+            };
+
+            EventMap.Pins.Clear();
+            EventMap.Pins.Add(pin);
         }
     }
 }

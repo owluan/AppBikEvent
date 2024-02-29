@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
@@ -18,6 +19,7 @@ namespace BikEvent.App.Views
     public partial class Visualizer : ContentPage
     {
         private Event _event { get; set; }
+        private Position selectedLocation { get; set; }
         private EventService _eventService;
         private int _currentIndex;
 
@@ -28,13 +30,10 @@ namespace BikEvent.App.Views
             _event = eventToShow;
             BindingContext = _event;
             DeserializeObject();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
             ImageCarousel.ItemsSource = null;
             ImageCarousel.ItemsSource = _event.ImageList;
+            selectedLocation = new Position(_event.Latitude, _event.Longitude);
+            UpdateMapView(selectedLocation);
             HideFields();
         }
 
@@ -85,6 +84,18 @@ namespace BikEvent.App.Views
             {
                 HowToGetButton.IsVisible = false;
             }
+
+            if (selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                MapLayout.IsVisible = false;
+            }
+            else { MapLayout.IsVisible = true; }
+
+            if (_event.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                Spacer.IsVisible = false;
+            }
+            else { Spacer.IsVisible = true; }
         }
 
         private async void DeleteEvent(object sender, EventArgs e)
@@ -138,7 +149,22 @@ namespace BikEvent.App.Views
 
         private async void OnHowToGetClicked(object sender, EventArgs e)
         {
-            await Map.OpenAsync(_event.Latitude, _event.Longitude, new MapLaunchOptions { Name = "Como chegar", NavigationMode = NavigationMode.Bicycling });
+            await Xamarin.Essentials.Map.OpenAsync(_event.Latitude, _event.Longitude, new MapLaunchOptions { Name = "Como chegar", NavigationMode = NavigationMode.Bicycling });
+        }
+
+        private void UpdateMapView(Position location)
+        {
+            EventMap.MoveToRegion(MapSpan.FromCenterAndRadius(location, Distance.FromKilometers(1)));
+
+            var pin = new Pin
+            {
+                Position = location,
+                Label = "Local do Evento",
+                Type = PinType.SavedPin
+            };
+
+            EventMap.Pins.Clear();
+            EventMap.Pins.Add(pin);
         }
     }
 }

@@ -27,12 +27,21 @@
                     <Frame StyleClass="EntryFrame" Margin="0,-28,0,0">
                         <Entry x:Name="TxtEventTitle" Placeholder="Evento" Keyboard="Chat" ReturnType="Next" />
                     </Frame>
-                    <Frame StyleClass="EntryFrame">
-                        <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" Keyboard="Chat" ReturnType="Next" />
-                    </Frame>
-                    <Frame StyleClass="EntryFrame">
-                        <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" />
-                    </Frame>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Frame StyleClass="EntryFrame" Grid.Column="0">
+                            <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" Keyboard="Chat" ReturnType="Next" />
+                        </Frame>
+                        <Frame StyleClass="EntryFrame" Grid.Column="1">
+                            <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" />
+                        </Frame>
+                    </Grid>
                     <Frame StyleClass="EntryFrame">
                         <StackLayout>
                             <Label Text="Repetição" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
@@ -89,13 +98,29 @@
                     <Frame StyleClass="EntryFrame">
                         <Entry x:Name="TxtBenefits" Placeholder="Benefícios" Keyboard="Chat" ReturnType="Next" />
                     </Frame>
-                    <Frame StyleClass="EntryFrame">
-                        <Entry x:Name="TxtPhoneNumber" Placeholder="Contato/Whatsapp" Keyboard="Telephone" ReturnType="Next" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Frame StyleClass="EntryFrame" Grid.Column="0">
+                            <Entry x:Name="TxtPhoneNumber" Placeholder="Contato/Whatsapp" Keyboard="Telephone" ReturnType="Next" />
+                        </Frame>
+                        <Frame StyleClass="EntryFrame" Grid.Column="1">
+                            <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" Unfocused="TxtSocialMedia_OnUnfocused"/>
+                        </Frame>
+                    </Grid>
+                    <BoxView Color="#F3F5F7" HeightRequest="1" />
+                    <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
+                        <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
+                            <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="False"/>
+                        </Frame>
                     </Frame>
-                    <Frame StyleClass="EntryFrame" Margin="0,0,0,10">
-                        <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Next" Unfocused="TxtSocialMedia_OnUnfocused"/>
-                    </Frame>
-                    <Frame x:Name="ImageLayout" BackgroundColor="LightSalmon" CornerRadius="10" Margin="0,10,0,10">
+                    <BoxView x:Name="Spacer" Color="#F3F5F7" HeightRequest="1" />
+                    <Frame x:Name="ImageLayout" BackgroundColor="Transparent" CornerRadius="10" Margin="0,0,0,0" >
                     <StackLayout>
                         <CarouselView x:Name="ImageCarousel" HeightRequest="200">
                             <CarouselView.ItemTemplate>
@@ -111,8 +136,7 @@
                             <ImageButton Source="right.png" Clicked="OnNextButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
                         </StackLayout>
                     </StackLayout>
-                    </Frame>
-                    <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="False"/>
+                    </Frame>                    
                 </StackLayout>
             </ScrollView>
             <ImageButton Source="addlocation.png" x:Name="AddLocationButton" Clicked="OnSelectLocationClicked" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="50" WidthRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.98,0.89,-1,-1" />

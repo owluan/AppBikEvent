@@ -8,8 +8,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
@@ -18,6 +19,7 @@ namespace BikEvent.App.Views
     public partial class EditVisualizer : ContentPage
     {
         private Event _event { get; set; }
+        private Position selectedLocation { get; set; }
         private EventService _eventService;
         private int _currentIndex;
 
@@ -30,6 +32,8 @@ namespace BikEvent.App.Views
             DeserializeObject();
             ImageCarousel.ItemsSource = null;
             ImageCarousel.ItemsSource = _event.ImageList;
+            selectedLocation = new Position(_event.Latitude, _event.Longitude);
+            UpdateMapView(selectedLocation);
             HideFields();
         }
 
@@ -107,6 +111,23 @@ namespace BikEvent.App.Views
             {
                 ArrowButton.IsVisible = false;
             }
+
+            if (_event.Latitude == 0 && _event.Longitude == 0)
+            {
+                HowToGetButton.IsVisible = false;
+            }
+
+            if (selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                MapLayout.IsVisible = false;
+            }
+            else { MapLayout.IsVisible = true; }
+
+            if (_event.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                Spacer.IsVisible = false;
+            }
+            else { Spacer.IsVisible = true; }
         }
 
         private void DeserializeObject()
@@ -129,6 +150,26 @@ namespace BikEvent.App.Views
             _currentIndex = (_currentIndex + 1) % _event.ImageList.Count;
 
             ImageCarousel.Position = _currentIndex;
+        }
+
+        private async void OnHowToGetClicked(object sender, EventArgs e)
+        {
+            await Xamarin.Essentials.Map.OpenAsync(_event.Latitude, _event.Longitude, new MapLaunchOptions { Name = "Como chegar", NavigationMode = NavigationMode.Bicycling });
+        }
+
+        private void UpdateMapView(Position location)
+        {
+            EventMap.MoveToRegion(MapSpan.FromCenterAndRadius(location, Distance.FromKilometers(1)));
+
+            var pin = new Pin
+            {
+                Position = location,
+                Label = "Local do Evento",
+                Type = PinType.SavedPin
+            };
+
+            EventMap.Pins.Clear();
+            EventMap.Pins.Add(pin);
         }
     }
 }

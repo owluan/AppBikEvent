@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="BikEvent.App.Views.EditVisualizer">
     <ContentPage.Content>
         <StackLayout>
@@ -75,20 +76,41 @@
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding SocialMedia}" x:Name="TextSocialMedia" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp" />
                     <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
-                    <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" />
-                    <StackLayout>
-                        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}" HeightRequest="200">
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding}" Aspect="AspectFit" />
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
-                        <StackLayout x:Name="ArrowButton" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <ImageButton Source="left.png" Clicked="OnPreviousButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
-                            <ImageButton Source="right.png" Clicked="OnNextButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="60" WidthRequest="60" Grid.Column="0" />
+                        <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="1" />
+                    </Grid>
+                    <BoxView Color="#F3F5F7" HeightRequest="1" />
+                    <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
+                        <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
+                            <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>
+                        </Frame>
+                    </Frame>
+                    <BoxView x:Name="Spacer" Color="#F3F5F7" HeightRequest="1" />
+                    <Frame x:Name="ImageLayout" BackgroundColor="Transparent" CornerRadius="10" Margin="0,0,0,0" >
+                        <StackLayout>
+                            <CarouselView x:Name="ImageCarousel" HeightRequest="200">
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
+                                            <Image Source="{Binding}" Aspect="AspectFill" />
+                                        </Frame>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <StackLayout x:Name="ArrowButton" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <ImageButton Source="left.png" Clicked="OnPreviousButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
+                                <ImageButton Source="right.png" Clicked="OnNextButtonClicked" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
+                    </Frame>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
