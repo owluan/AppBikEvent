@@ -75,10 +75,21 @@ namespace BikEvent.App.Views
                 TextBenefits.IsVisible = false;
             }
 
+            if (_event.ImageList.Count < 1)
+            {
+                ImageLayout.IsVisible = false;
+            }
+
             if (_event.ImageList.Count < 2)
             {
                 ArrowButton.IsVisible = false;
             }
+
+            if (_event.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            {
+                Spacer.IsVisible = false;
+            }
+            else { Spacer.IsVisible = true; }
 
             if (_event.Latitude == 0 && _event.Longitude == 0)
             {
@@ -89,13 +100,7 @@ namespace BikEvent.App.Views
             {
                 MapLayout.IsVisible = false;
             }
-            else { MapLayout.IsVisible = true; }
-
-            if (_event.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
-            {
-                Spacer.IsVisible = false;
-            }
-            else { Spacer.IsVisible = true; }
+            else { MapLayout.IsVisible = true; }            
         }
 
         private async void DeleteEvent(object sender, EventArgs e)
