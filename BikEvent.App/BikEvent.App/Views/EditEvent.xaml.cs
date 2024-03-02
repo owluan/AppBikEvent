@@ -4,15 +4,15 @@ using BikEvent.App.Resources.Load;
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;
 using BikEvent.Domain.Utility.Enums;
-using FFImageLoading.Work;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -31,17 +31,38 @@ namespace BikEvent.App.Views
         private int _currentIndex;
         private Position selectedLocation { get; set; }
 
+        private List<string> _imageUrl { get; set; }
+        private List<ImageSource> _imageSources { get; set; }
+        private List<Stream> _tempImageStreams { get; set; }
+        private List<ImageSource> _imageSourceList { get; set; }
+
+
         public EditEvent(Event eventToEdit)
         {
             InitializeComponent();
             _eventService = new EventService();
             _azureStorageService = new AzureStorageService();
             _eventToEdit = eventToEdit;
-            ImageCarousel.ItemsSource = null;
-            ImageCarousel.ItemsSource = _eventToEdit.ImageList;
+
+            _imageUrl = new List<string>();
+            _imageSources = new List<ImageSource>();
+            _tempImageStreams = new List<Stream>();
             selectedLocation = new Position(_eventToEdit.Latitude, _eventToEdit.Longitude);
-            HideFields();
             FillFieldsWithEventData();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            _imageSourceList = _eventToEdit.ImageList
+                    .Select(imageUrl => (ImageSource)imageUrl)
+                    .Concat(_imageSources)
+                    .ToList();
+
+            ImageCarousel.ItemsSource = null;
+            ImageCarousel.ItemsSource = _imageSourceList;            
+            HideFields();
         }
 
         private void FillFieldsWithEventData()
@@ -67,6 +88,10 @@ namespace BikEvent.App.Views
 
         private async void Save(object sender, EventArgs e)
         {
+            await Navigation.PushPopupAsync(new Loading());
+
+            await UploadImage(sender, e);
+
             TxtMessages.Text = String.Empty;
 
             _eventToEdit.EventTitle = TxtEventTitle.Text;
@@ -80,8 +105,7 @@ namespace BikEvent.App.Views
             _eventToEdit.EventType = GetSelectedEventType();
             _eventToEdit.RepeatInterval = GetSelectedRepeatInterval();
             _eventToEdit.Difficulty = GetSelectedDifficulty();
-
-            await Navigation.PushPopupAsync(new Loading());
+            _eventToEdit.ImageUrl = JsonConvert.SerializeObject(_eventToEdit.ImageList);
 
             ResponseService<Event> responseService = await _eventService.EditEvent(_eventToEdit);
 
@@ -94,7 +118,7 @@ namespace BikEvent.App.Views
                     Navigation.RemovePage(navigationStack[1]);
                     Navigation.RemovePage(navigationStack[2]);
                 }
-                
+
                 await Navigation.PushAsync(new EditVisualizer(_eventToEdit));
                 await Navigation.PopAllPopupAsync();
                 await DisplayAlert("Edição de Evento", "Evento editado com sucesso!", "OK");
@@ -255,6 +279,53 @@ namespace BikEvent.App.Views
             return "Default";
         }
 
+        private async Task UploadImage(object sender, EventArgs e)
+        {
+            foreach (var stream in _tempImageStreams)
+            {
+                stream.Position = 0;
+                string imageUrl = await _azureStorageService.UploadFile(stream);
+                _eventToEdit.ImageList.Add(imageUrl);
+            }
+        }
+
+        private async void OnSelectImageClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync();
+
+                if (result != null)
+                {
+                    var stream = await result.OpenReadAsync();
+
+                    var streamCopy = CopyStream(stream);
+
+                    _imageSources.Add(ImageSource.FromStream(() => CopyStream(stream)));
+                    _tempImageStreams.Add(streamCopy);
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(50);
+                        ScrollToBottom();
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERRO: {ex.Message}");
+            }
+        }
+
+        private Stream CopyStream(Stream input)
+        {
+            var copy = new MemoryStream();
+            input.Position = 0;
+            input.CopyTo(copy);
+            copy.Position = 0;
+            return copy;
+        }
+
         private async void OnDeleteImageButtonClicked(object sender, EventArgs e)
         {
             if (_eventToEdit.ImageList != null && _eventToEdit.ImageList.Any())
@@ -272,14 +343,14 @@ namespace BikEvent.App.Views
                     _eventToEdit.ImageList.RemoveAt(_currentIndex);
 
                     ImageCarousel.ItemsSource = null;
-                    ImageCarousel.ItemsSource = _eventToEdit.ImageList;
+                    ImageCarousel.ItemsSource = _imageSourceList;
 
-                    if (_eventToEdit.ImageList.Count < 2)
+                    if (_imageSourceList.Count < 2)
                     {
                         ArrowButton.IsVisible = false;
                     }
 
-                    if (_eventToEdit.ImageList.Count < 1)
+                    if (_imageSourceList.Count < 1)
                     {
                         DeleteButton.IsVisible = false;
                     }
@@ -289,12 +360,12 @@ namespace BikEvent.App.Views
                     ResponseService<Event> responseService = await _eventService.EditEvent(_eventToEdit);
 
                     if (responseService.IsSuccess)
-                    {          
+                    {
                         var navigationStack = Navigation.NavigationStack.ToList();
 
                         if (navigationStack.Count >= 3)
-                        {                            
-                            Navigation.RemovePage(navigationStack[2]);  
+                        {
+                            Navigation.RemovePage(navigationStack[2]);
                         }
 
                         await Navigation.PushAsync(new EditEvent(_eventToEdit));
@@ -325,12 +396,12 @@ namespace BikEvent.App.Views
 
         private void HideFields()
         {
-            if (_eventToEdit.ImageList.Count < 1)
+            if (_imageSourceList.Count < 1)
             {
                 ImageLayout.IsVisible = false;
             }
 
-            if (_eventToEdit.ImageList.Count < 2)
+            if (_imageSourceList.Count < 2)
             {
                 ArrowButton.IsVisible = false;
             }
@@ -342,7 +413,7 @@ namespace BikEvent.App.Views
             }
             else { MapLayout.IsVisible = true; }
 
-            if (_eventToEdit.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
+            if (_imageSourceList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
             {
                 Spacer.IsVisible = false;
             }
