@@ -42,15 +42,14 @@ namespace BikEvent.App.Droid
                 {
                     if (navigationPage.Navigation.NavigationStack.Count > 1)
                     {
-                        // Se houver mais de uma página no histórico, vá para a página anterior
                         navigationPage.Navigation.PopAsync();
                     }
                     else
                     {
-                        navigationPage.Navigation.PushAsync(new Initial());
-                        // Se houver apenas uma página no histórico, você pode manipular o fechamento do aplicativo ou realizar alguma ação personalizada.
-                        // Exemplo: base.OnBackPressed();
-                        // Ou: Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                        if (!(mainPage.Detail is Initial))
+                        {
+                            mainPage.Detail = new Initial();
+                        }
                     }
                 }
             }

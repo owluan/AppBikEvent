@@ -61,7 +61,6 @@ namespace BikEvent.App.Views
         {
             try
             {
-                // Solicita ao usuário que escolha um arquivo GPX
                 FileData fileData = await CrossFilePicker.Current.PickFile();
 
                 if (fileData == null)
@@ -69,17 +68,13 @@ namespace BikEvent.App.Views
 
                 string filePath = fileData.FilePath;
 
-                // Verifica se o URI retornado é no formato de conteúdo (content://)
                 if (filePath.StartsWith("content://"))
                 {
-                    // Converte o URI em um caminho de arquivo real
                     filePath = await GetActualFilePath(filePath);
                 }
 
-                // Lê o conteúdo do arquivo GPX
                 string gpxContent = File.ReadAllText(filePath);
 
-                // Analisa o conteúdo do arquivo GPX
                 XDocument gpxDocument = XDocument.Parse(gpxContent);
                 XNamespace ns = "http://www.topografix.com/GPX/1/1";
                 XElement trkElement = gpxDocument.Root.Element(ns + "trk");
@@ -90,8 +85,6 @@ namespace BikEvent.App.Views
                     return;
                 }
 
-                // Cria uma Lista com cada coordenada contida no arquivo
-
                 var trackPoints = gpxDocument.Descendants(ns + "trkpt")
                              .Select(x => new
                              {
@@ -99,9 +92,6 @@ namespace BikEvent.App.Views
                                  Longitude = (double)x.Attribute("lon")
                              })
                              .ToList();
-
-
-                // Exibe a rota no mapa utilizando polilinhas
 
                 List<Position> routeCoordinates = new List<Position>();
 
@@ -125,7 +115,6 @@ namespace BikEvent.App.Views
                 map.MapElements.Clear();
                 map.MapElements.Add(polyline);
 
-                // Obter o ponto inicial da rota e Mover o mapa para a posição inicial
                 var startPoint = trackPoints.FirstOrDefault();
 
                 if (startPoint != null)
@@ -142,7 +131,6 @@ namespace BikEvent.App.Views
             {
                 await DisplayAlert("Erro", ex.Message, "OK");
             }
-
         }
 
         private async Task<string> GetActualFilePath(string contentUri)
