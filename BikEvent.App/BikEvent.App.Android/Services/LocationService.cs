@@ -1,11 +1,11 @@
 ﻿using BikEvent.App.Services.Interfaces;
-using JobSearch.App.Droid.Services;
+using BikEvent.App.Droid.Services;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(LocationService))]
-namespace JobSearch.App.Droid.Services
+namespace BikEvent.App.Droid.Services
 {
     public class LocationService : ILocationService
     {

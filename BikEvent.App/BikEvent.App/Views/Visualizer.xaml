@@ -44,8 +44,8 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Text="{Binding EventType}" Style="{StaticResource EventTypeLabel}" Grid.Row="4" />                 
-
+                        <Label Text="{Binding EventType}" Style="{StaticResource EventTypeLabel}" Grid.Row="4" />
+                        
                         <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource TextPrimary}">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -84,7 +84,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="60" WidthRequest="60" Grid.Column="0" />
+                        <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="40" Grid.Column="0" />
                         <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="1" />
                     </Grid>
                     <BoxView Color="#F3F5F7" HeightRequest="1" />

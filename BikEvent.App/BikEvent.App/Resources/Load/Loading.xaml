@@ -3,6 +3,6 @@
                      xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                      CloseWhenBackgroundIsClicked="False"
                      x:Class="BikEvent.App.Resources.Load.Loading"
-                     BackgroundColor="GhostWhite">
-    <Image Source="loading.png" WidthRequest="100" HeightRequest="100" IsAnimationPlaying="true" />
+                     BackgroundColor="Transparent">
+    <ActivityIndicator IsRunning="True" Color="{StaticResource Purple}" HorizontalOptions="Center" WidthRequest="100" />
 </popup:PopupPage>
