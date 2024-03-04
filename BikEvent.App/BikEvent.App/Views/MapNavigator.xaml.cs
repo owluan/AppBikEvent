@@ -155,6 +155,8 @@ namespace BikEvent.App.Views
         private void StartNavigation(object sender, EventArgs e)
         {
             isNavigating = true;
+            StartButton.IsVisible = false;
+            StopButton.IsVisible = true;
 
             Task.Run(async () =>
             {
@@ -198,6 +200,8 @@ namespace BikEvent.App.Views
         private void StopNavigation(object sender, EventArgs e)
         {
             isNavigating = false;
+            StartButton.IsVisible = true;
+            StopButton.IsVisible = false;
         }
     }
 }
