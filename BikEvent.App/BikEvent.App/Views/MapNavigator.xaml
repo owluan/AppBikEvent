@@ -5,6 +5,8 @@
              x:Class="BikEvent.App.Views.MapNavigator">
     <StackLayout>
         <Button Text="Carregar GPX" Clicked="OnLoadGpxClicked" />
+        <Button Text="Iniciar Navegação" Clicked="StartNavigation" />
+        <Button Text="Parar Navegação" Clicked="StopNavigation" />
         <maps:Map x:Name="map" HeightRequest="300" IsShowingUser="True" MapType="Hybrid" />
     </StackLayout>
 </ContentPage>

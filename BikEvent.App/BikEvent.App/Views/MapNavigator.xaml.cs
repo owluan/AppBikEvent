@@ -19,6 +19,7 @@ namespace BikEvent.App.Views
     public partial class MapNavigator : ContentPage
     {
         private ILocationService locationService;
+        private bool isNavigating = false;
 
         public MapNavigator()
         {
@@ -125,7 +126,6 @@ namespace BikEvent.App.Views
 
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(initialPosition, Distance.FromKilometers(zoomLevel / 2)));
                 }
-
             }
             catch (Exception ex)
             {
@@ -150,6 +150,54 @@ namespace BikEvent.App.Views
             string filePath = Path.Combine(FileSystem.CacheDirectory, "temp.gpx");
             File.WriteAllBytes(filePath, fileData);
             return filePath;
+        }
+
+        private void StartNavigation(object sender, EventArgs e)
+        {
+            isNavigating = true;
+
+            Task.Run(async () =>
+            {
+                var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                if (status != PermissionStatus.Granted)
+                {
+                    status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                    if (status != PermissionStatus.Granted)
+                    {
+                        return;
+                    }
+                }
+
+                var location = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(1)));
+
+                if (location != null)
+                {
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(50)));
+
+                    Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                    {
+                        UpdateUserLocation();
+                        return isNavigating;
+                    });
+                }
+            });
+        }
+
+        private async void UpdateUserLocation()
+        {
+            // Obter a posição atual do usuário
+            var location = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Best));
+
+            if (location != null)
+            {
+                // Mova o mapa para a nova posição do usuário
+                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(50)));
+            }
+        }
+
+        private void StopNavigation(object sender, EventArgs e)
+        {
+            isNavigating = false;
         }
     }
 }
