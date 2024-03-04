@@ -187,12 +187,10 @@ namespace BikEvent.App.Views
 
         private async void UpdateUserLocation()
         {
-            // Obter a posição atual do usuário
             var location = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Best));
 
             if (location != null)
             {
-                // Mova o mapa para a nova posição do usuário
                 map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromMeters(50)));
             }
         }

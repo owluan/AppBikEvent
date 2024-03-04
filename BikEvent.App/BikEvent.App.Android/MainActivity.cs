@@ -48,7 +48,7 @@ namespace BikEvent.App.Droid
                     {
                         if (!(mainPage.Detail is Initial))
                         {
-                            mainPage.Detail = new Initial();
+                            mainPage.Detail = new NavigationPage(new Initial());
                         }
                     }
                 }
