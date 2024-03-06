@@ -85,12 +85,6 @@ namespace BikEvent.App.Views
                 ArrowButton.IsVisible = false;
             }
 
-            if (_event.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
-            {
-                Spacer.IsVisible = false;
-            }
-            else { Spacer.IsVisible = true; }
-
             if (_event.Latitude == 0 && _event.Longitude == 0)
             {
                 HowToGetButton.IsVisible = false;

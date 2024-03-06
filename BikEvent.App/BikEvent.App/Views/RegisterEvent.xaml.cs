@@ -226,12 +226,6 @@ namespace BikEvent.App.Views
                 MapLayout.IsVisible = false;
             }
             else { MapLayout.IsVisible = true; }
-
-            if (_imageSources.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
-            {
-                Spacer.IsVisible = false;
-            }
-            else { Spacer.IsVisible = true; }
         }
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)

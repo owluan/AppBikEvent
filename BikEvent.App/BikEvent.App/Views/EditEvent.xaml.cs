@@ -341,12 +341,6 @@ namespace BikEvent.App.Views
                 MapLayout.IsVisible = false;
             }
             else { MapLayout.IsVisible = true; }
-
-            if (_eventToEdit.ImageList.Count < 1 && selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
-            {
-                Spacer.IsVisible = false;
-            }
-            else { Spacer.IsVisible = true; }
         }
 
         private async void OnSelectLocationClicked(object sender, EventArgs e)

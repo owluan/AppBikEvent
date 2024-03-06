@@ -27,12 +27,21 @@
                     <Frame StyleClass="EntryFrame" Margin="0,-28,0,0">
                         <Entry x:Name="TxtEventTitle" Placeholder="Evento" Keyboard="Chat" ReturnType="Next" />
                     </Frame>
-                    <Frame StyleClass="EntryFrame">
-                        <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" Keyboard="Chat" ReturnType="Next" />
-                    </Frame>
-                    <Frame StyleClass="EntryFrame">
-                        <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" />
-                    </Frame>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Frame StyleClass="EntryFrame" Grid.Column="0">
+                            <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" Keyboard="Chat" ReturnType="Next" />
+                        </Frame>
+                        <Frame StyleClass="EntryFrame" Grid.Column="1">
+                            <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" />
+                        </Frame>
+                    </Grid>
                     <Frame StyleClass="EntryFrame">
                         <StackLayout>
                             <Label Text="Repetição" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
@@ -110,7 +119,6 @@
                             <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>
                         </Frame>
                     </Frame>
-                    <BoxView x:Name="Spacer" Color="#F3F5F7" HeightRequest="1" IsVisible="False" />
                     <Frame x:Name="ImageLayout" BackgroundColor="Transparent" CornerRadius="10" Margin="0,0,0,0" >
                         <StackLayout>
                             <CarouselView x:Name="ImageCarousel" HeightRequest="200">
