@@ -9,7 +9,6 @@
               SelectedItem="{Binding SelectedMenuItem}"
               HasUnevenRows="true"
               ItemSelected="OnMenuItemSelected">
-
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

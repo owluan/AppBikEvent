@@ -94,7 +94,7 @@ namespace BikEvent.App.Views
                     Navigation.RemovePage(navigationStack[1]);
                     Navigation.RemovePage(navigationStack[2]);
                 }
-                
+
                 await Navigation.PushAsync(new EditVisualizer(_eventToEdit));
                 await Navigation.PopAllPopupAsync();
                 await DisplayAlert("Edição de Evento", "Evento editado com sucesso!", "OK");
@@ -276,7 +276,8 @@ namespace BikEvent.App.Views
 
                     if (_eventToEdit.ImageList.Count < 2)
                     {
-                        ArrowButton.IsVisible = false;
+                        ArrowButtonLeft.IsVisible = false;
+                        ArrowButtonRight.IsVisible = false;
                     }
 
                     if (_eventToEdit.ImageList.Count < 1)
@@ -289,12 +290,12 @@ namespace BikEvent.App.Views
                     ResponseService<Event> responseService = await _eventService.EditEvent(_eventToEdit);
 
                     if (responseService.IsSuccess)
-                    {          
+                    {
                         var navigationStack = Navigation.NavigationStack.ToList();
 
                         if (navigationStack.Count >= 3)
-                        {                            
-                            Navigation.RemovePage(navigationStack[2]);  
+                        {
+                            Navigation.RemovePage(navigationStack[2]);
                         }
 
                         await Navigation.PushAsync(new EditEvent(_eventToEdit));
@@ -332,9 +333,14 @@ namespace BikEvent.App.Views
 
             if (_eventToEdit.ImageList.Count < 2)
             {
-                ArrowButton.IsVisible = false;
+                ArrowButtonLeft.IsVisible = false;
+                ArrowButtonRight.IsVisible = false;
             }
-            else { ArrowButton.IsVisible = true; }
+            else
+            {
+                ArrowButtonLeft.IsVisible = true;
+                ArrowButtonRight.IsVisible = true;
+            }
 
             if (selectedLocation.Latitude == 0 && selectedLocation.Longitude == 0)
             {

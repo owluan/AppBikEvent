@@ -90,7 +90,7 @@
                     <BoxView Color="#F3F5F7" HeightRequest="1" />
                     <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
                         <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
-                            <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>
+                            <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="True" HasZoomEnabled="True"/>
                         </Frame>
                     </Frame>
                     <Frame x:Name="ImageLayout" BackgroundColor="Transparent" CornerRadius="10" Margin="0,0,0,0" >

@@ -42,16 +42,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\MyEvents.xaml.cs">
+    <Compile Update="Views\Event\MyEvents.xaml.cs">
       <DependentUpon>MyEvents.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\EditEvent.xaml.cs">
+    <Compile Update="Views\Event\EditEvent.xaml.cs">
       <DependentUpon>EditEvent.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\RegisterEvent.xaml.cs">
+    <Compile Update="Views\Event\RegisterEvent.xaml.cs">
       <DependentUpon>RegisterEvent.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\EditVisualizer.xaml.cs">
+    <Compile Update="Views\Event\EditVisualizer.xaml.cs">
       <DependentUpon>EditVisualizer.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -63,28 +63,28 @@
     <EmbeddedResource Update="Resources\Load\Loading.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Initial.xaml">
+    <EmbeddedResource Update="Views\Event\Initial.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Login.xaml">
+    <EmbeddedResource Update="Views\User\Login.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MapNavigator.xaml">
+    <EmbeddedResource Update="Views\Map\MapNavigator.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MapPage.xaml">
+    <EmbeddedResource Update="Views\Map\MapPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Register.xaml">
+    <EmbeddedResource Update="Views\User\Register.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RegisterEvent.xaml">
+    <EmbeddedResource Update="Views\Event\RegisterEvent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Visualizer.xaml">
+    <EmbeddedResource Update="Views\Event\Visualizer.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
