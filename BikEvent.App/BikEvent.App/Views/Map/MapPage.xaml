@@ -2,8 +2,5 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BikEvent.App.Views"
-             x:Class="BikEvent.App.Views.MapPage">
-    <ContentPage.Content>
-        <!-- Conteúdo do mapa, que é gerado dinamicamente em MapPage.xaml.cs -->
-    </ContentPage.Content>
+             x:Class="BikEvent.App.Views.MapPage" Padding="0">
 </ContentPage>

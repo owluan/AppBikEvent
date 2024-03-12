@@ -517,5 +517,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\gpx.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\homebackground.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
