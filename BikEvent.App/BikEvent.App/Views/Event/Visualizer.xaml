@@ -3,22 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             x:Class="BikEvent.App.Views.Visualizer" Padding="15,0">
+             x:Class="BikEvent.App.Views.Visualizer" Padding="15,10" BackgroundImageSource="pagebackground.jpg">
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
                 <StackLayout>
                     <Grid HeightRequest="35">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
-                        </Grid.RowDefinitions>
-                        <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" HeightRequest="50" />
-                        <Label Text="Evento" Style="{StaticResource Title}" Grid.Column="1" Padding="-10,0,0,0" />
-                        <ImageButton Grid.Column="2" Source="editevent.png" x:Name="EditButton" Clicked="EditEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" />
+                        <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" HeightRequest="35" />
+                        <Label Text="Evento" Style="{StaticResource Title}" Grid.Column="1" />
+                        <ImageButton Grid.Column="2" Source="editevent.png" x:Name="EditButton" Clicked="EditEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="35" />
                     </Grid>
                     <BoxView Color="#D7CCFF" HeightRequest="1" />
 

@@ -17,6 +17,8 @@
             <Color x:Key="LightGray">#CAD1DC</Color>
             <Color x:Key="DarkGray">#4E5C69</Color>
 
+            <Color x:Key="Orange">#FFA500</Color>
+
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="Padding" Value="15, 15, 15, 0" />
@@ -28,7 +30,7 @@
             </Style>
 
             <Style TargetType="Frame" Class="EntryFrame">
-                <Setter Property="BackgroundColor" Value="{StaticResource GrayBlue}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Black}" />
                 <Setter Property="Padding" Value="10, 0"/>
                 <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="HasShadow" Value="False" />
@@ -37,13 +39,13 @@
             <Style TargetType="Label" x:Key="Title">
                 <Setter Property="FontFamily" Value="MontserratBold" />
                 <Setter Property="FontSize" Value="20" />
-                <Setter Property="TextColor" Value="{StaticResource Purple}" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource Orange}" />
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
 
             <Style TargetType="Entry">
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="TextColor" Value="Orange" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource DarkGrayBlue}" />
                 <Setter Property="FontFamily" Value="Montserrat" />
                 <Setter Property="FontSize" Value="12" />
@@ -68,46 +70,7 @@
             <Style TargetType="Button" Class="AddButton">
                 <Setter Property="HeightRequest" Value="35" />
                 <Setter Property="VerticalOptions" Value="Start" />
-            </Style>
-
-            <Style TargetType="ImageButton" x:Key="BackButton">
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="HeightRequest" Value="20" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Source">
-                    <OnPlatform x:TypeArguments="FileImageSource">
-                        <On Platform="Android" Value="back.png" />
-                        <On Platform="UWP" Value="Images/back.png" />
-                    </OnPlatform>
-                </Setter>
-            </Style>
-
-            <Style TargetType="ImageButton" x:Key="OkButton">
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="WidthRequest" Value="30" />
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Source">
-                    <OnPlatform x:TypeArguments="FileImageSource">
-                        <On Platform="Android" Value="ok.png" />
-                        <On Platform="UWP" Value="Images/ok.png" />
-                    </OnPlatform>
-                </Setter>
-            </Style>
-
-            <Style TargetType="ImageButton" x:Key="MenuButton">
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="HeightRequest" Value="20" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Source">
-                    <OnPlatform x:TypeArguments="FileImageSource">
-                        <On Platform="Android" Value="logout.png" />
-                        <On Platform="UWP" Value="Images/logout.png" />
-                    </OnPlatform>
-                </Setter>
-            </Style>
+            </Style>           
 
             <Style TargetType="Label" x:Key="BaseLabel">
                 <Setter Property="FontFamily" Value="Montserrat" />
@@ -159,7 +122,52 @@
                 <Setter Property="FontSize" Value="12" />
             </Style>
 
+            <Style TargetType="Label" x:Key="MenuItem">
+                <Setter Property="FontFamily" Value="Montserrat" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource LightPurple}" />
+            </Style>
+
             <!-- Icones -->
+            <Style TargetType="ImageButton" x:Key="BackButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Source">
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android" Value="back.png" />
+                        <On Platform="UWP" Value="Images/back.png" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style TargetType="ImageButton" x:Key="OkButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Source">
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android" Value="ok.png" />
+                        <On Platform="UWP" Value="Images/ok.png" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style TargetType="ImageButton" x:Key="MenuButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Source">
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android" Value="logout.png" />
+                        <On Platform="UWP" Value="Images/logout.png" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
             <Style TargetType="ImageButton" Class="SearchButton">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="WidthRequest" Value="20" />

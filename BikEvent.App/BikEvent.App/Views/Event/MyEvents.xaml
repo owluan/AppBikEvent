@@ -3,21 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
-             x:Class="BikEvent.App.Views.MyEvents" Padding="15,0">
+             x:Class="BikEvent.App.Views.MyEvents" Padding="15,10" BackgroundImageSource="pagebackground.jpg">
     <StackLayout>
-        <Grid VerticalOptions="Start" HeightRequest="50">
+        <Grid HeightRequest="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="menu.png" HorizontalOptions="Start" WidthRequest="35" HeightRequest="35" VerticalOptions="CenterAndExpand">
+            <Image Grid.Column="0" Source="menu.png" WidthRequest="25" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OpenMenu" />
                 </Image.GestureRecognizers>
             </Image>
-            <Label Grid.Column="1" Text="Meus Eventos" Style="{StaticResource Title}" Padding="0,0,85,0" />
-            <Image Grid.Column="2" Source="addevent.png" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand">
+            <Label Grid.Column="1" Text="Meus Eventos" Style="{StaticResource Title}" HorizontalOptions="Center" />
+            <Image Grid.Column="2" Source="addevent.png" WidthRequest="50" HeightRequest="35" HorizontalOptions="End" VerticalOptions="Center">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="GoRegisterEvent" />
                 </Image.GestureRecognizers>
@@ -33,14 +33,14 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2" >
+            <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ImageButton Source="search.png" StyleClass="SearchButton" Clicked="FocusSearch" />
-                    <Entry Placeholder="Pesquisar" Grid.Column="1" x:Name="TxtWord" />
+                    <Entry Placeholder="Pesquisar" Grid.Column="1" x:Name="TxtWord" TextColor="{StaticResource LightPurple}" />
                 </Grid>
             </Frame>
             <Frame StyleClass="EntryFrame" Grid.Row="1">
@@ -50,18 +50,18 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ImageButton StyleClass="PinButton" Clicked="FocusCityState" />
-                    <Entry Placeholder="Cidade/Estado" Grid.Column="1" x:Name="TxtCityState" />
+                    <Entry Placeholder="Cidade/Estado" Grid.Column="1" x:Name="TxtCityState" TextColor="{StaticResource LightPurple}" />
                 </Grid>
             </Frame>
             <Button Text="Pesquisar" Clicked="Search" Grid.Row="1" Grid.Column="1" />
         </Grid>
-        <Label x:Name="TxtResultsCount" Style="{StaticResource TextPrimary}" />
+        <Label x:Name="TxtResultsCount" Style="{StaticResource TextPrimary}" TextColor="Orange" />
         <Grid>
             <CollectionView x:Name="EventsList" RemainingItemsThreshold="-1" RemainingItemsThresholdReached="InfinityScroll" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <pancake:PancakeView BackgroundColor="{StaticResource White}" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" Elevation="3">
+                            <pancake:PancakeView BackgroundColor="{StaticResource White}" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" Elevation="3" CornerRadius="10">
                                 <pancake:PancakeView.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="GoVisualizer" CommandParameter="{Binding .}"/>
                                 </pancake:PancakeView.GestureRecognizers>
@@ -93,7 +93,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Label x:Name="NoResult" IsVisible="false" Text="Nenhum resultado encontrado." Style="{StaticResource TextPrimary}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            <Label x:Name="NoResult" IsVisible="false" Text="Nenhum resultado encontrado." Style="{StaticResource TextPrimary}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Orange"/>
             <ActivityIndicator x:Name="Loading" IsRunning="False" Color="{StaticResource Purple}" HorizontalOptions="Center" VerticalOptions="Center" />
         </Grid>
     </StackLayout>

@@ -2,23 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             x:Class="BikEvent.App.Views.EditEvent" Padding="15,0">
+             x:Class="BikEvent.App.Views.EditEvent" Padding="15,10" BackgroundImageSource="pagebackground.jpg">
     <ContentPage.Content>
         <AbsoluteLayout>
             <ScrollView x:Name="MyScrollView" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <StackLayout Spacing="10">
-                    <Grid Margin="0,0,0,-10">
+                <StackLayout>
+                    <Grid HeightRequest="35" Margin="0,0,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
-                        </Grid.RowDefinitions>
-                        <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" HeightRequest="50" />
-                        <Label Text="Editar Evento" Style="{StaticResource Title}" Grid.Column="1" Padding="-10,0,0,0" />
-                        <ImageButton Style="{StaticResource OkButton}" Grid.Column="2" Clicked="Save" />
+                        <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" HeightRequest="35" />
+                        <Label Text="Editar Evento" Style="{StaticResource Title}" Grid.Column="1" />
+                        <ImageButton Style="{StaticResource OkButton}" Grid.Column="2" Clicked="Save" WidthRequest="50" HeightRequest="35" />
                     </Grid>
                     <BoxView Color="#D7CCFF" HeightRequest="1" />
 
