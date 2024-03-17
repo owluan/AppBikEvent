@@ -7,17 +7,16 @@
         <AbsoluteLayout>
             <ScrollView x:Name="MyScrollView" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <StackLayout>
-                    <Grid HeightRequest="35" Margin="0,0,0,0">
+                    <Grid HeightRequest="35" Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="180" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack" HeightRequest="35" />
                         <Label Text="Editar Evento" Style="{StaticResource Title}" Grid.Column="1" />
                         <ImageButton Style="{StaticResource OkButton}" Grid.Column="2" Clicked="Save" WidthRequest="50" HeightRequest="35" />
                     </Grid>
-                    <BoxView Color="#D7CCFF" HeightRequest="1" />
 
                     <Label x:Name="TxtMessages" LineHeight="1.2" TextColor="OrangeRed" />
 
@@ -58,8 +57,8 @@
                         <StackLayout>
                             <Label Text="Tipo de Evento" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelEntry}" />
                             <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,-15,0,5">
-                                <RadioButton x:Name="RBPedal" IsChecked="True" WidthRequest="30" />
-                                <Label Style="{StaticResource RadioButton}" Text="Pedal" />
+                                <RadioButton x:Name="RBPUrbano" IsChecked="True" WidthRequest="30" />
+                                <Label Style="{StaticResource RadioButton}" Text="Urbano" />
                                 <RadioButton x:Name="RBTrilha" WidthRequest="30" />
                                 <Label Style="{StaticResource RadioButton}" Text="Trilha" />
                                 <RadioButton x:Name="RBPasseio" WidthRequest="30" />
@@ -110,7 +109,6 @@
                             <Entry x:Name="TxtSocialMedia" Placeholder="Rede Social" ReturnType="Done" Unfocused="TxtSocialMedia_OnUnfocused"/>
                         </Frame>
                     </Grid>
-                    <BoxView Color="#F3F5F7" HeightRequest="1" />
                     <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
                         <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
                             <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>

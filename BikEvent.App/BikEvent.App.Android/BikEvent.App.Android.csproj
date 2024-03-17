@@ -518,9 +518,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\gpx.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\homebackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\menubackground.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 
             <Color x:Key="Purple">#623CEA</Color>
             <Color x:Key="LightPurple">#D7CCFF</Color>
+            <Color x:Key="MediumPurple">#a38aff</Color>
 
             <Color x:Key="GrayBlue">#F1F3F6</Color>
             <Color x:Key="DarkGrayBlue">#B3BDC8</Color>
@@ -18,6 +19,8 @@
             <Color x:Key="DarkGray">#4E5C69</Color>
 
             <Color x:Key="Orange">#FFA500</Color>
+            <Color x:Key="LightOrange">#ff9e59</Color>
+            <Color x:Key="DarkOrange">#ff6a00</Color>
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
@@ -53,7 +56,7 @@
 
             <Style TargetType="Editor">
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="TextColor" Value="{StaticResource Orange}" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource DarkGrayBlue}" />
                 <Setter Property="FontFamily" Value="Montserrat" />
                 <Setter Property="FontSize" Value="12" />
@@ -78,19 +81,27 @@
             </Style>
 
             <Style TargetType="Label" x:Key="TitlePrimary" BasedOn="{StaticResource BaseLabel}">
-                <Setter Property="TextColor" Value="{StaticResource Purple}" />
+                <Setter Property="TextColor" Value="{StaticResource LightPurple}" />
             </Style>
 
             <Style TargetType="Label" x:Key="TextSecondary" BasedOn="{StaticResource BaseLabel}">
-                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkOrange}" />
             </Style>
 
             <Style TargetType="Label" x:Key="TextPrimary" BasedOn="{StaticResource BaseLabel}">
-                <Setter Property="TextColor" Value="{StaticResource DarkGray}" />
+                <Setter Property="TextColor" Value="{StaticResource Orange}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="BoxTextSecondary" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource MediumPurple}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="BoxTextPrimary" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource Purple}" />
             </Style>
 
             <Style TargetType="Label" x:Key="MoneyLabel" BasedOn="{StaticResource BaseLabel}">
-                <Setter Property="TextColor" Value="{StaticResource Purple}" />
+                <Setter Property="TextColor" Value="{StaticResource MediumPurple}" />
             </Style>
 
             <Style TargetType="Label" x:Key="CurrencyLabel" BasedOn="{StaticResource BaseLabel}">
@@ -104,7 +115,7 @@
             <Style TargetType="Label" x:Key="IdLabel">
                 <Setter Property="FontFamily" Value="Montserrat" />
                 <Setter Property="FontSize" Value="8" />
-                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+                <Setter Property="TextColor" Value="{StaticResource MediumPurple}" />
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="VerticalOptions" Value="End" />
             </Style>

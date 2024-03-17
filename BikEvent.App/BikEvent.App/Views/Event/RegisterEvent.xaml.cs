@@ -81,7 +81,7 @@ namespace BikEvent.App.Views
                     (RBMonthly.IsChecked) ? RepeatInterval.Monthly :
                  RepeatInterval.None,
                 //FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
-                EventType = (RBPedal.IsChecked) ? "Pedal" : (RBTrilha.IsChecked) ? "Trilha" :
+                EventType = (RBPUrbano.IsChecked) ? "Urbano" : (RBTrilha.IsChecked) ? "Trilha" :
                     (RBPasseio.IsChecked) ? "Passeio" : (RBCompeticao.IsChecked) ? "Competição" :
                     (RBEncontro.IsChecked) ? "Encontro" : (RBOutro.IsChecked) ? "Outro" : "Default",
                 Tag = TxtTags.Text,

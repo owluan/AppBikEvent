@@ -129,7 +129,7 @@ namespace BikEvent.App.Views
 
         private void SetRadioButtonBasedOnEventType(string eventType)
         {
-            RBPedal.IsChecked = false;
+            RBPUrbano.IsChecked = false;
             RBTrilha.IsChecked = false;
             RBPasseio.IsChecked = false;
             RBCompeticao.IsChecked = false;
@@ -138,8 +138,8 @@ namespace BikEvent.App.Views
 
             switch (eventType)
             {
-                case "Pedal":
-                    RBPedal.IsChecked = true;
+                case "Urbano":
+                    RBPUrbano.IsChecked = true;
                     break;
                 case "Trilha":
                     RBTrilha.IsChecked = true;
@@ -163,8 +163,8 @@ namespace BikEvent.App.Views
 
         private string GetSelectedEventType()
         {
-            if (RBPedal.IsChecked)
-                return "Pedal";
+            if (RBPUrbano.IsChecked)
+                return "Urbano";
             if (RBTrilha.IsChecked)
                 return "Trilha";
             if (RBPasseio.IsChecked)

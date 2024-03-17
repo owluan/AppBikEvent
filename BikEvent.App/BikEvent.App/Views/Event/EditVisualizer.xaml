@@ -8,7 +8,7 @@
         <StackLayout>
             <ScrollView>
                 <StackLayout>
-                    <Grid HeightRequest="35">
+                    <Grid HeightRequest="35" Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
@@ -17,8 +17,6 @@
                         <Label Text="Evento" Style="{StaticResource Title}" Grid.Column="1" />
                         <ImageButton Grid.Column="2" Source="editevent.png" x:Name="EditButton" Clicked="EditEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="35" />
                     </Grid>
-                    <BoxView Color="#D7CCFF" HeightRequest="1" />
-
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -61,17 +59,16 @@
                             </Label.FormattedText>
                         </Label>
                     </Grid>
-                    <control:TagView Tags="{Binding Tag}" />                    
-                    <BoxView Color="#F3F5F7" HeightRequest="1" />
-                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição" x:Name="HeaderDescription" />
+                    <control:TagView Tags="{Binding Tag}" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição:" x:Name="HeaderDescription" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Description}" x:Name="TextDescription" />
-                    <Label Style="{StaticResource TitlePrimary}" Text="Dificuldade" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Dificuldade:" />
                     <Label Style="{StaticResource TextSecondary}" Text="{Binding Difficulty}" />
-                    <Label Style="{StaticResource TitlePrimary}" Text="Benefícios" x:Name="HeaderBenefits" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Benefícios:" x:Name="HeaderBenefits" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}" x:Name="TextBenefits" />
-                    <Label Style="{StaticResource TitlePrimary}" Text="Rede Social" x:Name="HeaderSocialMedia" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Rede Social:" x:Name="HeaderSocialMedia" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding SocialMedia}" x:Name="TextSocialMedia" />
-                    <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp:" />
                     <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -84,7 +81,6 @@
                         <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="40" Grid.Column="0" />
                         <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="1" />
                     </Grid>
-                    <BoxView Color="#F3F5F7" HeightRequest="1" />
                     <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
                         <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
                             <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>
