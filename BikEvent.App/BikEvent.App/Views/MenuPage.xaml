@@ -11,7 +11,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Image Grid.Column="0" Source="cyclistmale.png" HorizontalOptions="Start" WidthRequest="35" />
-            <Label Grid.Column="1" Text="{Binding User.Name}" TextColor="Orange" VerticalOptions="Center" FontFamily="Montserrat"  />
+            <Label Grid.Column="1" Text="{Binding User.Name}" TextColor="{StaticResource Orange}" VerticalOptions="Center" FontFamily="Montserrat"  />
         </Grid>
         
         <ListView x:Name="menuPageListView"

@@ -4,5 +4,5 @@
                      CloseWhenBackgroundIsClicked="False"
                      x:Class="BikEvent.App.Resources.Load.Loading"
                      BackgroundColor="Transparent">
-    <ActivityIndicator IsRunning="True" Color="{StaticResource Purple}" HorizontalOptions="Center" WidthRequest="100" />
+    <ActivityIndicator IsRunning="True" Color="{StaticResource Orange}" HorizontalOptions="Center" WidthRequest="100" />
 </popup:PopupPage>

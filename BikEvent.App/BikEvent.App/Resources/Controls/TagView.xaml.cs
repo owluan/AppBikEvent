@@ -51,8 +51,8 @@ namespace BikEvent.App.Resources.Controls
 
                     for (int i = 0; i < limit; i++)
                     {
-                        var frame = new Frame() { Margin = new Thickness(0, 3, 3, 3), BackgroundColor = Color.FromHex("#F7F8FA"), Padding = new Thickness(3), HasShadow = false };
-                        var label = new Label() { Text = words[i], Padding = new Thickness(3), FontFamily = "MontserratLight", FontSize = 10, TextColor = Color.FromHex("#8D9EAA") };
+                        var frame = new Frame() { Margin = new Thickness(0, 3, 3, 3), BackgroundColor = Color.FromHex("#33FFFFFF"), Padding = new Thickness(3), HasShadow = false };
+                        var label = new Label() { Text = words[i], Padding = new Thickness(3), FontFamily = "MontserratLight", FontSize = 10, TextColor = Color.FromHex("#ff6a00") };
 
                         frame.Content = label;
 

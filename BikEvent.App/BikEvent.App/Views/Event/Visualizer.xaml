@@ -63,13 +63,13 @@
                     <Label Style="{StaticResource TitlePrimary}" Text="Descrição:" x:Name="HeaderDescription" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Description}" x:Name="TextDescription" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Dificuldade:" />
-                    <Label Style="{StaticResource TextSecondary}" Text="{Binding Difficulty}" />
+                    <Label Style="{StaticResource TextSecondary}" Text="{Binding Difficulty}" TextColor="{StaticResource OrangeRed}" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Benefícios:" x:Name="HeaderBenefits" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}" x:Name="TextBenefits" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Rede Social:" x:Name="HeaderSocialMedia" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding SocialMedia}" x:Name="TextSocialMedia" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp:" />
-                    <Label Style="{StaticResource TextSecondary}" Text="{Binding PhoneNumber}" />
+                    <Label Style="{StaticResource TextPrimary}" Text="{Binding PhoneNumber}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
