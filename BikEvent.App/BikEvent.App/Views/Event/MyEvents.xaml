@@ -83,7 +83,7 @@
                                         <Label Text="{Binding NextEventDate, StringFormat='{0:dd/MM/yyyy}'}" Style="{StaticResource MoneyLabel}" />
                                     </StackLayout>
                                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-                                        <Label Text="id. " Style="{StaticResource IdLabel}" />
+                                        <Label Text="id." Style="{StaticResource IdLabel}" />
                                         <Label Text="{Binding Id}" Style="{StaticResource IdLabel}" />
                                     </StackLayout>
                                 </Grid>

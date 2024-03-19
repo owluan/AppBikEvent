@@ -3,10 +3,4 @@
 	<item>
 		<color android:color="@color/ic_launcher_background"/>
 	</item>
-	<item>
-		<bitmap
-			android:src="@drawable/Logo"
-			android:tileMode="disabled"
-			android:gravity="center"/>
-	</item>
 </layer-list>

@@ -15,7 +15,7 @@
          which is used to tint widgets -->
     <!--<item name="colorAccent">#FF4081</item>-->
     <item name="android:windowLightStatusBar">true</item>
-    <item name="android:navigationBarColor">#ff6a00</item>
+    <item name="android:navigationBarColor">#b84000</item>
     <item name="android:statusBarColor">#ff6a00</item>
   </style>
   <style name="MainTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
