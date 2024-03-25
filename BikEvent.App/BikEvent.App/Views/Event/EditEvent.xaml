@@ -35,7 +35,7 @@
                             <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" Keyboard="Chat" ReturnType="Next" />
                         </Frame>
                         <Frame StyleClass="EntryFrame" Grid.Column="1">
-                            <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" />
+                            <DatePicker x:Name="DatePicker" Format="dd/MM/yy" FontSize="14" TextColor="{StaticResource Orange}" />
                         </Frame>
                     </Grid>
                     <Frame StyleClass="EntryFrame">

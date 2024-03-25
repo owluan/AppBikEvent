@@ -32,7 +32,7 @@ namespace BikEvent.App.Views
                 new Domain.Models.MenuItem { Title = "Inicio", TargetType = typeof(Initial) },
                 new Domain.Models.MenuItem { Title = "Meus Eventos", TargetType = typeof(MyEvents) },
                 new Domain.Models.MenuItem { Title = "Navegação", TargetType = typeof(MapNavigator) },
-                new Domain.Models.MenuItem { Title = "Home", TargetType = typeof(Home) }
+                new Domain.Models.MenuItem { Title = "Contato", TargetType = typeof(Home) }
             };
 
             BindingContext = this;

@@ -49,11 +49,6 @@ namespace BikEvent.App.Views
             TxtWord.Focus();
         }
 
-        private void FocusCityState(object sender, EventArgs e)
-        {
-            TxtCityState.Focus();
-        }
-
         private async void Search(object sender, EventArgs e)
         {
             TxtResultsCount.Text = String.Empty;
@@ -61,7 +56,7 @@ namespace BikEvent.App.Views
             Loading.IsRunning = true;
             NoResult.IsVisible = false;
 
-            _searchParams = new SearchParams() { Word = TxtWord.Text, CityState = TxtCityState.Text, PageNumber = 1 };
+            _searchParams = new SearchParams() { Word = TxtWord.Text, PageNumber = 1 };
 
             ResponseService<List<Event>> responseService = await _eventService.GetEvents(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
@@ -100,7 +95,7 @@ namespace BikEvent.App.Views
 
             User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
 
-            _searchParams = new SearchParams() { Word = TxtWord.Text, CityState = TxtCityState.Text, PageNumber = 1 };
+            _searchParams = new SearchParams() { Word = TxtWord.Text, PageNumber = 1 };
 
             ResponseService<List<Event>> responseService = await _eventService.GetEventsByUser(user.Id, _searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
@@ -166,6 +161,11 @@ namespace BikEvent.App.Views
             {
                 mainPage.IsPresented = true;
             }
+        }
+
+        private void OnSearchCompleted(object sender, EventArgs e)
+        {
+            SearchAsync();
         }
     }
 }

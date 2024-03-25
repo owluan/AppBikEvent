@@ -21,13 +21,12 @@
                 </Image.GestureRecognizers>
             </Image>
         </Grid>
-        <Grid Margin="0, 10, 0, 10" VerticalOptions="Start" HeightRequest="140">
+        <Grid Margin="0, 0, 0, 10" VerticalOptions="Start" HeightRequest="75">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2">
@@ -35,30 +34,21 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20" />
                         <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
                     </Grid.ColumnDefinitions>
                     <ImageButton Source="search.png" StyleClass="SearchButton" Clicked="FocusSearch"/>
-                    <Entry Placeholder="Pesquisar" Grid.Column="1" x:Name="TxtWord" TextColor="{StaticResource Orange}" PlaceholderColor="{StaticResource LightOrange}"/>
+                    <Entry Placeholder="Pesquisar" Grid.Column="1" x:Name="TxtWord" TextColor="{StaticResource Orange}" PlaceholderColor="{StaticResource LightOrange}" Completed="OnSearchCompleted"/>
+                    <ImageButton Source="arrowright.png" Grid.Column="2" StyleClass="SearchButton" Clicked="Search"/>
                 </Grid>
             </Frame>
-            <Frame StyleClass="EntryFrame" Grid.Row="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ImageButton StyleClass="PinButton" Clicked="FocusCityState" />
-                    <Entry Placeholder="Cidade/Estado" Grid.Column="1" x:Name="TxtCityState" TextColor="{StaticResource Orange}" PlaceholderColor="{StaticResource LightOrange}" />
-                </Grid>
-            </Frame>
-            <Button Text="Pesquisar" Clicked="Search" Grid.Row="1" Grid.Column="1"/>
         </Grid>
-        <Label x:Name="TxtResultsCount" Style="{StaticResource TextPrimary}" TextColor="{StaticResource DarkOrange}" />
+        <Label x:Name="TxtResultsCount" Style="{StaticResource TextPrimary}" TextColor="{StaticResource LightOrange}" />
         <Grid>
             <CollectionView x:Name="EventsList" RemainingItemsThreshold="-1" RemainingItemsThresholdReached="InfinityScroll" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <pancake:PancakeView BackgroundColor="#80000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" Elevation="3" CornerRadius="10">
+                            <pancake:PancakeView BackgroundColor="#80000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10">
                                 <pancake:PancakeView.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="GoVisualizer" CommandParameter="{Binding .}"/>
                                 </pancake:PancakeView.GestureRecognizers>
@@ -73,9 +63,9 @@
                                         <RowDefinition Height="20" />
                                         <RowDefinition Height="25" />
                                     </Grid.RowDefinitions>
-                                    <Label Text="{Binding Company}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource BoxTextSecondary}" Grid.ColumnSpan="2" />
-                                    <Label Text="{Binding EventTitle}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource BoxTextPrimary}" Grid.Row="1" />
-                                    <Label Text="{Binding CityState}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource BoxTextSecondary}" Grid.Row="2" />
+                                    <Label Text="{Binding Company}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
+                                    <Label Text="{Binding EventTitle}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextPrimary}" Grid.Row="1" />
+                                    <Label Text="{Binding CityState}" MaxLines="1" LineBreakMode="TailTruncation" Style="{StaticResource TextSecondary}" Grid.Row="2" />
                                     <control:TagView Tags="{Binding Tag}" WordsNumber="2" Grid.Row="3" />
                                     <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="End" Grid.Row="1" Grid.Column="1"  VerticalOptions="End">
                                         <Label Text="{Binding NextEventDate, StringFormat='{0:dd/MM/yyyy}'}" Style="{StaticResource MoneyLabel}" />
