@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="BikEvent.App.Views.Profile" BackgroundImageSource="pagebackground.jpg">
+    <ContentPage.Content>
+        <Frame BackgroundColor="Transparent">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Comentários" TextColor="{StaticResource DarkOrange}" />
+                    <CollectionView x:Name="CommentsListView" BackgroundColor="Transparent" HeightRequest="{Binding ListViewHeight}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <pancake:PancakeView BackgroundColor="#80000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10">
+                                        <pancake:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}"/>
+                                        </pancake:PancakeView.GestureRecognizers>
+                                        <Grid>
+                                            <Label Text="{Binding UserName}" TextColor="{StaticResource Orange}" BackgroundColor="Transparent" />
+                                            <Label Text="{Binding CommentText}" TextColor="{StaticResource Orange}" BackgroundColor="Transparent" />
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                </StackLayout>                                
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Editor Placeholder="Digite seu comentário" x:Name="CommentEditor" AutoSize="TextChanges"  Keyboard="Chat" />
+                        <Button Text="Enviar" />
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

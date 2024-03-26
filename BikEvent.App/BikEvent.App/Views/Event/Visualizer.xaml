@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="BikEvent.App.Views.Visualizer" Padding="15,10" BackgroundImageSource="pagebackground.jpg">
     <ContentPage.Content>
         <StackLayout>
@@ -103,6 +103,34 @@
                             </StackLayout>
                         </StackLayout>
                     </Frame>
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Editor x:Name="CommentEntry" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" BackgroundColor="Black" Placeholder="Digite seu comentário" AutoSize="TextChanges" Keyboard="Chat" MaxLength="200"/>
+                            <Button Text="Comentar" Style="{StaticResource TextPrimary}" TextColor="{StaticResource Orange}" Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" CornerRadius="25" />
+                        </Grid>
+                        <Label x:Name="TxtCommentsCount" Text="Comentários"  Style="{StaticResource TextPrimary}" TextColor="{StaticResource LightOrange}" />
+                        <CollectionView x:Name="CommentsListView" VerticalOptions="Fill" BackgroundColor="Transparent" HeightRequest="300" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                        <StackLayout>
+                                        <pancake:PancakeView BackgroundColor="#CC000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10">
+                                            <pancake:PancakeView.GestureRecognizers>
+                                                <TapGestureRecognizer CommandParameter="{Binding .}"/>
+                                            </pancake:PancakeView.GestureRecognizers>
+                                            <StackLayout>
+                                                <Label Text="{Binding UserName}" TextColor="{StaticResource Orange}" BackgroundColor="Transparent" />
+                                                <Label Text="{Binding CommentText}" TextColor="{StaticResource Orange}" BackgroundColor="Transparent" />
+                                            </StackLayout>
+                                        </pancake:PancakeView>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>                       
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

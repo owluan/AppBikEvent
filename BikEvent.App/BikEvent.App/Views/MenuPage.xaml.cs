@@ -30,6 +30,7 @@ namespace BikEvent.App.Views
             MenuItems = new ObservableCollection<Domain.Models.MenuItem>
             {
                 new Domain.Models.MenuItem { Title = "Inicio", TargetType = typeof(Initial) },
+                new Domain.Models.MenuItem { Title = "Perfil", TargetType = typeof(Profile) },
                 new Domain.Models.MenuItem { Title = "Meus Eventos", TargetType = typeof(MyEvents) },
                 new Domain.Models.MenuItem { Title = "Navegação", TargetType = typeof(MapNavigator) },
                 new Domain.Models.MenuItem { Title = "Contato", TargetType = typeof(Home) }

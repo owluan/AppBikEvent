@@ -7,6 +7,7 @@ namespace BikEvent.API.Database
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public BikEventContext(DbContextOptions<BikEventContext> options) : base(options)
         {

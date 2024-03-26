@@ -1,7 +1,10 @@
 ﻿using BikEvent.App.Models;
+using BikEvent.App.Resources.Controls;
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;
+using FFImageLoading;
 using Newtonsoft.Json;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +26,34 @@ namespace BikEvent.App.Views
         private EventService _eventService;
         private int _currentIndex;
 
+        List<Comment> comments = new List<Comment>
+            {
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+        };
+
         public Visualizer(Event eventToShow)
         {
             InitializeComponent();
@@ -34,6 +65,8 @@ namespace BikEvent.App.Views
             ImageCarousel.ItemsSource = _event.ImageList;
             selectedLocation = new Position(_event.Latitude, _event.Longitude);
             UpdateMapView(selectedLocation);
+            CommentsListView.ItemsSource = comments;
+            TxtCommentsCount.Text = $"{comments.Count()} comentário(s).";
             HideFields();
         }
 
@@ -94,7 +127,16 @@ namespace BikEvent.App.Views
             {
                 MapLayout.IsVisible = false;
             }
-            else { MapLayout.IsVisible = true; }            
+            else { MapLayout.IsVisible = true; }
+
+            if (comments.Count > 0)
+            {
+                CommentsListView.IsVisible = true;
+            }
+            else
+            {
+                CommentsListView.IsVisible = false;
+            }
         }
 
         private async void DeleteEvent(object sender, EventArgs e)
@@ -102,7 +144,7 @@ namespace BikEvent.App.Views
             bool userConfirmed = await DisplayAlert("Confirmação", "Tem certeza de que deseja excluir este evento?", "Sim", "Não");
 
             if (userConfirmed)
-            {               
+            {
                 ResponseService<Event> responseService = await _eventService.DeleteEvent(_event.Id);
 
                 if (responseService.IsSuccess)
@@ -165,5 +207,6 @@ namespace BikEvent.App.Views
             EventMap.Pins.Clear();
             EventMap.Pins.Add(pin);
         }
+
     }
 }
