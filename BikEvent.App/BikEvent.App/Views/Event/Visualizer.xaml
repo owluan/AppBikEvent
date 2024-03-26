@@ -81,10 +81,8 @@
                         <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="40" Grid.Column="0" />
                         <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="1" />
                     </Grid>
-                    <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
-                        <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
+                    <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" Padding="0" Margin="20,0">
                             <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>
-                        </Frame>
                     </Frame>
                     <Frame x:Name="ImageLayout" BackgroundColor="Transparent" CornerRadius="10" Margin="0,0,0,0" >
                         <StackLayout>
@@ -113,7 +111,7 @@
                             <Button Text="Comentar" Style="{StaticResource TextPrimary}" TextColor="{StaticResource Orange}" Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" CornerRadius="25" />
                         </Grid>
                         <Label x:Name="TxtCommentsCount" Text="Comentários"  Style="{StaticResource TextPrimary}" TextColor="{StaticResource LightOrange}" />
-                        <CollectionView x:Name="CommentsListView" VerticalOptions="Fill" BackgroundColor="Transparent" HeightRequest="300" >
+                        <CollectionView x:Name="CommentsListView" VerticalOptions="Fill" BackgroundColor="Transparent" HeightRequest="250">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                         <StackLayout>

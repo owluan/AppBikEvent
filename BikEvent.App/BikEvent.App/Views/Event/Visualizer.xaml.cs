@@ -27,31 +27,11 @@ namespace BikEvent.App.Views
         private int _currentIndex;
 
         List<Comment> comments = new List<Comment>
-            {
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
-                new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
-                new Comment { UserName = "Usuário1", CommentText = "AaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaáaaaaaaaaaaaaaaaaaaaaaa" },
+        {
+            new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+            new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+            new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
+            new Comment { UserName = "Usuário1", CommentText = "Este é o 1 comentário.Este é o primeiro comentário." },
         };
 
         public Visualizer(Event eventToShow)
@@ -67,6 +47,7 @@ namespace BikEvent.App.Views
             UpdateMapView(selectedLocation);
             CommentsListView.ItemsSource = comments;
             TxtCommentsCount.Text = $"{comments.Count()} comentário(s).";
+            UpdateListViewHeight();
             HideFields();
         }
 
@@ -208,5 +189,35 @@ namespace BikEvent.App.Views
             EventMap.Pins.Add(pin);
         }
 
+        private void UpdateListViewHeight()
+        {
+            double totalHeight = 0;
+            double minHeight = 250;
+
+            foreach (var comment in comments)
+            {
+                var textSize = MeasureTextSize(comment.CommentText);
+                double labelHeight = textSize.Height;
+                totalHeight += labelHeight;
+            }
+
+            // Adicione espaço adicional, se necessário
+            totalHeight += (comments.Count - 1) * 50; // Adicionando espaço entre os itens
+
+            // Definir a altura da CollectionView
+            CommentsListView.HeightRequest = Math.Max(totalHeight, minHeight);
+        }
+
+        private SKSize MeasureTextSize(string text)
+        {
+            var paint = new SKPaint
+            {
+                TextSize = (float)Device.GetNamedSize(NamedSize.Caption, typeof(Editor)),
+                IsAntialias = true
+            };
+            SKRect bounds = new SKRect();
+            paint.MeasureText(text, ref bounds);
+            return new SKSize(bounds.Width, bounds.Height);
+        }
     }
 }
