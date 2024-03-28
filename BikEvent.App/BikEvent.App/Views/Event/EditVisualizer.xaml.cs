@@ -2,12 +2,14 @@
 using BikEvent.App.Services;
 using BikEvent.Domain.Models;
 using Newtonsoft.Json;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -21,12 +23,16 @@ namespace BikEvent.App.Views
         private Event _event { get; set; }
         private Position selectedLocation { get; set; }
         private EventService _eventService;
+        private CommentService _commentService;
         private int _currentIndex;
+
+        private ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
 
         public EditVisualizer(Event eventToShow)
         {
             InitializeComponent();
             _eventService = new EventService();
+            _commentService = new CommentService();
             _event = eventToShow;
             BindingContext = _event;
             DeserializeObject();
@@ -34,6 +40,7 @@ namespace BikEvent.App.Views
             ImageCarousel.ItemsSource = _event.ImageList;
             selectedLocation = new Position(_event.Latitude, _event.Longitude);
             UpdateMapView(selectedLocation);
+            LoadComments();
             HideFields();
         }
 
@@ -107,7 +114,17 @@ namespace BikEvent.App.Views
                 TextBenefits.IsVisible = false;
             }
 
-            if (_event.ImageList.Count < 2)
+            if (ImageCarousel.ItemsSource == null)
+            {
+                ImageLayout.IsVisible = false;
+            }
+
+            if (ImageCarousel.ItemsSource != null && _event.ImageList.Count < 1)
+            {
+                ImageLayout.IsVisible = false;
+            }
+
+            if (ImageCarousel.ItemsSource != null && _event.ImageList.Count < 2)
             {
                 ArrowButton.IsVisible = false;
             }
@@ -164,6 +181,114 @@ namespace BikEvent.App.Views
 
             EventMap.Pins.Clear();
             EventMap.Pins.Add(pin);
+        }
+
+        private void UpdateListViewHeight()
+        {
+            double totalHeight = 0;
+            double minHeight = 250;
+
+            foreach (var comment in comments)
+            {
+                var textSize = MeasureTextSize(comment.CommentText);
+                double labelHeight = textSize.Height;
+                totalHeight += labelHeight;
+            }
+
+            totalHeight += (comments.Count - 1) * 50;
+
+            CommentsListView.HeightRequest = Math.Max(totalHeight, minHeight);
+        }
+
+        private SKSize MeasureTextSize(string text)
+        {
+            var paint = new SKPaint
+            {
+                TextSize = (float)Device.GetNamedSize(NamedSize.Caption, typeof(Editor)),
+                IsAntialias = true
+            };
+            SKRect bounds = new SKRect();
+            paint.MeasureText(text, ref bounds);
+            return new SKSize(bounds.Width, bounds.Height);
+        }
+
+        private async void LoadComments()
+        {
+            ResponseService<List<Comment>> responseService = await _commentService.GetComments(_event.Id);
+
+            if (responseService.IsSuccess)
+            {
+                comments = new ObservableCollection<Comment>(responseService.Data);
+                TxtCommentsCount.Text = $"{comments.Count()} comentário(s).";
+                CommentsListView.IsVisible = true;
+            }
+            else
+            {
+                await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
+                CommentsListView.IsVisible = false;
+            }
+
+            CommentsListView.ItemsSource = comments;
+
+            UpdateListViewHeight();
+        }
+
+        private async void CommentClicked(object sender, EventArgs e)
+        {
+            User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
+
+            if (!string.IsNullOrWhiteSpace(CommentEntry.Text))
+            {
+                Comment newComment = new Comment
+                {
+                    UserName = user.Name,
+                    CommentText = CommentEntry.Text,
+                    EventId = _event.Id
+                };
+
+                ResponseService<Comment> responseService = await _commentService.AddComment(newComment);
+
+                if (responseService.IsSuccess)
+                {
+                    comments.Add(responseService.Data);
+
+                    TxtCommentsCount.Text = $"{comments.Count()} comentário(s).";
+
+                    LoadComments();
+
+                    CommentEntry.Text = string.Empty;
+                }
+                else
+                {
+                    await DisplayAlert("Erro", "Não foi possível salvar o comentário. Por favor, tente novamente mais tarde.", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Erro", "Por favor, digite um comentário antes de enviar.", "OK");
+            }
+        }
+
+        private async void DeleteCommentClicked(object sender, EventArgs e)
+        {
+            if (sender is ImageButton deleteButton && deleteButton.CommandParameter is int commentIdToDelete)
+            {
+                bool userConfirmed = await DisplayAlert("Confirmação", "Tem certeza de que deseja excluir este comentário?", "Sim", "Não");
+
+                if (userConfirmed)
+                {
+                    ResponseService<Comment> responseService = await _commentService.DeleteComment(commentIdToDelete);
+
+                    if (responseService.IsSuccess)
+                    {
+                        LoadComments();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Erro", "Ocorreu um erro ao excluir o comentário.", "OK");
+                    }
+                }
+            }
         }
     }
 }

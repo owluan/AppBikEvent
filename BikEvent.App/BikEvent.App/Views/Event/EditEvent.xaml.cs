@@ -326,12 +326,17 @@ namespace BikEvent.App.Views
 
         private void HideFields()
         {
-            if (_eventToEdit.ImageList.Count < 1)
+            if (ImageCarousel.ItemsSource == null)
             {
                 ImageLayout.IsVisible = false;
             }
 
-            if (_eventToEdit.ImageList.Count < 2)
+            if (ImageCarousel.ItemsSource != null && _eventToEdit.ImageList.Count < 1)
+            {
+                ImageLayout.IsVisible = false;
+            }
+
+            if (ImageCarousel.ItemsSource != null && _eventToEdit.ImageList.Count < 2)
             {
                 ArrowButtonLeft.IsVisible = false;
                 ArrowButtonRight.IsVisible = false;
