@@ -60,6 +60,17 @@
                         </Label>
                     </Grid>
                     <control:TagView Tags="{Binding Tag}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="0" />
+                        <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="1" />
+                    </Grid>
                     <Label Style="{StaticResource TitlePrimary}" Text="Descrição:" x:Name="HeaderDescription" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding Description}" x:Name="TextDescription" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Dificuldade:" />
@@ -70,17 +81,6 @@
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding SocialMedia}" x:Name="TextSocialMedia" />
                     <Label Style="{StaticResource TitlePrimary}" Text="Contato/Whatsapp:" />
                     <Label Style="{StaticResource TextPrimary}" Text="{Binding PhoneNumber}" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <ImageButton Source="howtoget.png" x:Name="HowToGetButton" Clicked="OnHowToGetClicked" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="40" Grid.Column="0" />
-                        <ImageButton Source="delete.png" x:Name="DeleteButton" Clicked="DeleteEvent" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="35" Grid.Column="1" />
-                    </Grid>
                     <Frame x:Name="MapLayout" BackgroundColor="Transparent" CornerRadius="10" >
                         <Frame BackgroundColor="Transparent" CornerRadius="10" Padding="0">
                             <maps:Map x:Name="EventMap" HeightRequest="150" VerticalOptions="FillAndExpand" MapType="Hybrid" HasScrollEnabled="False" HasZoomEnabled="True"/>
@@ -107,10 +107,9 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Editor x:Name="CommentEntry" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" BackgroundColor="Black" Placeholder="Digite seu comentário" AutoSize="TextChanges" Keyboard="Chat" MaxLength="400"/>
-                            <Button Text="Comentar" Style="{StaticResource TextPrimary}" TextColor="{StaticResource Orange}" Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" CornerRadius="25" Clicked="CommentClicked" />
+                            <Editor x:Name="CommentEntry" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Black" Placeholder="Digite seu comentário" AutoSize="TextChanges" Keyboard="Chat" MaxLength="400"/>
+                            <ImageButton Source="send.png" Grid.Row="0" HorizontalOptions="End" VerticalOptions="End" Clicked="CommentClicked" BackgroundColor="Transparent" />
                         </Grid>
                         <Label x:Name="TxtCommentsCount" Text="Comentários"  Style="{StaticResource TextPrimary}" TextColor="{StaticResource LightOrange}" />
                         <CollectionView x:Name="CommentsListView" VerticalOptions="Fill" BackgroundColor="Transparent" HeightRequest="250">
@@ -122,8 +121,8 @@
                                                 <TapGestureRecognizer CommandParameter="{Binding .}"/>
                                             </pancake:PancakeView.GestureRecognizers>
                                             <StackLayout>
-                                                <Label Text="{Binding UserName}" TextColor="{StaticResource LightOrange}" BackgroundColor="Transparent" />
-                                                <Label Text="{Binding CommentText}" TextColor="{StaticResource Orange}" BackgroundColor="Transparent" />
+                                                <Label Text="{Binding UserName}" Style="{StaticResource TextSecondary}" BackgroundColor="Transparent" />
+                                                <Label Text="{Binding CommentText}" Style="{StaticResource TextPrimary}" BackgroundColor="Transparent" />
                                                 <ImageButton Source="delete.png" x:Name="DeleteCommentButton" Clicked="DeleteCommentClicked" CommandParameter="{Binding Id}" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="25" />
                                             </StackLayout>
                                         </pancake:PancakeView>

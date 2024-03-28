@@ -257,6 +257,9 @@ namespace BikEvent.App.Views
                     LoadComments();
 
                     CommentEntry.Text = string.Empty;
+                    CommentEntry.Unfocus();
+
+                    ScrollToLastComment();
                 }
                 else
                 {
@@ -288,6 +291,21 @@ namespace BikEvent.App.Views
                         await DisplayAlert("Erro", "Ocorreu um erro ao excluir o comentário.", "OK");
                     }
                 }
+            }
+        }
+        private void ScrollToLastComment()
+        {
+            if (comments.Any())
+            {
+                var lastComment = comments.Last();
+
+                int lastIndex = comments.IndexOf(lastComment);
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(100);
+                    CommentsListView.ScrollTo(lastIndex, 0, ScrollToPosition.End, true);
+                });
             }
         }
     }
