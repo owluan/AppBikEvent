@@ -314,10 +314,10 @@ namespace BikEvent.App.Views
             var pancakeView = sender as PancakeView;
             if (pancakeView != null)
             {
-                var comment = pancakeView.BindingContext as Comment; // Supondo que seu item seja do tipo Comment
+                var comment = pancakeView.BindingContext as Comment;
                 if (comment != null)
                 {
-                    if (comment.UserId == user.Id) // userId é o Id do usuário logado
+                    if (comment.UserId == user.Id)
                     {
                         var deleteButton = pancakeView.FindByName<ImageButton>("DeleteCommentButton");
                         if (deleteButton != null)
@@ -336,6 +336,5 @@ namespace BikEvent.App.Views
                 }
             }
         }
-
     }
 }

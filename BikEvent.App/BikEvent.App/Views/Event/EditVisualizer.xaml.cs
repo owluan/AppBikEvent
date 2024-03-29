@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
@@ -294,6 +295,7 @@ namespace BikEvent.App.Views
                 }
             }
         }
+
         private void ScrollToLastComment()
         {
             if (comments.Any())
@@ -307,6 +309,35 @@ namespace BikEvent.App.Views
                     await Task.Delay(100);
                     CommentsListView.ScrollTo(lastIndex, 0, ScrollToPosition.End, true);
                 });
+            }
+        }
+
+        private void PancakeView_BindingContextChanged(object sender, EventArgs e)
+        {
+            User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
+            var pancakeView = sender as PancakeView;
+            if (pancakeView != null)
+            {
+                var comment = pancakeView.BindingContext as Comment;
+                if (comment != null)
+                {
+                    if (comment.UserId == user.Id) 
+                    {
+                        var deleteButton = pancakeView.FindByName<ImageButton>("DeleteCommentButton");
+                        if (deleteButton != null)
+                        {
+                            deleteButton.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        var deleteButton = pancakeView.FindByName<ImageButton>("DeleteCommentButton");
+                        if (deleteButton != null)
+                        {
+                            deleteButton.IsVisible = false;
+                        }
+                    }
+                }
             }
         }
     }

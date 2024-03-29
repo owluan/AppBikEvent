@@ -116,7 +116,7 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <pancake:PancakeView BackgroundColor="#CC000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10">
+                                        <pancake:PancakeView BackgroundColor="#CC000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10" BindingContextChanged="PancakeView_BindingContextChanged">
                                             <pancake:PancakeView.GestureRecognizers>
                                                 <TapGestureRecognizer CommandParameter="{Binding .}"/>
                                             </pancake:PancakeView.GestureRecognizers>
