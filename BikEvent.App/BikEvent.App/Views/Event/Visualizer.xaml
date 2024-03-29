@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:BikEvent.App.Resources.Controls"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:local="clr-namespace:BikEvent.App"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="BikEvent.App.Views.Visualizer" Padding="15,10" BackgroundImageSource="pagebackground.jpg">
     <ContentPage.Content>
         <StackLayout>
@@ -114,14 +116,14 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <pancake:PancakeView BackgroundColor="#CC000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10">
+                                        <pancake:PancakeView BackgroundColor="#CC000000" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" CornerRadius="10" BindingContextChanged="PancakeView_BindingContextChanged">
                                             <pancake:PancakeView.GestureRecognizers>
                                                 <TapGestureRecognizer CommandParameter="{Binding .}"/>
                                             </pancake:PancakeView.GestureRecognizers>
                                             <StackLayout>
                                                 <Label Text="{Binding UserName}" Style="{StaticResource TextSecondary}" BackgroundColor="Transparent" />
                                                 <Label Text="{Binding CommentText}" Style="{StaticResource TextPrimary}" BackgroundColor="Transparent" />
-                                                <ImageButton Source="delete.png" x:Name="DeleteCommentButton" Clicked="DeleteCommentClicked" CommandParameter="{Binding Id}" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="25" />
+                                                <ImageButton Source="delete.png" x:Name="DeleteCommentButton" Clicked="DeleteCommentClicked" CommandParameter="{Binding Id}" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="Transparent" HeightRequest="25"/>
                                             </StackLayout>
                                         </pancake:PancakeView>
                                     </StackLayout>

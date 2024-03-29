@@ -93,11 +93,9 @@ namespace BikEvent.App.Views
             Loading.IsRunning = true;
             NoResult.IsVisible = false;
 
-            User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
-
             _searchParams = new SearchParams() { Word = TxtWord.Text, PageNumber = 1 };
 
-            ResponseService<List<Event>> responseService = await _eventService.GetEventsByUser(user.Id, _searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
+            ResponseService<List<Event>> responseService = await _eventService.GetEvents(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
             if (responseService.IsSuccess)
             {

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 
 namespace BikEvent.App.Views
@@ -239,6 +240,7 @@ namespace BikEvent.App.Views
                 {
                     UserName = user.Name,
                     CommentText = CommentEntry.Text,
+                    UserId = user.Id,
                     EventId = _event.Id
                 };
 
@@ -305,5 +307,35 @@ namespace BikEvent.App.Views
                 });
             }
         }
+
+        private void PancakeView_BindingContextChanged(object sender, EventArgs e)
+        {
+            User user = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
+            var pancakeView = sender as PancakeView;
+            if (pancakeView != null)
+            {
+                var comment = pancakeView.BindingContext as Comment; // Supondo que seu item seja do tipo Comment
+                if (comment != null)
+                {
+                    if (comment.UserId == user.Id) // userId é o Id do usuário logado
+                    {
+                        var deleteButton = pancakeView.FindByName<ImageButton>("DeleteCommentButton");
+                        if (deleteButton != null)
+                        {
+                            deleteButton.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        var deleteButton = pancakeView.FindByName<ImageButton>("DeleteCommentButton");
+                        if (deleteButton != null)
+                        {
+                            deleteButton.IsVisible = false;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

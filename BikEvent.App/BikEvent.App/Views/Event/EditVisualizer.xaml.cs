@@ -243,6 +243,7 @@ namespace BikEvent.App.Views
                 {
                     UserName = user.Name,
                     CommentText = CommentEntry.Text,
+                    UserId = user.Id,
                     EventId = _event.Id
                 };
 

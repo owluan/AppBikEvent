@@ -14,6 +14,8 @@ namespace BikEvent.Domain.Models
         [MaxLength(400)]
         public string CommentText { get; set; }
 
+        public int UserId { get; set; }
+
         public int EventId { get; set; }
 
         [ForeignKey("EventId")]
