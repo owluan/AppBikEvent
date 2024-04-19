@@ -1,16 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="BikEvent.App.Views.Profile" Padding="15,15" BackgroundImageSource="pagebackground.jpg">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
                     <Frame BackgroundColor="Transparent" Padding="0" CornerRadius="10">
-                        <Image Source="coverphoto.png" Aspect="AspectFill" />
+                        <Image Source="{Binding User.CoverPhoto}" Aspect="AspectFill" />
                     </Frame>
-                    <Image Source="cyclistmale.png" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End" Margin="20,0,0,0" />
+                    <Grid>
+                        <BoxView Color="{StaticResource Orange}" WidthRequest="52" HeightRequest="52" HorizontalOptions="Start" VerticalOptions="End" Margin="10" />
+                        <Image Source="{Binding User.ProfilePhoto}" BackgroundColor="Transparent" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End" Margin="11" />
+                    </Grid>
                 </Grid>
                 <Grid Padding="0,0,0,15">
                     <Grid.ColumnDefinitions>
@@ -20,8 +25,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Label Text="Luan Acioly" Style="{StaticResource TextPrimary}" Grid.Column="0" Grid.Row="0" FontSize="14" TextColor="{StaticResource LightOrange}" Margin="10,0,0,0" />
-                    <Label Text="Maceió/AL" Style="{StaticResource TextPrimary}" Grid.Column="1" Grid.Row="0" FontSize="14" TextColor="{StaticResource LightOrange}" HorizontalOptions="End" Margin="0,0,10,0" />
+                    <Label Text="{Binding User.Name}" Style="{StaticResource TextPrimary}" Grid.Column="0" Grid.Row="0" FontSize="14" TextColor="{StaticResource LightOrange}" Margin="5" />
+                    <Label Text="{Binding User.CityState}" Style="{StaticResource TextPrimary}" Grid.Column="1" Grid.Row="0" FontSize="14" TextColor="{StaticResource LightOrange}" HorizontalOptions="End" Margin="5" />
                 </Grid>
                 <Grid Padding="0,0,0,10">
                     <Grid.RowDefinitions>
@@ -30,12 +35,10 @@
                     <ImageButton Source="instagram.png" Clicked="InstagramButtonClicked" BackgroundColor="Transparent" HorizontalOptions="Start" Grid.Row="0" />
                     <ImageButton Source="strava.png" Clicked="StravaButtonClicked" WidthRequest="30" BackgroundColor="Transparent" HorizontalOptions="Center" Grid.Row="0" Margin="0,0,225,0" />
                 </Grid>
-
                 <Label Text="Sobre" Style="{StaticResource TextSecondary}" />
                 <Frame  BackgroundColor="#CC000000" CornerRadius="10" >
-                    <Label x:Name="aboutLabel" Style="{StaticResource TextPrimary}" />
+                    <Label x:Name="aboutLabel" Text="{Binding User.Description}" Style="{StaticResource TextPrimary}" />
                 </Frame>
-
                 <Label Text="Habilidades e Certificações" Style="{StaticResource TextSecondary}" HorizontalOptions="Center" />
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <ImageButton Source="{Binding Habilidade1Icon}" HeightRequest="50" WidthRequest="50" Margin="5" />

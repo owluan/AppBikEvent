@@ -24,5 +24,21 @@ namespace BikEvent.Domain.Models
         [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(6, ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E003")]
         public string Password { get; set; }
+
+        [Display(Name = "CityState", ResourceType = typeof(BikEvent.Domain.Utility.Language.Fields))]
+        [Required(ErrorMessageResourceType = typeof(BikEvent.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
+        public string CityState { get; set; }
+
+        public string ProfilePhoto {  get; set; }
+
+        public string CoverPhoto {  get; set; }
+
+        public string Description { get; set; }
+
+        public string Instagram { get; set; }
+
+        public string Strava { get; set; }
+
+        public string Skills { get; set; }
     }
 }
