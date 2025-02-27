@@ -25,18 +25,22 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Label x:Name="TxtMessages" Grid.Row="0" Grid.ColumnSpan="2" LineHeight="1.2" TextColor="OrangeRed" />
                 <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2" >
                     <Entry x:Name="TxtName" Placeholder="Nome" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="2" Grid.ColumnSpan="2" >
-                    <Entry x:Name="TxtEmail" Placeholder="Email" ReturnType="Next" />
+                    <Entry x:Name="TxtCityState" Placeholder="Cidade/UF" ReturnType="Done" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="3" Grid.ColumnSpan="2" >
-                    <Entry x:Name="TxtPassword" Placeholder="Senha" ReturnType="Done" />
+                    <Entry x:Name="TxtEmail" Placeholder="Email" ReturnType="Next" />
                 </Frame>
-                <Button Text="Salvar" Clicked="SaveAction" Grid.Row="4" />
+                <Frame StyleClass="EntryFrame" Grid.Row="4" Grid.ColumnSpan="2" >
+                    <Entry x:Name="TxtPassword" Placeholder="Senha" ReturnType="Next" />
+                </Frame>
+                <Button Text="Salvar" Clicked="SaveAction" Grid.Row="5" />
             </Grid>
 
         </StackLayout>

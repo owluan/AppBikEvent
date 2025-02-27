@@ -10,11 +10,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Image Grid.Column="0" Source="profilephoto.png" HorizontalOptions="Start" WidthRequest="35" />
+            <Image Grid.Column="0" Source="{Binding User.ProfilePhoto}" HorizontalOptions="Start" WidthRequest="35" />
             <Label Grid.Column="1" Text="{Binding User.Name}" TextColor="{StaticResource Orange}" VerticalOptions="Center" FontFamily="Montserrat"  />
         </Grid>
-        
-        <ListView x:Name="menuPageListView"
+
+        <ListView CachingStrategy="RecycleElement" x:Name="menuPageListView"
               ItemsSource="{Binding MenuItems}"
               SelectedItem="{Binding SelectedMenuItem}"
               HasUnevenRows="true"

@@ -31,11 +31,15 @@ namespace BikEvent.App.Views
         {
             TxtMessages.Text = String.Empty;
 
-            string name = TxtName.Text;
-            string email = TxtEmail.Text;
-            string password = TxtPassword.Text;
-
-            User user = new User() { Name = name, Email = email, Password = password};
+            User user = new User()
+            {
+                Name = TxtName.Text,
+                Email = TxtEmail.Text,
+                Password = TxtPassword.Text,
+                CityState = TxtCityState.Text,
+                ProfilePhoto = "cyclistmale.png",
+                CoverPhoto = "coverphotodefault.jpeg"
+            };
 
             await Navigation.PushPopupAsync(new Loading());
 
@@ -52,7 +56,7 @@ namespace BikEvent.App.Views
                 var mainPage = new MasterDetailPage
                 {
                     Master = menuPage,
-                    Detail = new NavigationPage(new Initial()) 
+                    Detail = new NavigationPage(new Initial())
                 };
 
                 App.Current.MainPage = mainPage;
