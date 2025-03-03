@@ -51,7 +51,7 @@ namespace BikEvent.App.Views
                 Type pageType = selectedItem.TargetType;
                 Page page = (Page)Activator.CreateInstance(pageType);
 
-                if (Application.Current.MainPage is MasterDetailPage mainPage)
+                if (Application.Current.MainPage is FlyoutPage mainPage)
                 {
                     await mainPage.Detail.FadeTo(0, 900);
                     mainPage.Detail = new NavigationPage(page);

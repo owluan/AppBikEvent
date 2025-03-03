@@ -36,7 +36,7 @@ namespace BikEvent.App.Droid
 
         public override void OnBackPressed()
         {
-            if (App.Current.MainPage is MasterDetailPage mainPage)
+            if (App.Current.MainPage is FlyoutPage mainPage)
             {
                 if (mainPage.Detail is NavigationPage navigationPage)
                 {

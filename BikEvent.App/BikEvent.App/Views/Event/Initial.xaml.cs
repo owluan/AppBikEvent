@@ -155,7 +155,7 @@ namespace BikEvent.App.Views
 
         private void OpenMenu(object sender, EventArgs e)
         {
-            if (Application.Current.MainPage is MasterDetailPage mainPage)
+            if (Application.Current.MainPage is FlyoutPage mainPage)
             {
                 mainPage.IsPresented = true;
             }

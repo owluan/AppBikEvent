@@ -1,6 +1,6 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BikEvent.App.Views.MenuPage" BackgroundImageSource="menubackground.jpg">
+             x:Class="BikEvent.App.Views.MenuPage" BackgroundColor="#2B2B2B">
     <StackLayout Padding="8">
         <Grid>
             <Grid.ColumnDefinitions>

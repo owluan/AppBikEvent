@@ -26,7 +26,7 @@ namespace BikEvent.App.Views
         private Event _eventToEdit;
         private AzureStorageService _azureStorageService;
 
-        public event EventHandler<MapPageEventArgs> MapPageReady;
+        //public event EventHandler<MapPageEventArgs> MapPageReady;
 
         private int _currentIndex;
         private Position selectedLocation { get; set; }

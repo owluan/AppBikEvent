@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BikEvent.App.Views.Profile" Padding="15,15" BackgroundImageSource="pagebackground.jpg">
+             x:Class="BikEvent.App.Views.Profile" Padding="15,15" BackgroundColor="Black">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -37,7 +37,7 @@
                 </Grid>
                 <Label Text="Sobre" Style="{StaticResource TextSecondary}" />
                 <Frame  BackgroundColor="#CC000000" CornerRadius="10" >
-                    <Label x:Name="aboutLabel" Text="{Binding User.Description}" Style="{StaticResource TextPrimary}" />
+                    <Label x:Name="aboutLabel" Text="{Binding User.Description}" Style="{StaticResource TextPrimary}" LineBreakMode="WordWrap" TextType="Html" />
                 </Frame>
                 <Label Text="Habilidades e Certificações" Style="{StaticResource TextSecondary}" HorizontalOptions="Center" />
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">

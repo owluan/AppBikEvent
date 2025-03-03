@@ -53,9 +53,9 @@ namespace BikEvent.App.Views
                 var menuPage = new MenuPage();
                 menuPage.Title = "Navigation";
 
-                var mainPage = new MasterDetailPage
+                var mainPage = new FlyoutPage
                 {
-                    Master = menuPage,
+                    Flyout = menuPage,
                     Detail = new NavigationPage(new Initial())
                 };
 

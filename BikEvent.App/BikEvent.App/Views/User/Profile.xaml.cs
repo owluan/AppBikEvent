@@ -17,6 +17,7 @@ namespace BikEvent.App.Views
         {
             InitializeComponent();
             User = JsonConvert.DeserializeObject<User>((string)App.Current.Properties["User"]);
+            aboutLabel.Text = User.Description.Replace("\\r\\n", "<br>");
             BindingContext = this;
         }
 
